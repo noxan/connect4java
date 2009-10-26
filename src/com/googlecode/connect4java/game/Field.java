@@ -6,18 +6,18 @@ import java.io.IOException;
 /**
  * Field
  * @author noxan
- * @version 0.0.1
- * @since 0.0.1
+ * @version 0.2
+ * @since 0.1
  */
 public class Field implements FieldInterface {
 	/**
-	 * Speichert das Spielfeld.
+	 * Saves the field.
 	 */
 	private short[][] field;
 	
 	/**
 	 * Constructs a new empty field.
-	 * @since 0.0.1
+	 * @since 0.1
 	 */
 	public Field() {
 		field = new short[FIELD_WIDTH][FIELD_HEIGHT];
@@ -27,8 +27,7 @@ public class Field implements FieldInterface {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public boolean add(short column, short value) throws FieldException {
-		if(column>FIELD_WIDTH) throw new FieldException();
+	public boolean add(short column, short value) {
 		if(!isColumnFull(column)) {
 			field[column][getHeight(column)] = value;
 			return true;
@@ -37,10 +36,10 @@ public class Field implements FieldInterface {
 	}
 	/**
 	 * Sets the value at the given positon.
+	 * @since 0.1
 	 * @param column
 	 * @param row
 	 * @param value
-	 * @since 0.0.1
 	 */
 	private void set(short column, short row, short value) {
 		field[column][row] = value;
@@ -49,28 +48,28 @@ public class Field implements FieldInterface {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public short get(short column, short row) throws FieldException {
+	public short get(short column, short row) {
 		return field[column][row];
 	}
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public short get(Point p) throws FieldException {
+	public short get(Point p) {
 		return get((short)p.x, (short)p.y);
 	}
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public short[] getColumn(short column) throws FieldException {
+	public short[] getColumn(short column) {
 		return field[column];
 	}
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public short[] getRow(short row) throws FieldException {
+	public short[] getRow(short row) {
 		short[] res = new short[FIELD_WIDTH];
 		for(short s=0;s<FIELD_WIDTH;s++) {
 			res[s] = get(s, row);
@@ -81,7 +80,7 @@ public class Field implements FieldInterface {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public short getHeight(short column) throws FieldException {
+	public short getHeight(short column) {
 		short height = 0;
 		for(short row=0;row<FIELD_HEIGHT && get(column, row)>0;row++) {
 			height++;
@@ -92,7 +91,7 @@ public class Field implements FieldInterface {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public boolean isColumnFull(short column) throws FieldException {
+	public boolean isColumnFull(short column) {
 		if(getHeight(column)>=FIELD_HEIGHT) {
 			return true;
 		}
@@ -102,7 +101,7 @@ public class Field implements FieldInterface {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public boolean isDraw() throws FieldException {
+	public boolean isDraw() {
 		for(short x=0;x<FIELD_WIDTH;x++) {
 			if(!isColumnFull(x)) {
 				return false;
@@ -151,11 +150,7 @@ public class Field implements FieldInterface {
 		Field f = new Field();
 		for(short row=0;row<FIELD_HEIGHT;row++) {
 			for(short column=0;column<FIELD_WIDTH;column++) {
-				try {
-					f.set(column, row, get(column, row));
-				} catch (FieldException e) {
-					f.set(column, row, (short) -1);
-				}
+				f.set(column, row, get(column, row));
 			}
 		}
 		return null;
@@ -168,11 +163,7 @@ public class Field implements FieldInterface {
 		StringBuilder sb = new StringBuilder();
 		for(short row=FIELD_HEIGHT-1;row>=0;row--) {
 			for(short column=0;column<FIELD_WIDTH;column++) {
-				try {
-					sb.append("("+column+"|"+row+")"+get(column, row)+" ");
-				} catch (FieldException e) {
-					sb.append("E");
-				}
+				sb.append("("+column+"|"+row+")"+get(column, row)+" ");
 			}
 			sb.append(System.getProperty("line.separator"));
 		}

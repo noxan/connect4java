@@ -13,7 +13,14 @@ import javax.swing.JSeparator;
 
 import com.googlecode.connect4java.Main;
 import com.googlecode.connect4java.img.ImageLoader;
+import com.googlecode.connect4java.pref.Version;
 
+/**
+ * 
+ * @author noxan
+ * @version 0.2
+ * @since 0.1
+ */
 public class MainGUI {
 	public static final int MARGIN = 25;
 	public static final int PADDING = 10;
@@ -24,7 +31,7 @@ public class MainGUI {
 	public static final String CARD_MULTI = "MULTI";
 	public static final String CARD_GAME = "GAME";
 	
-	private JFrame frame;
+	protected JFrame frame;
 	private JPanel cards;
 	private CardLayout layout;
 	
@@ -50,6 +57,10 @@ public class MainGUI {
 		initComponents();
 		showCard(CARD_MENU);
 		
+		/*JMenuBar menu = new JMenuBar(); // well... does not look good...
+		menu.add(new JMenu("File"));
+		frame.setJMenuBar(menu);*/
+		
 		frame.pack();
 		frame.setVisible(true);
 	}
@@ -67,7 +78,7 @@ public class MainGUI {
 		statusLabel = new JLabel();
 		statusPanel.add(statusLabel, "1,2");
 		
-		statusVersionLabel = new JLabel("v"+Main.C4J_VERSION+".rev"+Main.C4J_REVISION);
+		statusVersionLabel = new JLabel("v"+Version.string());
 		statusVersionLabel.setEnabled(false);
 		statusPanel.add(statusVersionLabel, "3,2");
 		

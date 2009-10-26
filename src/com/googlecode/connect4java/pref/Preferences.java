@@ -1,4 +1,4 @@
-package com.googlecode.connect4java.cfg;
+package com.googlecode.connect4java.pref;
 
 import noxan.xml.lib.XML;
 import noxan.xml.lib.XMLEntity;
@@ -10,8 +10,8 @@ import java.util.Set;
 /**
  * Class to organize preferences (with xml-import and export).
  * @author noxan
- * @since 0.0.1
- * @version 0.0.1
+ * @since 0.1
+ * @version 0.2
  */
 public class Preferences {
 	/**

@@ -1,28 +1,24 @@
 package com.googlecode.connect4java.gui;
 
+import info.clearthought.layout.TableLayout;
+
 import java.awt.Color;
-import java.awt.Font;
-import java.awt.GradientPaint;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import info.clearthought.layout.TableLayout;
-
 import javax.swing.JButton;
-import javax.swing.JPanel;
+import javax.swing.JOptionPane;
 
-import com.googlecode.connect4java.Main;
+import com.googlecode.connect4java.net.Update;
 
-public class MenuPanel extends JPanel {
+/**
+ * 
+ * @author noxan
+ * @since 0.1
+ * @version 0.2
+ */
+public class MenuPanel extends AbstractPanel {
 	private static final long serialVersionUID = 1L;
-	
-	private final Color color = new Color(50, 200, 50);
-	private final Font font = new Font("Verdana", Font.PLAIN, 32);
-	
-	private MainGUI gui;
 	
 	private JButton singleButton;
 	private JButton multiButton;
@@ -30,9 +26,9 @@ public class MenuPanel extends JPanel {
 	private JButton exitButton;
 	
 	public MenuPanel(MainGUI gui) {
-		this.gui = gui;
+		super(gui, new Color(50, 200, 50));
 		double[][] size = {{MainGUI.MARGIN, 200, TableLayout.FILL}, 
-				{TableLayout.FILL, TableLayout.PREFERRED, MainGUI.PADDING, TableLayout.PREFERRED, MainGUI.PADDING, TableLayout.PREFERRED, MainGUI.PADDING, TableLayout.PREFERRED, MainGUI.MARGIN}};
+				{TableLayout.FILL, TableLayout.PREFERRED, MainGUI.PADDING, TableLayout.PREFERRED, MainGUI.PADDING, TableLayout.PREFERRED, MainGUI.PADDING, TableLayout.PREFERRED, MainGUI.PADDING, TableLayout.PREFERRED, MainGUI.MARGIN}};
 		setLayout(new TableLayout(size));
 		
 		initComponents();
@@ -42,7 +38,7 @@ public class MenuPanel extends JPanel {
 		singleButton = new JButton("Singleplayer");
 		singleButton.addActionListener(new ActionListener() {
 			@Override public void actionPerformed(ActionEvent e) {
-				gui.showCard(MainGUI.CARD_SINGLE);
+				getMainGUI().showCard(MainGUI.CARD_SINGLE);
 			}
 		});
 		add(singleButton, "1,1");
@@ -50,18 +46,31 @@ public class MenuPanel extends JPanel {
 		multiButton = new JButton("Multiplayer");
 		multiButton.addActionListener(new ActionListener() {
 			@Override public void actionPerformed(ActionEvent e) {
-				gui.showCard(MainGUI.CARD_MULTI);
+				getMainGUI().showCard(MainGUI.CARD_MULTI);
 			}
 		});
 		add(multiButton, "1,3");
 		
+		JButton updateButton = new JButton("Update");
+		updateButton.addActionListener(new ActionListener() {
+			@Override public void actionPerformed(ActionEvent e) {
+				Update update = new Update();
+				if(update.isUpdate()) {
+					JOptionPane.showMessageDialog(getMainGUI().frame, "<html>A new version, "+update.getString()+" is available!<br>http://connect4java.googlecode.com</html>", "Update available", JOptionPane.INFORMATION_MESSAGE);
+				} else {
+					JOptionPane.showMessageDialog(getMainGUI().frame, "Congratulations, this is the very latest version!", "No update available", JOptionPane.INFORMATION_MESSAGE);
+				}
+			}
+		});
+		add(updateButton, "1,5");
+		
 		settingsButton = new JButton("Settings");
 		settingsButton.addActionListener(new ActionListener() {
 			@Override public void actionPerformed(ActionEvent e) {
-				gui.showCard(MainGUI.CARD_SETTINGS);
+				getMainGUI().showCard(MainGUI.CARD_SETTINGS);
 			}
 		});
-		add(settingsButton, "1,5");
+		add(settingsButton, "1,7");
 		
 		exitButton = new JButton("Exit");
 		exitButton.addActionListener(new ActionListener() {
@@ -69,23 +78,6 @@ public class MenuPanel extends JPanel {
 				System.exit(0);
 			}
 		});
-		add(exitButton, "1,7");
-	}
-	
-	@Override
-	protected void paintComponent(Graphics g) { // Test with GradientPaint
-		super.paintComponent(g);
-		Graphics2D g2 = (Graphics2D) g;
-		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		int width = getSize().width;
-		int height = getSize().height;
-		
-		GradientPaint gp = new GradientPaint(0f, 0f, Color.BLACK, 0f, (float)height, color);
-		g2.setPaint(gp);
-		g2.fillRect(0, 0, width, height);
-		
-		g2.setFont(font);
-		g2.setColor(color);
-		g2.drawString(Main.C4J_TITLE, width-228, 40);
+		add(exitButton, "1,9");
 	}
 }

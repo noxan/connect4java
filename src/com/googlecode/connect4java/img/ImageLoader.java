@@ -7,8 +7,8 @@ import javax.swing.ImageIcon;
 /**
  * Class to load images.
  * @author noxan
- * @since 0.0.1
- * @version 0.0.1
+ * @since 0.1
+ * @version 0.1
  */
 public class ImageLoader {
 	/**

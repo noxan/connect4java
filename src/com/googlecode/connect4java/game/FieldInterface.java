@@ -6,8 +6,8 @@ import java.io.IOException;
 /**
  * Field Interface
  * @author noxan
- * @version 0.0.1
- * @since 0.0.1
+ * @version 0.2
+ * @since 0.1
  * @see Field
  */
 public interface FieldInterface {
@@ -22,96 +22,96 @@ public interface FieldInterface {
 	
 	/**
 	 * Returns a row.
+	 * @since 0.1
 	 * @param row
 	 * @return
-	 * @throws FieldException
 	 */
-	public short[] getRow(short row) throws FieldException;
+	public short[] getRow(short row);
 	/**
 	 * Returns a column.
+	 * @since 0.1
 	 * @param column
 	 * @return
-	 * @throws FieldException
 	 */
-	public short[] getColumn(short column) throws FieldException;
+	public short[] getColumn(short column);
 	/**
 	 * Returns the value at the given position.
+	 * @since 0.1
 	 * @param column
 	 * @param row
 	 * @return the value of this field
-	 * @throws FieldException
 	 */
-	public short get(short column, short row) throws FieldException;
+	public short get(short column, short row) ;
 	/**
 	 * Returns the value at the given point.
+	 * @since 0.1
 	 * @param p
 	 * @return the value of this field
-	 * @throws FieldException
 	 */
-	public short get(Point p)  throws FieldException;
+	public short get(Point p)  ;
 	/**
 	 * Returns the height of the given column (counts the pieces in this column).
+	 * @since 0.1
 	 * @param column
 	 * @return the number of pieces in this column
-	 * @throws FieldException
 	 */
-	public short getHeight(short column) throws FieldException;
+	public short getHeight(short column) ;
 	
 	/**
 	 * Adds a piece to the given column.
+	 * @since 0.1
 	 * @param column
-	 * @return
-	 * @throws FieldException
+	 * @return 
 	 */
-	public boolean add(short column, short value) throws FieldException;
+	public boolean add(short column, short value) ;
 	
 	/**
 	 * Resets this field.
-	 * @since 0.0.1
+	 * @since 0.1
 	 */
 	public void reset();
 	
 	/**
 	 * Returns true if a player has won in this field.
-	 * @return
-	 * @since 0.0.1
+	 * @since 0.1
+	 * @return 
 	 */
 	public boolean isWin();
 	/**
 	 * Returns true if every column is full and no player has won in this field, else returns false.
+	 * @since 0.1
 	 * @return 
-	 * @since 0.0.1
-	 * @throws FieldException
 	 */
-	public boolean isDraw() throws FieldException;
+	public boolean isDraw() ;
 	/**
 	 * Returns true if the hight of the given column is as great as <code>FIELD_HEIGHT</code>, else returns false.
+	 * @since 0.1
 	 * @param column 
 	 * @return 
-	 * @throws FieldException if column is greater than FIELD_WIDTH.
-	 * @since 0.0.1
 	 */
-	public boolean isColumnFull(short column) throws FieldException;
+	public boolean isColumnFull(short column) ;
 	/**
 	 * Exports this object to a given location.
+	 * @since 0.1
 	 * @throws IOException
 	 */
 	public void doExport() throws IOException;
 	/**
 	 * Imports this object from a given xml-file.
+	 * @since 0.1
 	 * @throws IOException
 	 */
 	public void doImport() throws IOException;
 	/**
 	 * Returns a string representation of the object.
-	 * @since 0.0.1
+	 * @since 0.1
 	 * @return a string representating this object.
 	 */
 	public String toString();
 	/**
 	 * Creates and returns a copy of this object.
+	 * @since 0.1
 	 * @return a copy of this object
-	 * @since 0.0.1
 	 */
 	public Field clone();
 }

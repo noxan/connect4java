@@ -5,17 +5,21 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import com.googlecode.connect4java.pref.Version;
+
 import noxan.xml.lib.XML;
 import noxan.xml.lib.XMLEntity;
 
-import com.googlecode.connect4java.Main;
-
-
+/**
+ * 
+ * @author noxan
+ * @since 0.1
+ * @version 0.2
+ */
 public class Update {
-	private int version;
-	private int revsion;
-	
-	private XMLEntity xml;
+	private String version;
+	private String revision;
+	private String date;
 	
 	public Update() {
 		update();
@@ -23,12 +27,13 @@ public class Update {
 	
 	public void update() {
 		try {
-			URL url = new URL("http://connect4java.googlecode.com/files/update.xml");
+			URL url = new URL("http://games4fun.rshost.de/projects/index.php?project=connect4java&action=update");
 			InputStream in = url.openStream();
-			xml = new XML().read(in);
+			XMLEntity xml = new XML().read(in);
 			
-			version = Integer.valueOf(xml.getChild("version").getValue().replaceAll("[^0-9]", ""));
-			revsion = Integer.valueOf(xml.getChild("revision").getValue());
+			version = xml.getChild("version").getValue();
+			revision = xml.getChild("revision").getValue();
+			date = xml.getChild("date").getValue();
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -36,33 +41,49 @@ public class Update {
 		}
 	}
 	
-	private int getCurrentVersion() {
-		return Integer.valueOf(Main.C4J_VERSION.replaceAll("[^0-9]", ""));
+	public int getVersionMainInt() {
+		return Integer.valueOf(getVersionMain());
 	}
-	private int getCurrentRevision() {
-		return Main.C4J_REVISION;
+	public int getVersionSubInt() {
+		return Integer.valueOf(getVersionSub().replaceAll("[^0-9]", ""));
+	}
+	public int getRevisionInt() {
+		return Integer.valueOf(revision);
+	}
+	
+	public String getVersionMain() {
+		return version.split(".")[0];
+	}
+	public String getVersionSub() {
+		String res = "";
+		String[] temp = version.split(".");
+		for(int i=1;i<temp.length;i++) {
+			res += temp[i]+(i+1<temp.length?".":"");
+		}
+		return res;
+	}
+	public String getVersionString() {
+		return version;
+	}
+	public String getRevisionString() {
+		return revision;
+	}
+	public String getDateString() {
+		return date;
 	}
 	
 	public boolean isUpdate() {
-		return isRevisionUpdate() && isVersionUpdate();
-	}
-	public boolean isVersionUpdate() {
-		if(version>getCurrentVersion()) {
-			return true;
-		}
-		return false;
-	}
-	public boolean isRevisionUpdate() {
-		if(revsion>getCurrentRevision()) {
+		if(getRevisionInt()>Version.VERSION_REVSION) {
 			return true;
 		}
 		return false;
 	}
 	
-	public int getVersion() {
-		return version;
+	public String getString() {
+		return version+"."+revision;
 	}
-	public int getRevision() {
-		return revsion;
+	
+	public String toString() {
+		return "Update["+version+"."+revision+"-"+date+"]";
 	}
 }
