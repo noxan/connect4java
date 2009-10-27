@@ -5,6 +5,7 @@ import info.clearthought.layout.TableLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -15,7 +16,7 @@ import com.googlecode.connect4java.net.Update;
  * 
  * @author noxan
  * @since 0.1
- * @version 0.2
+ * @version 0.2.6
  */
 public class MenuPanel extends AbstractPanel {
 	private static final long serialVersionUID = 1L;
@@ -53,13 +54,18 @@ public class MenuPanel extends AbstractPanel {
 		
 		JButton updateButton = new JButton("Update");
 		updateButton.addActionListener(new ActionListener() {
-			@Override public void actionPerformed(ActionEvent e) {
-				Update update = new Update();
-				if(update.isUpdate()) {
-					JOptionPane.showMessageDialog(getMainGUI().frame, "<html>A new version, "+update.getString()+" is available!<br>http://connect4java.googlecode.com</html>", "Update available", JOptionPane.INFORMATION_MESSAGE);
-				} else {
-					JOptionPane.showMessageDialog(getMainGUI().frame, "Congratulations, this is the very latest version!", "No update available", JOptionPane.INFORMATION_MESSAGE);
+			@Override public void actionPerformed(ActionEvent evt) {
+				try {
+					Update.update();
+					if(Update.isUpdate()) {
+						JOptionPane.showMessageDialog(getMainGUI().frame, "<html>A new version, "+Update.getString()+" is available!<br>http://connect4java.googlecode.com</html>", "Update available", JOptionPane.INFORMATION_MESSAGE);
+					} else {
+						JOptionPane.showMessageDialog(getMainGUI().frame, "Congratulations, this is the very latest version!", "No update available", JOptionPane.INFORMATION_MESSAGE);
+					}
+				} catch (IOException e) {
+					JOptionPane.showMessageDialog(getMainGUI().frame, "Unable to access update-server.\nPlease check your computer's network connection and try again later.", "Connection error", JOptionPane.ERROR_MESSAGE);
 				}
+				
 			}
 		});
 		add(updateButton, "1,5");
