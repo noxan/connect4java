@@ -9,7 +9,7 @@ package com.googlecode.connect4java.pref;
 public class Version {
 	public static final int VERSION_MAIN = 0;
 	public static final int VERSION_SUB = 2;
-	public static final int VERSION_REVSION = 6;
+	public static final int VERSION_REVSION = 7;
 	
 	public static String string() {
 		return VERSION_MAIN+"."+VERSION_SUB+"."+VERSION_REVSION;
