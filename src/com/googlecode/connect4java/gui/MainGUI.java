@@ -18,8 +18,8 @@ import com.googlecode.connect4java.pref.Version;
 /**
  * 
  * @author noxan
- * @version 0.2
  * @since 0.1
+ * @version 0.3.8
  */
 public class MainGUI {
 	public static final int MARGIN = 25;
@@ -27,8 +27,8 @@ public class MainGUI {
 	
 	public static final String CARD_MENU = "MENU";
 	public static final String CARD_SETTINGS = "SETTINGS";
-	public static final String CARD_SINGLE = "SINGLE";
-	public static final String CARD_MULTI = "MULTI";
+	public static final String CARD_LOCAL = "LOCAL";
+	public static final String CARD_NETWORK = "NETWORK";
 	public static final String CARD_GAME = "GAME";
 	
 	protected JFrame frame;
@@ -45,7 +45,7 @@ public class MainGUI {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocation(50, 50);
 		frame.setLocationByPlatform(true);
-		frame.setMinimumSize(new Dimension(2*MARGIN+200, 275));
+		frame.setMinimumSize(new Dimension(480, 320));
 		frame.setLayout(new BorderLayout());
 		
 		layout = new CardLayout();
@@ -95,11 +95,11 @@ public class MainGUI {
 		JPanel settingsPanel = new SettingsPanel(this);
 		cards.add(settingsPanel, CARD_SETTINGS);
 		
-		JPanel singlePanel = new SinglePanel(this);
-		cards.add(singlePanel, CARD_SINGLE);
+		JPanel localPanel = new LocalPanel(this);
+		cards.add(localPanel, CARD_LOCAL);
 		
-		JPanel multiPanel = new MultiPanel(this);
-		cards.add(multiPanel, CARD_MULTI);
+		JPanel networkPanel = new NetworkPanel(this);
+		cards.add(networkPanel, CARD_NETWORK);
 		
 		JPanel gamePanel = new GamePanel();
 		cards.add(gamePanel, CARD_GAME);

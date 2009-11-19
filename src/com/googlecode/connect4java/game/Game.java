@@ -3,9 +3,19 @@ package com.googlecode.connect4java.game;
 /**
  * 
  * @author noxan
- * @version 0.1
  * @since 0.1
+ * @version 0.3.8
  */
-public class Game {
+public class Game implements GameInterface {
+	private Field field;
+	
+	public Game() {
+		field = new Field();
+	}
+	
+	@Override
+	public Field getField() {
+		return field;
+	}
 
 }

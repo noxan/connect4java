@@ -12,15 +12,15 @@ import javax.swing.JButton;
  * 
  * @author noxan
  * @since 0.1
- * @version 0.2
+ * @version 0.3.8
  */
-public class SinglePanel extends AbstractPanel {
+public class NetworkPanel extends AbstractPanel {
 	private static final long serialVersionUID = 1L;
 	
 	private JButton backButton;
 	
-	public SinglePanel(MainGUI gui) {
-		super(gui, new Color(50, 50, 200));
+	public NetworkPanel(MainGUI gui) {
+		super(gui, new Color(200, 200, 50));
 		double[][] size = {{TableLayout.FILL, 100, MainGUI.MARGIN}, 
 				{TableLayout.FILL, TableLayout.PREFERRED, MainGUI.MARGIN}};
 		setLayout(new TableLayout(size));
