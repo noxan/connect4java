@@ -19,7 +19,7 @@ import com.googlecode.connect4java.pref.Version;
  * 
  * @author noxan
  * @since 0.1
- * @version 0.3.8
+ * @version 0.4.9
  */
 public class MainGUI {
 	public static final int MARGIN = 25;
@@ -29,9 +29,8 @@ public class MainGUI {
 	public static final String CARD_SETTINGS = "SETTINGS";
 	public static final String CARD_LOCAL = "LOCAL";
 	public static final String CARD_NETWORK = "NETWORK";
-	public static final String CARD_GAME = "GAME";
 	
-	protected JFrame frame;
+	public JFrame frame;
 	private JPanel cards;
 	private CardLayout layout;
 	
@@ -100,9 +99,6 @@ public class MainGUI {
 		
 		JPanel networkPanel = new NetworkPanel(this);
 		cards.add(networkPanel, CARD_NETWORK);
-		
-		JPanel gamePanel = new GamePanel();
-		cards.add(gamePanel, CARD_GAME);
 	}
 	public void setLoading(boolean b) {
 		if(b) {
