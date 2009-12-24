@@ -6,28 +6,28 @@ import java.io.IOException;
 /**
  * Field
  * @author noxan
- * @version 0.2
+ * @version 0.4.10
  * @since 0.1
  */
 public class Field implements FieldInterface {
 	/**
 	 * Saves the field.
 	 */
-	private short[][] field;
+	private FieldValue[][] field;
 	
 	/**
 	 * Constructs a new empty field.
 	 * @since 0.1
 	 */
 	public Field() {
-		field = new short[FIELD_WIDTH][FIELD_HEIGHT];
+		field = new FieldValue[FIELD_WIDTH][FIELD_HEIGHT];
 	}
 	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public boolean add(short column, short value) {
+	public boolean add(short column, FieldValue value) {
 		if(!isColumnFull(column)) {
 			field[column][getHeight(column)] = value;
 			return true;
@@ -41,36 +41,36 @@ public class Field implements FieldInterface {
 	 * @param row
 	 * @param value
 	 */
-	private void set(short column, short row, short value) {
+	private void set(short column, short row, FieldValue value) {
 		field[column][row] = value;
 	}
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public short get(short column, short row) {
+	public FieldValue get(short column, short row) {
 		return field[column][row];
 	}
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public short get(Point p) {
+	public FieldValue get(Point p) {
 		return get((short)p.x, (short)p.y);
 	}
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public short[] getColumn(short column) {
+	public FieldValue[] getColumn(short column) {
 		return field[column];
 	}
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public short[] getRow(short row) {
-		short[] res = new short[FIELD_WIDTH];
+	public FieldValue[] getRow(short row) {
+		FieldValue[] res = new FieldValue[FIELD_WIDTH];
 		for(short s=0;s<FIELD_WIDTH;s++) {
 			res[s] = get(s, row);
 		}
@@ -82,7 +82,7 @@ public class Field implements FieldInterface {
 	@Override
 	public short getHeight(short column) {
 		short height = 0;
-		for(short row=0;row<FIELD_HEIGHT && get(column, row)>0;row++) {
+		for(short row=0;row<FIELD_HEIGHT && get(column, row)!=FieldValue.EMPTY;row++) {
 			height++;
 		}
 		return height;
@@ -124,7 +124,7 @@ public class Field implements FieldInterface {
 	public void reset() {
 		for(short x=0;x<FIELD_WIDTH;x++) {
 			for(short y=0;y<FIELD_HEIGHT;y++) {
-				field[x][y] = 0;
+				field[x][y] = FieldValue.EMPTY;
 			}
 		}
 	}
@@ -132,14 +132,14 @@ public class Field implements FieldInterface {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void doExport() throws IOException {
+	public void doExport(String location) throws IOException {
 		// TODO Auto-generated method stub
 	}
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void doImport() throws IOException {
+	public void doImport(String location) throws IOException {
 		// TODO Auto-generated method stub
 	}
 	/**

@@ -14,8 +14,8 @@ import com.googlecode.connect4java.Main;
 /**
  * 
  * @author noxan
+ * @version 0.4.10
  * @since 0.2
- * @version 0.2
  */
 public abstract class AbstractPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -64,5 +64,7 @@ public abstract class AbstractPanel extends JPanel {
 		g2.setFont(font);
 		g2.setColor(color);
 		g2.drawString(Main.C4J_TITLE, width-228, 40);
+		g2.setFont(new Font("Verdana", Font.ITALIC, 16));
+		g2.drawString("Beta", width-65, 58);
 	}
 }

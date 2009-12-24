@@ -6,7 +6,7 @@ import java.io.IOException;
 /**
  * Field Interface
  * @author noxan
- * @version 0.2
+ * @version 0.4.10
  * @since 0.1
  * @see Field
  */
@@ -26,14 +26,14 @@ public interface FieldInterface {
 	 * @param row
 	 * @return
 	 */
-	public short[] getRow(short row);
+	public FieldValue[] getRow(short row);
 	/**
 	 * Returns a column.
 	 * @since 0.1
 	 * @param column
 	 * @return
 	 */
-	public short[] getColumn(short column);
+	public FieldValue[] getColumn(short column);
 	/**
 	 * Returns the value at the given position.
 	 * @since 0.1
@@ -41,14 +41,14 @@ public interface FieldInterface {
 	 * @param row
 	 * @return the value of this field
 	 */
-	public short get(short column, short row) ;
+	public FieldValue get(short column, short row) ;
 	/**
 	 * Returns the value at the given point.
 	 * @since 0.1
 	 * @param p
 	 * @return the value of this field
 	 */
-	public short get(Point p)  ;
+	public FieldValue get(Point p)  ;
 	/**
 	 * Returns the height of the given column (counts the pieces in this column).
 	 * @since 0.1
@@ -63,7 +63,7 @@ public interface FieldInterface {
 	 * @param column
 	 * @return 
 	 */
-	public boolean add(short column, short value) ;
+	public boolean add(short column, FieldValue value) ;
 	
 	/**
 	 * Resets this field.
@@ -95,13 +95,13 @@ public interface FieldInterface {
 	 * @since 0.1
 	 * @throws IOException
 	 */
-	public void doExport() throws IOException;
+	public void doExport(String location) throws IOException;
 	/**
 	 * Imports this object from a given xml-file.
 	 * @since 0.1
 	 * @throws IOException
 	 */
-	public void doImport() throws IOException;
+	public void doImport(String location) throws IOException;
 	/**
 	 * Returns a string representation of the object.
 	 * @since 0.1

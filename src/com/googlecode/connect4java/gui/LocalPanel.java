@@ -8,13 +8,16 @@ import java.awt.event.ActionListener;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JColorChooser;
 import javax.swing.JComboBox;
+
+import com.googlecode.connect4java.Main;
 
 /**
  * 
  * @author noxan
+ * @version 0.4.10
  * @since 0.1
- * @version 0.3.8
  */
 public class LocalPanel extends AbstractPanel {
 	private static final long serialVersionUID = 1L;
@@ -42,14 +45,26 @@ public class LocalPanel extends AbstractPanel {
 		slotBox1.setEnabled(false);
 		add(slotBox1, "1,1");
 		
-		slotBoxModel2 = new DefaultComboBoxModel(new String[]{"Comupter (Easy)", "Comupter (Normal)", "Comupter (Hard)", "Local Player"});
+		slotBoxModel2 = new DefaultComboBoxModel(new String[]{"Computer (Easy)", "Computer (Normal)", "Computer (Hard)", "Local Player"});
 		slotBox2 = new JComboBox(slotBoxModel2);
 		
 		add(slotBox2, "1,3");
 		
 		
-		JButton colorButton1 = new JButton();
-		colorButton1.setBackground(Color.BLUE);
+		final JButton colorButton1 = new JButton();
+		
+		
+		final int color1 = Integer.valueOf(Main.pref.get("player1.color", "255")); 
+		colorButton1.setBackground(new Color(color1));
+		colorButton1.addActionListener(new ActionListener() {
+			@Override public void actionPerformed(ActionEvent e) {
+				Color res = JColorChooser.showDialog(null, "Player1: Color", new Color(color1));
+				if(res!=null) {
+					Main.pref.put("player1.color", Integer.toString(res.getRGB()));
+					colorButton1.setBackground(res);
+				}
+			}
+		});
 		add(colorButton1, "3,1");
 		JButton colorButton2 = new JButton();
 		colorButton2.setBackground(Color.RED);

@@ -65,13 +65,13 @@
   <dia:layer name="Hintergrund" visible="true" active="true">
     <dia:object type="UML - Class" version="0" id="O0">
       <dia:attribute name="obj_pos">
-        <dia:point val="8.25,5.4"/>
+        <dia:point val="8,5"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="8.2,5.35;15.73,8.85"/>
+        <dia:rectangle val="7.95,4.95;15.48,8.45"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
-        <dia:point val="8.25,5.4"/>
+        <dia:point val="8,5"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
         <dia:real val="7.4299999999999997"/>
@@ -230,13 +230,13 @@
     </dia:object>
     <dia:object type="UML - Class" version="0" id="O1">
       <dia:attribute name="obj_pos">
-        <dia:point val="25.55,5.1"/>
+        <dia:point val="25,5"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="25.5,5.05;43.81,19.75"/>
+        <dia:rectangle val="24.95,4.95;43.26,19.65"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
-        <dia:point val="25.55,5.1"/>
+        <dia:point val="25,5"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
         <dia:real val="18.210000000000001"/>

@@ -12,8 +12,8 @@ import com.googlecode.connect4java.net.Update;
 /**
  * 
  * @author noxan
+ * @version 0.4.10
  * @since 0.4.9
- * @version 0.4.9
  */
 public class MenuListener implements ActionListener {
 	private MainGUI gui;
@@ -29,20 +29,24 @@ public class MenuListener implements ActionListener {
 			gui.showCard(MainGUI.CARD_NETWORK);
 		} else if(action.equals("$b_update")) {
 			gui.setStatus("Contacting update site...", true);
-			try {
-				Update.update();
-				if(Update.isUpdate()) {
-					gui.setStatus("Update available", false);
-					JOptionPane.showMessageDialog(gui.frame, "<html>A new version, "+Update.getString()+" is available!<br>http://connect4java.googlecode.com</html>", "Update available", JOptionPane.INFORMATION_MESSAGE);
-				} else {
-					gui.setStatus("No update available", false);
-					JOptionPane.showMessageDialog(gui.frame, "Congratulations, this is the very latest version!", "No update available", JOptionPane.INFORMATION_MESSAGE);
-				}
-			} catch (IOException e) {
-				gui.setStatus("Connection problem", false);
-				JOptionPane.showMessageDialog(gui.frame, "Unable to access update-server.\nPlease check your computer's network connection and try again later.", "Connection error", JOptionPane.ERROR_MESSAGE);
-			}
-			gui.setStatus("Ready", false);
+			new Thread() {
+				public void run() {
+					try {
+						Update.update();
+						if(Update.isUpdate()) {
+							gui.setStatus("Update available", false);
+							JOptionPane.showMessageDialog(gui.frame, "<html>A new version, "+Update.getString()+" is available!<br>http://connect4java.googlecode.com</html>", "Update available", JOptionPane.INFORMATION_MESSAGE);
+						} else {
+							gui.setStatus("No update available", false);
+							JOptionPane.showMessageDialog(gui.frame, "Congratulations, this is the very latest version!", "No update available", JOptionPane.INFORMATION_MESSAGE);
+						}
+					} catch (IOException e) {
+						gui.setStatus("Connection problem", false);
+						JOptionPane.showMessageDialog(gui.frame, "Unable to access update-server.\nPlease check your computer's network connection and try again later.", "Connection error", JOptionPane.ERROR_MESSAGE);
+					}
+					gui.setStatus("Ready", false);
+				};
+			}.start();
 		} else if(action.equals("$b_settings")) {
 			gui.showCard(MainGUI.CARD_SETTINGS);
 		} else if(action.equals("$b_local")) {
