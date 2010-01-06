@@ -1,32 +1,30 @@
-package com.googlecode.connect4java.gui;
+package com.googlecode.connect4java.gui.card;
 
 import info.clearthought.layout.TableLayout;
-
-import java.awt.Color;
 
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import com.googlecode.connect4java.listener.SettingsListener;
+import com.googlecode.connect4java.gui.MainGui;
+import com.googlecode.connect4java.gui.listener.SettingsListener;
 
 /**
  * 
  * @author noxan
- * @version 0.4.10
+ * @version 0.5.11
  * @since 0.1
  */
-public class SettingsPanel extends AbstractPanel {
+public class SettingsCard extends AbstractCard {
 	private static final long serialVersionUID = 1L;
 	
 	private SettingsListener listener;
-	
 	private JButton backButton;
 	private JTable table;
 	
-	public SettingsPanel(MainGUI gui) {
-		super(gui, new Color(200, 50, 50));
+	public SettingsCard(MainGui gui) {
+		super(gui);
 		listener = new SettingsListener(gui);
 		
 		initLayout();
@@ -34,8 +32,8 @@ public class SettingsPanel extends AbstractPanel {
 	}
 	
 	private void initLayout() {
-		double[][] size = {{MainGUI.MARGIN, TableLayout.FILL, 5, 100, MainGUI.MARGIN}, 
-				{100, TableLayout.FILL, 5, TableLayout.PREFERRED, MainGUI.MARGIN}};
+		double[][] size = {{MainGui.MARGIN, TableLayout.FILL, 5, 100, MainGui.MARGIN}, 
+				{100, TableLayout.FILL, 5, TableLayout.PREFERRED, MainGui.MARGIN}};
 		setLayout(new TableLayout(size));
 	}
 

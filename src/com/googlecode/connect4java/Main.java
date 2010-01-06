@@ -4,14 +4,14 @@ import java.io.File;
 
 import javax.swing.UIManager;
 
-import com.googlecode.connect4java.gui.MainGUI;
+import com.googlecode.connect4java.gui.MainGui;
 import com.googlecode.connect4java.pref.Preferences;
 import com.googlecode.connect4java.pref.Version;
 
 /**
  * 
  * @author noxan
- * @version 0.4.10
+ * @version 0.5.11
  * @since 0.1
  */
 public class Main {
@@ -39,7 +39,7 @@ public class Main {
 //		} catch (IOException e) {
 //			System.err.println("could not import settings");
 //		}
-		new MainGUI();
+		new MainGui();
 //		try {
 //			pref.doExport(System.getProperty("user.home")+"/.connect4java/settings.xml");
 //		} catch (IOException e) {

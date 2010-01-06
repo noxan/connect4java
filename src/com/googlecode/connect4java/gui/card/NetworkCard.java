@@ -1,28 +1,30 @@
-package com.googlecode.connect4java.gui;
+package com.googlecode.connect4java.gui.card;
 
 import info.clearthought.layout.TableLayout;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import com.googlecode.connect4java.gui.MainGui;
+
+
 /**
  * 
  * @author noxan
+ * @version 0.5.11
  * @since 0.1
- * @version 0.3.8
  */
-public class NetworkPanel extends AbstractPanel {
+public class NetworkCard extends AbstractCard {
 	private static final long serialVersionUID = 1L;
 	
 	private JButton backButton;
 	
-	public NetworkPanel(MainGUI gui) {
-		super(gui, new Color(200, 200, 50));
-		double[][] size = {{TableLayout.FILL, 100, MainGUI.MARGIN}, 
-				{TableLayout.FILL, TableLayout.PREFERRED, MainGUI.MARGIN}};
+	public NetworkCard(MainGui gui) {
+		super(gui);
+		double[][] size = {{TableLayout.FILL, 100, MainGui.MARGIN}, 
+				{TableLayout.FILL, TableLayout.PREFERRED, MainGui.MARGIN}};
 		setLayout(new TableLayout(size));
 		
 		initComponents();
@@ -32,7 +34,7 @@ public class NetworkPanel extends AbstractPanel {
 		backButton = new JButton("Back");
 		backButton.addActionListener(new ActionListener() {
 			@Override public void actionPerformed(ActionEvent e) {
-				getMainGUI().showCard(MainGUI.CARD_MENU);
+				gui.showCard(GuiCard.MENU);
 			}
 		});
 		add(backButton, "1,1");

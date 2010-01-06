@@ -1,20 +1,21 @@
-package com.googlecode.connect4java.listener;
+package com.googlecode.connect4java.gui.listener;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import com.googlecode.connect4java.gui.MainGUI;
+import com.googlecode.connect4java.gui.MainGui;
+import com.googlecode.connect4java.gui.card.GuiCard;
 
 /**
  * 
  * @author noxan
+ * @version 0.5.11
  * @since 0.4.9
- * @version 0.4.9
  */
 public class SettingsListener implements ActionListener {
-	private MainGUI gui;
+	private MainGui gui;
 	
-	public SettingsListener(MainGUI gui) {
+	public SettingsListener(MainGui gui) {
 		this.gui = gui;
 	}
 	
@@ -23,7 +24,7 @@ public class SettingsListener implements ActionListener {
 		String action = event.getActionCommand(); 
 		
 		if(action.equals("$b_back")) {
-			gui.showCard(MainGUI.CARD_MENU);
+			gui.showCard(GuiCard.MENU);
 		}
 	}
 }

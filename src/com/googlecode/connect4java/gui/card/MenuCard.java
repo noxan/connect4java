@@ -1,20 +1,19 @@
-package com.googlecode.connect4java.gui;
+package com.googlecode.connect4java.gui.card;
 
 import info.clearthought.layout.TableLayout;
 
-import java.awt.Color;
-
 import javax.swing.JButton;
 
-import com.googlecode.connect4java.listener.MenuListener;
+import com.googlecode.connect4java.gui.MainGui;
+import com.googlecode.connect4java.gui.listener.MenuListener;
 
 /**
  * 
  * @author noxan
+ * @version 0.5.11
  * @since 0.1
- * @version 0.4.9
  */
-public class MenuPanel extends AbstractPanel {
+public class MenuCard extends AbstractCard {
 	private static final long serialVersionUID = 1L;
 	
 	private MenuListener listener;
@@ -24,8 +23,8 @@ public class MenuPanel extends AbstractPanel {
 	private JButton settingsButton;
 	private JButton exitButton;
 	
-	public MenuPanel(MainGUI gui) {
-		super(gui, new Color(50, 200, 50));
+	public MenuCard(MainGui gui) {
+		super(gui);
 		listener = new MenuListener(gui);
 		
 		initLayout();
@@ -33,8 +32,8 @@ public class MenuPanel extends AbstractPanel {
 	}
 	
 	private void initLayout() {
-		double[][] size = {{MainGUI.MARGIN, 200, TableLayout.FILL}, 
-				{TableLayout.FILL, TableLayout.PREFERRED, MainGUI.PADDING, TableLayout.PREFERRED, MainGUI.PADDING, TableLayout.PREFERRED, MainGUI.PADDING, TableLayout.PREFERRED, MainGUI.PADDING, TableLayout.PREFERRED, MainGUI.MARGIN}};
+		double[][] size = {{MainGui.MARGIN, 200, TableLayout.FILL}, 
+				{TableLayout.FILL, TableLayout.PREFERRED, MainGui.PADDING, TableLayout.PREFERRED, MainGui.PADDING, TableLayout.PREFERRED, MainGui.PADDING, TableLayout.PREFERRED, MainGui.PADDING, TableLayout.PREFERRED, MainGui.MARGIN}};
 		setLayout(new TableLayout(size));
 	}
 	

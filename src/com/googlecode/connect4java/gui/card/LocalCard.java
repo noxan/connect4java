@@ -1,4 +1,4 @@
-package com.googlecode.connect4java.gui;
+package com.googlecode.connect4java.gui.card;
 
 import info.clearthought.layout.TableLayout;
 
@@ -12,14 +12,15 @@ import javax.swing.JColorChooser;
 import javax.swing.JComboBox;
 
 import com.googlecode.connect4java.Main;
+import com.googlecode.connect4java.gui.MainGui;
 
 /**
  * 
  * @author noxan
- * @version 0.4.10
+ * @version 0.5.11
  * @since 0.1
  */
-public class LocalPanel extends AbstractPanel {
+public class LocalCard extends AbstractCard {
 	private static final long serialVersionUID = 1L;
 	
 	private DefaultComboBoxModel slotBoxModel1;
@@ -30,10 +31,10 @@ public class LocalPanel extends AbstractPanel {
 	private JButton startButton;
 	private JButton backButton;
 	
-	public LocalPanel(MainGUI gui) {
-		super(gui, new Color(50, 50, 200));
-		double[][] size = {{MainGUI.MARGIN, 0.5, 5, TableLayout.PREFERRED, TableLayout.FILL, 100, 5, 100,  MainGUI.MARGIN}, 
-				{100, TableLayout.PREFERRED, 5, TableLayout.PREFERRED, TableLayout.FILL, TableLayout.PREFERRED, MainGUI.MARGIN}};
+	public LocalCard(MainGui gui) {
+		super(gui);
+		double[][] size = {{MainGui.MARGIN, 0.5, 5, TableLayout.PREFERRED, TableLayout.FILL, 100, 5, 100,  MainGui.MARGIN}, 
+				{100, TableLayout.PREFERRED, 5, TableLayout.PREFERRED, TableLayout.FILL, TableLayout.PREFERRED, MainGui.MARGIN}};
 		setLayout(new TableLayout(size));
 		
 		initComponents();
@@ -74,7 +75,7 @@ public class LocalPanel extends AbstractPanel {
 		backButton = new JButton("Back");
 		backButton.addActionListener(new ActionListener() {
 			@Override public void actionPerformed(ActionEvent e) {
-				getMainGUI().showCard(MainGUI.CARD_MENU);
+				gui.showCard(GuiCard.MENU);
 			}
 		});
 		add(backButton, "5,5");
