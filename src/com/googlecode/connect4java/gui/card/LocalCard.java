@@ -12,12 +12,14 @@ import javax.swing.JColorChooser;
 import javax.swing.JComboBox;
 
 import com.googlecode.connect4java.Main;
+import com.googlecode.connect4java.gui.GuiCard;
 import com.googlecode.connect4java.gui.MainGui;
+import com.googlecode.connect4java.gui.listener.LocalListener;
 
 /**
  * 
  * @author noxan
- * @version 0.5.11
+ * @version 0.6.12
  * @since 0.1
  */
 public class LocalCard extends AbstractCard {
@@ -32,7 +34,7 @@ public class LocalCard extends AbstractCard {
 	private JButton backButton;
 	
 	public LocalCard(MainGui gui) {
-		super(gui);
+		super(gui, new LocalListener(gui));
 		double[][] size = {{MainGui.MARGIN, 0.5, 5, TableLayout.PREFERRED, TableLayout.FILL, 100, 5, 100,  MainGui.MARGIN}, 
 				{100, TableLayout.PREFERRED, 5, TableLayout.PREFERRED, TableLayout.FILL, TableLayout.PREFERRED, MainGui.MARGIN}};
 		setLayout(new TableLayout(size));
@@ -40,7 +42,7 @@ public class LocalCard extends AbstractCard {
 		initComponents();
 	}
 	
-	private void initComponents() {
+	protected void initComponents() {
 		slotBoxModel1 = new DefaultComboBoxModel(new String[]{"<Spielername>"});
 		slotBox1 = new JComboBox(slotBoxModel1);
 		slotBox1.setEnabled(false);

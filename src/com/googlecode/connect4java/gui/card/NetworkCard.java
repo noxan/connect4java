@@ -7,13 +7,14 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import com.googlecode.connect4java.gui.GuiCard;
 import com.googlecode.connect4java.gui.MainGui;
-
+import com.googlecode.connect4java.gui.listener.NetworkListener;
 
 /**
  * 
  * @author noxan
- * @version 0.5.11
+ * @version 0.6.12
  * @since 0.1
  */
 public class NetworkCard extends AbstractCard {
@@ -22,7 +23,7 @@ public class NetworkCard extends AbstractCard {
 	private JButton backButton;
 	
 	public NetworkCard(MainGui gui) {
-		super(gui);
+		super(gui, new NetworkListener(gui));
 		double[][] size = {{TableLayout.FILL, 100, MainGui.MARGIN}, 
 				{TableLayout.FILL, TableLayout.PREFERRED, MainGui.MARGIN}};
 		setLayout(new TableLayout(size));
@@ -30,7 +31,7 @@ public class NetworkCard extends AbstractCard {
 		initComponents();
 	}
 	
-	private void initComponents() {
+	protected void initComponents() {
 		backButton = new JButton("Back");
 		backButton.addActionListener(new ActionListener() {
 			@Override public void actionPerformed(ActionEvent e) {

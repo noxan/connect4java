@@ -13,7 +13,7 @@ import noxan.xml.lib.XMLEntity;
  * 
  * @author noxan
  * @since 0.1
- * @version 0.2.7
+ * @version 0.6.12
  */
 public class Update {
 	private static String version;
@@ -93,7 +93,7 @@ public class Update {
 	 * @return
 	 */
 	public static boolean isVersionUpdate() {
-		if(getVersionMainInt()<Version.VERSION_MAIN || getVersionSubInt()<Version.VERSION_SUB) {
+		if(getVersionMainInt()>Version.VERSION_MAIN || getVersionSubInt()>Version.VERSION_SUB) {
 			return true;
 		}
 		return false;

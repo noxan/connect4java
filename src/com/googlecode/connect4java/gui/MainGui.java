@@ -5,10 +5,9 @@ import java.awt.CardLayout;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 import com.googlecode.connect4java.Main;
-import com.googlecode.connect4java.gui.card.GuiCard;
+import com.googlecode.connect4java.gui.card.CloseCard;
 import com.googlecode.connect4java.gui.card.LocalCard;
 import com.googlecode.connect4java.gui.card.MenuCard;
 import com.googlecode.connect4java.gui.card.NetworkCard;
@@ -19,7 +18,7 @@ import com.googlecode.connect4java.swing.JStatusBar;
 /**
  * 
  * @author noxan
- * @version 0.5.11
+ * @version 0.6.12
  * @since 0.1
  */
 public class MainGui {
@@ -58,19 +57,16 @@ public class MainGui {
 		statusbar = new JStatusBar();
 		frame.add(statusbar, BorderLayout.SOUTH);
 		//cards
-		JPanel menuCard = new MenuCard(this);
-		cards.add(menuCard, GuiCard.MENU.getString());
-		JPanel settingsCard = new SettingsCard(this);
-		cards.add(settingsCard, GuiCard.SETTINGS.getString());
-		JPanel localCard = new LocalCard(this);
-		cards.add(localCard, GuiCard.LOCAL.getString());
-		JPanel networkCard = new NetworkCard(this);
-		cards.add(networkCard, GuiCard.NETWORK.getString());
+		cards.add(new MenuCard(this), GuiCard.MENU.getString());
+		cards.add(new SettingsCard(this), GuiCard.SETTINGS.getString());
+		cards.add(new LocalCard(this), GuiCard.LOCAL.getString());
+		cards.add(new NetworkCard(this), GuiCard.NETWORK.getString());
+		cards.add(new CloseCard(this), GuiCard.CLOSE.getString());
 	}
 
 
 	public void showCard(GuiCard card) {
 		layout.show(cards, card.getString());
-		cards.nextColor(card.getColor());
+		cards.nextColor(card.getColor(), 20);
 	}
 }

@@ -14,7 +14,7 @@ import com.googlecode.connect4java.Main;
 /**
  * 
  * @author noxan
- * @version 0.5.11
+ * @version 0.6.12
  * @since 0.5.11
  */
 public class JBackgroundPanel extends JPanel implements Runnable {
@@ -23,7 +23,7 @@ public class JBackgroundPanel extends JPanel implements Runnable {
 	private Thread thread;
 	
 	private int time;
-	private final float limit = 100.0f;
+	private final float limit = 50.0f;
 	
 	private Color start;
 	private Color active;

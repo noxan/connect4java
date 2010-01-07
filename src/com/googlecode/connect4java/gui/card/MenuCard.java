@@ -10,13 +10,11 @@ import com.googlecode.connect4java.gui.listener.MenuListener;
 /**
  * 
  * @author noxan
- * @version 0.5.11
+ * @version 0.6.12
  * @since 0.1
  */
 public class MenuCard extends AbstractCard {
 	private static final long serialVersionUID = 1L;
-	
-	private MenuListener listener;
 	
 	private JButton localButton;
 	private JButton networkButton;
@@ -24,8 +22,7 @@ public class MenuCard extends AbstractCard {
 	private JButton exitButton;
 	
 	public MenuCard(MainGui gui) {
-		super(gui);
-		listener = new MenuListener(gui);
+		super(gui, new MenuListener(gui));
 		
 		initLayout();
 		initComponents();
@@ -37,7 +34,7 @@ public class MenuCard extends AbstractCard {
 		setLayout(new TableLayout(size));
 	}
 	
-	private void initComponents() {
+	protected void initComponents() {
 		localButton = new JButton("Local Game");
 		localButton.setActionCommand("$b_local");
 		localButton.addActionListener(listener);

@@ -1,18 +1,19 @@
-package com.googlecode.connect4java.gui.card;
+package com.googlecode.connect4java.gui;
 
 import java.awt.Color;
 
 /**
  * 
  * @author noxan
- * @version 0.5.11
+ * @version 0.6.12
  * @since 0.5.11
  */
 public enum GuiCard {
-	MENU("MENU", new Color(50, 200, 50)), 
-	SETTINGS("SETTINGS", new Color(200, 50, 50)), 
-	LOCAL("LOCAL", new Color(50, 50, 200)), 
-	NETWORK("NETWORK", new Color(200, 200, 50));
+	MENU("MENU", new Color(75, 200, 75)), 
+	LOCAL("LOCAL", new Color(75, 150, 150)), 
+	NETWORK("NETWORK", new Color(200, 200, 50)),
+	SETTINGS("SETTINGS", new Color(200, 100, 50)),
+	CLOSE("CLOSE", new Color(0, 0, 0));
 	
 	private String card;
 	private Color color;

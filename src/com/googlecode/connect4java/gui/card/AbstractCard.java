@@ -3,22 +3,25 @@ package com.googlecode.connect4java.gui.card;
 import javax.swing.JPanel;
 
 import com.googlecode.connect4java.gui.MainGui;
+import com.googlecode.connect4java.gui.listener.AbstractListener;
 
 /**
- * 
  * (replaces AbstractPanel.java)
- * 
  * @author noxan
- * @version 0.5.11
+ * @version 0.6.12
  * @since 0.2
  */
-public class AbstractCard extends JPanel {
+public abstract class AbstractCard extends JPanel {
 	private static final long serialVersionUID = -8553906927095969797L;
 	
 	protected MainGui gui;
+	protected AbstractListener listener;
 	
-	public AbstractCard(MainGui gui) {
+	public AbstractCard(MainGui gui, AbstractListener listener) {
 		this.gui = gui;
+		this.listener = listener;
 		setOpaque(false);
 	}
+	
+	protected abstract void initComponents();
 }

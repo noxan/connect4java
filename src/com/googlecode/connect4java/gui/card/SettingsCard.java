@@ -13,19 +13,17 @@ import com.googlecode.connect4java.gui.listener.SettingsListener;
 /**
  * 
  * @author noxan
- * @version 0.5.11
+ * @version 0.6.12
  * @since 0.1
  */
 public class SettingsCard extends AbstractCard {
 	private static final long serialVersionUID = 1L;
 	
-	private SettingsListener listener;
 	private JButton backButton;
 	private JTable table;
 	
 	public SettingsCard(MainGui gui) {
-		super(gui);
-		listener = new SettingsListener(gui);
+		super(gui, new SettingsListener(gui));
 		
 		initLayout();
 		initComponents();
@@ -36,10 +34,9 @@ public class SettingsCard extends AbstractCard {
 				{100, TableLayout.FILL, 5, TableLayout.PREFERRED, MainGui.MARGIN}};
 		setLayout(new TableLayout(size));
 	}
-
-	private void initComponents() {
-		
-		
+	
+	@Override
+	protected void initComponents() {
 		table = new JTable(new DefaultTableModel(new String[]{"key", "value"}, 5));
 		add(new JScrollPane(table), "1,1 , 3,1");
 		

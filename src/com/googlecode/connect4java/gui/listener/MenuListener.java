@@ -1,26 +1,23 @@
 package com.googlecode.connect4java.gui.listener;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import javax.swing.JOptionPane;
 
+import com.googlecode.connect4java.gui.GuiCard;
 import com.googlecode.connect4java.gui.MainGui;
-import com.googlecode.connect4java.gui.card.GuiCard;
 import com.googlecode.connect4java.net.Update;
 
 /**
  * 
  * @author noxan
- * @version 0.5.11
+ * @version 0.6.12
  * @since 0.4.9
  */
-public class MenuListener implements ActionListener {
-	private MainGui gui;
-	
+public class MenuListener extends AbstractListener {
 	public MenuListener(MainGui gui) {
-		this.gui = gui;
+		super(gui);
 	}
 	
 	@Override public void actionPerformed(ActionEvent event) {
@@ -53,7 +50,7 @@ public class MenuListener implements ActionListener {
 		} else if(action.equals("$b_local")) {
 			gui.showCard(GuiCard.LOCAL);
 		} else if(action.equals("$b_exit")) {
-			System.exit(0);
+			gui.showCard(GuiCard.CLOSE);
 		}
 	}
 
