@@ -1,4 +1,4 @@
-	package com.googlecode.connect4java.game;
+	package com.googlecode.connect4java.field;
 
 	import java.awt.Point;
 	import java.io.IOException;

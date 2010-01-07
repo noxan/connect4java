@@ -3,23 +3,22 @@ package com.googlecode.connect4java.gui.card;
 import info.clearthought.layout.TableLayout;
 
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import javax.swing.JColorChooser;
 import javax.swing.JComboBox;
 
+import jkit.pref.PreferenceChangeEvent;
+import jkit.pref.PreferenceChangeListener;
+
 import com.googlecode.connect4java.Main;
-import com.googlecode.connect4java.gui.GuiCard;
 import com.googlecode.connect4java.gui.MainGui;
 import com.googlecode.connect4java.gui.listener.LocalListener;
 
 /**
  * 
  * @author noxan
- * @version 0.6.12
+ * @version 0.7.16
  * @since 0.1
  */
 public class LocalCard extends AbstractCard {
@@ -27,8 +26,10 @@ public class LocalCard extends AbstractCard {
 	
 	private DefaultComboBoxModel slotBoxModel1;
 	private JComboBox slotBox1;
+	private JButton colorButton1;
 	private DefaultComboBoxModel slotBoxModel2;
 	private JComboBox slotBox2;
+	private JButton colorButton2;
 	
 	private JButton startButton;
 	private JButton backButton;
@@ -54,35 +55,36 @@ public class LocalCard extends AbstractCard {
 		add(slotBox2, "1,3");
 		
 		
-		final JButton colorButton1 = new JButton();
+		colorButton1 = new JButton();
+		colorButton1.setBackground(new Color(Main.pref.getInt("player.color", 255)));
+		colorButton1.setActionCommand("$b_color1");
+		colorButton1.addActionListener(listener);
+		add(colorButton1, "3,1");
+		colorButton2 = new JButton();
+		colorButton2.setActionCommand("$b_color2");
+		colorButton2.setBackground(new Color(Main.pref.getInt("computer.color", -65536)));
+		colorButton2.addActionListener(listener);
+		add(colorButton2, "3,3");
 		
-		
-		final int color1 = Integer.valueOf(Main.pref.get("player1.color", "255")); 
-		colorButton1.setBackground(new Color(color1));
-		colorButton1.addActionListener(new ActionListener() {
-			@Override public void actionPerformed(ActionEvent e) {
-				Color res = JColorChooser.showDialog(null, "Player1: Color", new Color(color1));
-				if(res!=null) {
-					Main.pref.put("player1.color", Integer.toString(res.getRGB()));
-					colorButton1.setBackground(res);
+		Main.pref.addPreferenceChangeListener(new PreferenceChangeListener() {
+			@Override
+			public void preferenceChange(PreferenceChangeEvent evt) {
+				if("player.color".equals(evt.getKey().toString())) {
+					colorButton1.setBackground(new Color(Main.pref.getInt("player.color", 255)));
+				} else if("computer.color".equals(evt.getKey().toString())) {
+					colorButton2.setBackground(new Color(Main.pref.getInt("computer.color", -65536)));
 				}
 			}
 		});
-		add(colorButton1, "3,1");
-		JButton colorButton2 = new JButton();
-		colorButton2.setBackground(Color.RED);
-		add(colorButton2, "3,3");
-		
 		
 		backButton = new JButton("Back");
-		backButton.addActionListener(new ActionListener() {
-			@Override public void actionPerformed(ActionEvent e) {
-				gui.showCard(GuiCard.MENU);
-			}
-		});
+		backButton.setActionCommand("$b_back");
+		backButton.addActionListener(listener);
 		add(backButton, "5,5");
 		
 		startButton = new JButton("Start");
+		startButton.setActionCommand("$b_start");
+		startButton.addActionListener(listener);
 		add(startButton, "7,5");
 	}
 }

@@ -8,13 +8,13 @@ import com.googlecode.connect4java.gui.listener.AbstractListener;
 /**
  * (replaces AbstractPanel.java)
  * @author noxan
- * @version 0.6.12
+ * @version 0.7.16
  * @since 0.2
  */
 public abstract class AbstractCard extends JPanel {
 	private static final long serialVersionUID = -8553906927095969797L;
 	
-	protected MainGui gui;
+	public MainGui gui;
 	protected AbstractListener listener;
 	
 	public AbstractCard(MainGui gui, AbstractListener listener) {

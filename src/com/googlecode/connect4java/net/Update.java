@@ -4,16 +4,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 
-import com.googlecode.connect4java.pref.Version;
+import jkit.xml.XML;
+import jkit.xml.XMLEntity;
 
-import noxan.xml.lib.XML;
-import noxan.xml.lib.XMLEntity;
+import com.googlecode.connect4java.pref.Version;
 
 /**
  * 
  * @author noxan
+ * @version 0.7.16
  * @since 0.1
- * @version 0.6.12
  */
 public class Update {
 	private static String version;

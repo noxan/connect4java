@@ -1,29 +1,34 @@
 package com.googlecode.connect4java;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
+import java.io.IOException;
 
 import javax.swing.UIManager;
 
+import jkit.pref.Preferences;
+
 import com.googlecode.connect4java.gui.MainGui;
-import com.googlecode.connect4java.pref.Preferences;
 import com.googlecode.connect4java.pref.Version;
 
 /**
- * 
+ * The main class.
  * @author noxan
- * @version 0.5.11
+ * @version 0.7.16
  * @since 0.1
  */
 public class Main {
 	/**
-	 * Connect4Java title string
+	 * Connect4Java title string.
 	 */
 	public static final String C4J_TITLE = "connect4java";
-	
-	
+	/**
+	 * Preferences instance.
+	 */
 	public static Preferences pref = new Preferences();
 	/**
-	 * Main methode
+	 * Main method.
 	 * @since 0.0.1
 	 * @param args
 	 */
@@ -33,17 +38,31 @@ public class Main {
 		} catch (Exception e) {}
 		
 		System.out.println(C4J_TITLE+"("+Version.string()+") loading...");
-		System.out.println(new File(System.getProperty("user.home")+"/.connect4java/settings.xml"));
-//		try {
-//			pref.doImport(System.getProperty("user.home")+"/.connect4java/settings.xml");
-//		} catch (IOException e) {
-//			System.err.println("could not import settings");
-//		}
-		new MainGui();
-//		try {
-//			pref.doExport(System.getProperty("user.home")+"/.connect4java/settings.xml");
-//		} catch (IOException e) {
-//			System.err.println("could not export settings");
-//		}
+		File file = new File(System.getProperty("user.home")+"/.connect4java/settings.xml");
+		System.out.println(file);
+		if(!file.getParentFile().isDirectory()) { //settings directory
+			if(file.getParentFile().mkdir()) {
+				System.out.println("settings directory created");
+			} else {
+				System.err.println("could not create settings directory");
+			}
+		} else {
+			try { //settings file (import)
+				pref.doImport(System.getProperty("user.home")+"/.connect4java/settings.xml");
+			} catch (IOException e) {
+				System.err.println("could not import settings");
+			}
+		}
+		MainGui gui = new MainGui();
+		gui.frame.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosed(WindowEvent e) {
+				try { //settings file (export)
+					pref.doExport(System.getProperty("user.home")+"/.connect4java/settings.xml");
+				} catch (IOException ex) {
+					System.err.println("could not export settings");
+				}
+			}
+		});
 	}
 }

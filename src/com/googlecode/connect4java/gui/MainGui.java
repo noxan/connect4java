@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 
 import com.googlecode.connect4java.Main;
 import com.googlecode.connect4java.gui.card.CloseCard;
+import com.googlecode.connect4java.gui.card.GameCard;
 import com.googlecode.connect4java.gui.card.LocalCard;
 import com.googlecode.connect4java.gui.card.MenuCard;
 import com.googlecode.connect4java.gui.card.NetworkCard;
@@ -18,7 +19,7 @@ import com.googlecode.connect4java.swing.JStatusBar;
 /**
  * 
  * @author noxan
- * @version 0.6.12
+ * @version 0.7.16
  * @since 0.1
  */
 public class MainGui {
@@ -61,6 +62,7 @@ public class MainGui {
 		cards.add(new SettingsCard(this), GuiCard.SETTINGS.getString());
 		cards.add(new LocalCard(this), GuiCard.LOCAL.getString());
 		cards.add(new NetworkCard(this), GuiCard.NETWORK.getString());
+		cards.add(new GameCard(this), GuiCard.GAME.getString());
 		cards.add(new CloseCard(this), GuiCard.CLOSE.getString());
 	}
 

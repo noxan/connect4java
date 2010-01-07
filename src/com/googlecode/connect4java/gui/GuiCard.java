@@ -5,7 +5,7 @@ import java.awt.Color;
 /**
  * 
  * @author noxan
- * @version 0.6.12
+ * @version 0.7.16
  * @since 0.5.11
  */
 public enum GuiCard {
@@ -13,6 +13,7 @@ public enum GuiCard {
 	LOCAL("LOCAL", new Color(75, 150, 150)), 
 	NETWORK("NETWORK", new Color(200, 200, 50)),
 	SETTINGS("SETTINGS", new Color(200, 100, 50)),
+	GAME("GAME", Color.MAGENTA),
 	CLOSE("CLOSE", new Color(0, 0, 0));
 	
 	private String card;
