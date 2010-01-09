@@ -7,13 +7,17 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import jkit.pref.PreferenceChangeEvent;
+import jkit.pref.PreferenceChangeListener;
+
+import com.googlecode.connect4java.Main;
 import com.googlecode.connect4java.gui.MainGui;
 import com.googlecode.connect4java.gui.listener.SettingsListener;
 
 /**
  * 
- * @author noxan
- * @version 0.6.12
+ * @author richard.stromer
+ * @version 0.8.17
  * @since 0.1
  */
 public class SettingsCard extends AbstractCard {
@@ -21,9 +25,10 @@ public class SettingsCard extends AbstractCard {
 	
 	private JButton backButton;
 	private JTable table;
+	private DefaultTableModel model;
 	
 	public SettingsCard(MainGui gui) {
-		super(gui, new SettingsListener(gui));
+		super(gui);
 		
 		initLayout();
 		initComponents();
@@ -37,12 +42,34 @@ public class SettingsCard extends AbstractCard {
 	
 	@Override
 	protected void initComponents() {
-		table = new JTable(new DefaultTableModel(new String[]{"key", "value"}, 5));
+		SettingsListener listener = new SettingsListener(this);
+		Main.pref.addPreferenceChangeListener(new PreferenceChangeListener() {
+			@Override public void preferenceChange(PreferenceChangeEvent evt) {
+				updateTable();
+			}
+		});
+		updateTable();
+		
+		table = new JTable(model);
 		add(new JScrollPane(table), "1,1 , 3,1");
 		
 		backButton = new JButton("Back");
 		backButton.setActionCommand("$b_back");
 		backButton.addActionListener(listener);
 		add(backButton, "3,3");
+	}
+	
+	
+	private void updateTable() {
+		model = new DefaultTableModel(new String[]{"key", "value"}, 0) {
+			private static final long serialVersionUID = 3102650059006418906L;
+			@Override public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+		for(String key:Main.pref.keySet()) {
+			model.addRow(new String[]{key, Main.pref.get(key, "default")});
+		}
+		model.fireTableDataChanged();
 	}
 }

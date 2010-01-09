@@ -13,8 +13,8 @@ import com.googlecode.connect4java.Main;
 
 /**
  * 
- * @author noxan
- * @version 0.6.12
+ * @author richard.stromer
+ * @version 0.8.17
  * @since 0.5.11
  */
 public class JBackgroundPanel extends JPanel implements Runnable {
@@ -23,7 +23,7 @@ public class JBackgroundPanel extends JPanel implements Runnable {
 	private Thread thread;
 	
 	private int time;
-	private final float limit = 50.0f;
+	private float limit = 50.0f;
 	
 	private Color start;
 	private Color active;
@@ -115,5 +115,13 @@ public class JBackgroundPanel extends JPanel implements Runnable {
 		this.end = color;
 		this.time = time;
 		start();
+	}
+	/**
+	 * Sets the number of steps.
+	 * @since 0.8.17
+	 * @param limit number of steps
+	 */
+	public void setLimit(int limit) {
+		this.limit = limit;
 	}
 }

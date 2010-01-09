@@ -9,8 +9,8 @@ import com.googlecode.connect4java.gui.listener.MenuListener;
 
 /**
  * 
- * @author noxan
- * @version 0.6.12
+ * @author richard.stromer
+ * @version 0.8.17
  * @since 0.1
  */
 public class MenuCard extends AbstractCard {
@@ -22,7 +22,7 @@ public class MenuCard extends AbstractCard {
 	private JButton exitButton;
 	
 	public MenuCard(MainGui gui) {
-		super(gui, new MenuListener(gui));
+		super(gui);
 		
 		initLayout();
 		initComponents();
@@ -35,6 +35,7 @@ public class MenuCard extends AbstractCard {
 	}
 	
 	protected void initComponents() {
+		MenuListener listener = new MenuListener(this);
 		localButton = new JButton("Local Game");
 		localButton.setActionCommand("$b_local");
 		localButton.addActionListener(listener);

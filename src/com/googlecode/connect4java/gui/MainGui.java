@@ -18,8 +18,8 @@ import com.googlecode.connect4java.swing.JStatusBar;
 
 /**
  * 
- * @author noxan
- * @version 0.7.16
+ * @author richard.stromer
+ * @version 0.8.17
  * @since 0.1
  */
 public class MainGui {
@@ -33,7 +33,7 @@ public class MainGui {
 	
 	public MainGui() {
 		frame = new JFrame(Main.C4J_TITLE);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setLocation(50, 50);
 		frame.setLocationByPlatform(true);
 		frame.setMinimumSize(new Dimension(480, 320));
@@ -42,6 +42,7 @@ public class MainGui {
 		layout = new CardLayout();
 		cards = new JBackgroundPanel();
 		cards.setLayout(layout);
+		cards.setLimit(Main.pref.getInt("gui.limit", 50));
 		cards.setPreferredSize(new Dimension(640, 480));
 		frame.add(cards, BorderLayout.CENTER);
 		
@@ -69,6 +70,6 @@ public class MainGui {
 
 	public void showCard(GuiCard card) {
 		layout.show(cards, card.getString());
-		cards.nextColor(card.getColor(), 20);
+		cards.nextColor(card.getColor(), Main.pref.getInt("gui.time", 20));
 	}
 }

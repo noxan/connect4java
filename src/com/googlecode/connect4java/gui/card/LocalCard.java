@@ -17,8 +17,8 @@ import com.googlecode.connect4java.gui.listener.LocalListener;
 
 /**
  * 
- * @author noxan
- * @version 0.7.16
+ * @author richard.stromer
+ * @version 0.8.17
  * @since 0.1
  */
 public class LocalCard extends AbstractCard {
@@ -35,7 +35,7 @@ public class LocalCard extends AbstractCard {
 	private JButton backButton;
 	
 	public LocalCard(MainGui gui) {
-		super(gui, new LocalListener(gui));
+		super(gui);
 		double[][] size = {{MainGui.MARGIN, 0.5, 5, TableLayout.PREFERRED, TableLayout.FILL, 100, 5, 100,  MainGui.MARGIN}, 
 				{100, TableLayout.PREFERRED, 5, TableLayout.PREFERRED, TableLayout.FILL, TableLayout.PREFERRED, MainGui.MARGIN}};
 		setLayout(new TableLayout(size));
@@ -44,7 +44,9 @@ public class LocalCard extends AbstractCard {
 	}
 	
 	protected void initComponents() {
-		slotBoxModel1 = new DefaultComboBoxModel(new String[]{"<Spielername>"});
+		LocalListener listener = new LocalListener(this);
+		
+		slotBoxModel1 = new DefaultComboBoxModel(new String[]{Main.pref.get("player.name", "Player")});
 		slotBox1 = new JComboBox(slotBoxModel1);
 		slotBox1.setEnabled(false);
 		add(slotBox1, "1,1");

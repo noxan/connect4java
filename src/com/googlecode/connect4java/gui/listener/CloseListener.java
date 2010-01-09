@@ -3,26 +3,26 @@ package com.googlecode.connect4java.gui.listener;
 import java.awt.event.ActionEvent;
 
 import com.googlecode.connect4java.gui.GuiCard;
-import com.googlecode.connect4java.gui.MainGui;
+import com.googlecode.connect4java.gui.card.CloseCard;
 
 /**
  * 
- * @author noxan
- * @version 0.7.16
+ * @author richard.stromer
+ * @version 0.8.17
  * @since 0.6.12
  */
-public class CloseListener extends AbstractListener {
-	public CloseListener(MainGui gui) {
-		super(gui);
+public class CloseListener extends AbstractListener<CloseCard> {
+	public CloseListener(CloseCard card) {
+		super(card);
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent evt) {
 		String action = evt.getActionCommand();
 		if("$b_yes".equals(action)) {
-			gui.frame.dispose();
+			card.gui.frame.dispose();
 		} else if("$b_no".equals(action)) {
-			gui.showCard(GuiCard.MENU);
+			card.gui.showCard(GuiCard.MENU);
 		}
 	}
 }
