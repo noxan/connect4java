@@ -12,15 +12,15 @@ import com.googlecode.connect4java.swing.JRoundPanel;
 /**
  * 
  * @author richard.stromer
- * @version 0.8.17
+ * @version 0.8.19
  * @since 0.5.11
  *
  */
 public class GameCard extends AbstractCard {
 	private static final long serialVersionUID = -1775250517657176595L;
 	
-	private JGamePanel gamepanel;
-	private JRoundPanel roundpanel;
+	protected JGamePanel gamepanel;
+	protected JRoundPanel roundpanel;
 	
 	public GameCard(MainGui gui) {
 		super(gui);
@@ -35,11 +35,11 @@ public class GameCard extends AbstractCard {
 	@Override
 	protected void initComponents() {
 		GameListener listener = new GameListener(this);
-		addMouseListener(listener);
 		
 		roundpanel = new JRoundPanel();
 		add(roundpanel, "1,1");
 		gamepanel = new JGamePanel();
+		gamepanel.addMouseListener(listener);
 		add(gamepanel, "1,3 , 2,3");
 	}
 	/**
@@ -50,5 +50,9 @@ public class GameCard extends AbstractCard {
 		super.paintComponent(g);
 	}
 	
+	
+	public JGamePanel getGamePanel() {
+		return gamepanel;
+	}
 }
 

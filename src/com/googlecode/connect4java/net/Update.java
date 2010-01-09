@@ -3,6 +3,7 @@ package com.googlecode.connect4java.net;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.net.URLConnection;
 
 import jkit.xml.XML;
 import jkit.xml.XMLEntity;
@@ -11,8 +12,8 @@ import com.googlecode.connect4java.pref.Version;
 
 /**
  * 
- * @author noxan
- * @version 0.7.16
+ * @author richard.stromer
+ * @version 0.8.19
  * @since 0.1
  */
 public class Update {
@@ -26,7 +27,9 @@ public class Update {
 	 */
 	public static void update() throws IOException {
 		URL url = new URL("http://games4fun.rshost.de/projects/index.php?project=connect4java&action=update");
-		InputStream in = url.openStream();
+		URLConnection con = url.openConnection();
+		con.setReadTimeout(2500);
+		InputStream in = con.getInputStream();
 		XMLEntity xml = new XML().read(in);
 		
 		version = xml.getChild("version").getValue();

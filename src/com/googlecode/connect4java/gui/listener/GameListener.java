@@ -4,12 +4,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import com.googlecode.connect4java.field.FieldInterface;
 import com.googlecode.connect4java.gui.card.GameCard;
 
 /**
  * 
  * @author richard.stromer
- * @version 0.8.17
+ * @version 0.8.19
  * @since 0.6.12
  */
 public class GameListener extends AbstractListener<GameCard> implements MouseListener {
@@ -26,9 +27,11 @@ public class GameListener extends AbstractListener<GameCard> implements MouseLis
 	 */
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		System.out.println(e.getX()+"-"+e.getY());
-			
-//		gui.showCard(GuiCard.MENU);
+		
+		int x = (int) (e.getX()/((float)card.getGamePanel().getWidth()/FieldInterface.FIELD_WIDTH));
+		int y = (int) (e.getY()/((float)card.getGamePanel().getHeight()/FieldInterface.FIELD_HEIGHT));
+		
+		System.out.println("click: "+x+", "+y);
 	}
 
 	@Override public void mouseClicked(MouseEvent e) {}
