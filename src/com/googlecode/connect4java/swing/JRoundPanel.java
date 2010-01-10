@@ -13,7 +13,7 @@ import com.googlecode.connect4java.game.Player;
 /**
  * 
  * @author richard.stromer
- * @version 0.8.17 
+ * @version 0.8.20
  * @since 0.8.17
  *
  */
@@ -28,8 +28,7 @@ public class JRoundPanel extends JPanel {
 		setOpaque(false);
 		setPreferredSize(new Dimension(200, 51));
 		
-		playertop = new Player(Main.pref.get("player.name", "Player"), new Color(Main.pref.getInt("player.color", 255)));
-		playerbottom = new Player(Main.pref.get("computer.name", "Computer"), new Color(Main.pref.getInt("computer.color", -65536)));
+		updatePlayers();
 	}
 	
 	@Override
@@ -61,6 +60,14 @@ public class JRoundPanel extends JPanel {
 		g2.setColor(Color.BLACK);
 		g2.drawString(playertop.getName(), 8, 17);
 		g2.drawString(playerbottom.getName(), 8, 42);
+	}
+	private void updatePlayers() {
+		playertop = new Player(Main.pref.get("player.name", "Player"), new Color(Main.pref.getInt("player.color", 255)));
+		playerbottom = new Player(Main.pref.get("computer.name", "Computer"), new Color(Main.pref.getInt("computer.color", -65536)));
+	}
+	public void update() {
+		updatePlayers();
+		repaint();
 	}
 	public void switchPlayer() {
 		Player tmp = playerbottom;

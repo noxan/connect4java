@@ -18,7 +18,7 @@ import com.googlecode.connect4java.gui.listener.LocalListener;
 /**
  * 
  * @author richard.stromer
- * @version 0.8.17
+ * @version 0.8.20
  * @since 0.1
  */
 public class LocalCard extends AbstractCard {
@@ -48,11 +48,13 @@ public class LocalCard extends AbstractCard {
 		
 		slotBoxModel1 = new DefaultComboBoxModel(new String[]{Main.pref.get("player.name", "Player")});
 		slotBox1 = new JComboBox(slotBoxModel1);
-		slotBox1.setEnabled(false);
+		slotBox1.setEditable(true);
+		slotBox1.addItemListener(listener);
 		add(slotBox1, "1,1");
 		
 		slotBoxModel2 = new DefaultComboBoxModel(new String[]{"Computer (Easy)", "Computer (Normal)", "Computer (Hard)", "Local Player"});
 		slotBox2 = new JComboBox(slotBoxModel2);
+		slotBox2.addItemListener(listener);
 		
 		add(slotBox2, "1,3");
 		
@@ -88,5 +90,14 @@ public class LocalCard extends AbstractCard {
 		startButton.setActionCommand("$b_start");
 		startButton.addActionListener(listener);
 		add(startButton, "7,5");
+	}
+	public boolean equalsSlotBox1(Object obj) {
+		return slotBox1.equals(obj);
+	}
+	public String getPlayerName() {
+		return slotBox1.getSelectedItem().toString();
+	}
+	public String getComputerName() {
+		return slotBox2.getSelectedItem().toString();
 	}
 }

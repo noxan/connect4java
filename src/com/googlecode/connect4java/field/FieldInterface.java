@@ -5,8 +5,8 @@ import java.io.IOException;
 
 /**
  * Field Interface
- * @author noxan
- * @version 0.4.10
+ * @author richard.stromer
+ * @version 0.8.20
  * @since 0.1
  * @see Field
  */
@@ -41,21 +41,29 @@ public interface FieldInterface {
 	 * @param row
 	 * @return the value of this field
 	 */
-	public FieldValue get(short column, short row) ;
+	public FieldValue get(short column, short row);
+	/**
+	 * Returns the value at the given position.
+	 * @since 0.8.20
+	 * @param column
+	 * @param row
+	 * @return the value of this field
+	 */
+	public FieldValue get(int column, int row);
 	/**
 	 * Returns the value at the given point.
 	 * @since 0.1
 	 * @param p
 	 * @return the value of this field
 	 */
-	public FieldValue get(Point p)  ;
+	public FieldValue get(Point p);
 	/**
 	 * Returns the height of the given column (counts the pieces in this column).
 	 * @since 0.1
 	 * @param column
 	 * @return the number of pieces in this column
 	 */
-	public short getHeight(short column) ;
+	public short getHeight(short column);
 	
 	/**
 	 * Adds a piece to the given column.

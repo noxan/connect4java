@@ -4,16 +4,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import jkit.pref.PreferenceChangeEvent;
+import jkit.pref.PreferenceChangeListener;
+
 import com.googlecode.connect4java.field.FieldInterface;
 import com.googlecode.connect4java.gui.card.GameCard;
 
 /**
  * 
  * @author richard.stromer
- * @version 0.8.19
+ * @version 0.8.20
  * @since 0.6.12
  */
-public class GameListener extends AbstractListener<GameCard> implements MouseListener {
+public class GameListener extends AbstractListener<GameCard> implements MouseListener, PreferenceChangeListener {
 	public GameListener(GameCard card) {
 		super(card);
 	}
@@ -22,6 +25,15 @@ public class GameListener extends AbstractListener<GameCard> implements MouseLis
 	public void actionPerformed(ActionEvent e) {
 		
 	}
+	
+	/**
+	 * @since 0.x.20
+	 */
+	@Override
+	public void preferenceChange(PreferenceChangeEvent evt) {
+		card.getRoundPanel().update();
+	}
+	
 	/**
 	 * @since 0.8.17
 	 */
