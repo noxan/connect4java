@@ -13,7 +13,7 @@ import com.googlecode.connect4java.gui.card.GameCard;
 /**
  * 
  * @author richard.stromer
- * @version 0.8.20
+ * @version 1.0.22
  * @since 0.6.12
  */
 public class GameListener extends AbstractListener<GameCard> implements MouseListener, PreferenceChangeListener {
@@ -44,6 +44,7 @@ public class GameListener extends AbstractListener<GameCard> implements MouseLis
 		int y = (int) (e.getY()/((float)card.getGamePanel().getHeight()/FieldInterface.FIELD_HEIGHT));
 		
 		System.out.println("click: "+x+", "+y);
+		card.game.click((short)x);
 	}
 
 	@Override public void mouseClicked(MouseEvent e) {}

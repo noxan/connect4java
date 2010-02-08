@@ -5,8 +5,8 @@ import info.clearthought.layout.TableLayout;
 import java.awt.Graphics;
 
 import com.googlecode.connect4java.Main;
-import com.googlecode.connect4java.field.Field;
-import com.googlecode.connect4java.field.FieldValue;
+import com.googlecode.connect4java.game.GameInterface;
+import com.googlecode.connect4java.game.LocalGame;
 import com.googlecode.connect4java.gui.MainGui;
 import com.googlecode.connect4java.gui.listener.GameListener;
 import com.googlecode.connect4java.swing.JGamePanel;
@@ -15,12 +15,14 @@ import com.googlecode.connect4java.swing.JRoundPanel;
 /**
  * 
  * @author richard.stromer
- * @version 0.8.20
+ * @version 1.0.22
  * @since 0.5.11
  *
  */
 public class GameCard extends AbstractCard {
 	private static final long serialVersionUID = -1775250517657176595L;
+	
+	public GameInterface game;
 	
 	protected JGamePanel gamepanel;
 	protected JRoundPanel roundpanel;
@@ -38,21 +40,21 @@ public class GameCard extends AbstractCard {
 	@Override
 	protected void initComponents() {
 		GameListener listener = new GameListener(this);
+		game = new LocalGame(gui);
 		
 		//sample...
-		Field field = new Field();
-		field.add((short) 0, FieldValue.PLAYER1);
-		field.add((short) 0, FieldValue.PLAYER2);
-		field.add((short) 0, FieldValue.PLAYER1);
-		field.add((short) 0, FieldValue.PLAYER2);
-		field.add((short) 1, FieldValue.PLAYER2);
-		field.add((short) 1, FieldValue.PLAYER1);
-		field.add((short) 2, FieldValue.PLAYER2);
-		
+//		Field field = new Field();
+//		field.add((short) 0, FieldValue.PLAYER1);
+//		field.add((short) 0, FieldValue.PLAYER2);
+//		field.add((short) 0, FieldValue.PLAYER1);
+//		field.add((short) 0, FieldValue.PLAYER2);
+//		field.add((short) 1, FieldValue.PLAYER2);
+//		field.add((short) 1, FieldValue.PLAYER1);
+//		field.add((short) 2, FieldValue.PLAYER2);
 		
 		roundpanel = new JRoundPanel();
 		add(roundpanel, "1,1");
-		gamepanel = new JGamePanel(field);
+		gamepanel = new JGamePanel(game.getField());
 		gamepanel.addMouseListener(listener);
 		add(gamepanel, "1,3 , 2,3");
 		Main.pref.addPreferenceChangeListener(listener);

@@ -66,10 +66,14 @@ public class MainGui {
 		cards.add(new GameCard(this), GuiCard.GAME.getString());
 		cards.add(new CloseCard(this), GuiCard.CLOSE.getString());
 	}
-
+	
+	public void update() {
+		cards.validate();
+		cards.repaint();
+	}
 
 	public void showCard(GuiCard card) {
-		layout.show(cards, card.getString());
+		layout.show(cards, card.toString());
 		cards.nextColor(card.getColor(), Main.pref.getInt("gui.time", 20));
 	}
 	public JStatusBar getStatusBar() {
