@@ -10,9 +10,6 @@ import com.googlecode.connect4java.field.Field;
  * @see Game
  */
 public interface GameInterface {
-	
-	
-	
 	/**
 	 * Returns the (active) field of the game.
 	 * @return the field of the game

@@ -19,17 +19,17 @@ import com.googlecode.connect4java.swing.JStatusBar;
 /**
  * 
  * @author richard.stromer
- * @version 0.8.17
+ * @version 0.9.21
  * @since 0.1
  */
 public class MainGui {
 	public static final int MARGIN = 25;
     public static final int PADDING = 10;
 	
-	public JFrame frame;
+	private JFrame frame;
 	private JBackgroundPanel cards;
 	private CardLayout layout;
-	public JStatusBar statusbar;
+	private JStatusBar statusbar;
 	
 	public MainGui() {
 		frame = new JFrame(Main.C4J_TITLE);
@@ -71,5 +71,14 @@ public class MainGui {
 	public void showCard(GuiCard card) {
 		layout.show(cards, card.getString());
 		cards.nextColor(card.getColor(), Main.pref.getInt("gui.time", 20));
+	}
+	public JStatusBar getStatusBar() {
+		return statusbar;
+	}
+	public JFrame getFrame() {
+		return frame;
+	}
+	public void exit() {
+		frame.dispose();
 	}
 }

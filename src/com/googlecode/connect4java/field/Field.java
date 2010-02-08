@@ -181,7 +181,7 @@ public class Field implements FieldInterface {
 				f.set(column, row, get(column, row));
 			}
 		}
-		return null;
+		return f;
 	}
 
 	/**

@@ -14,8 +14,8 @@ import com.googlecode.connect4java.pref.Version;
 
 /**
  * The main class.
- * @author noxan
- * @version 0.7.16
+ * @author richard.stromer
+ * @version 0.9.21
  * @since 0.1
  */
 public class Main {
@@ -54,7 +54,7 @@ public class Main {
 			}
 		}
 		MainGui gui = new MainGui();
-		gui.frame.addWindowListener(new WindowAdapter() {
+		gui.getFrame().addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosed(WindowEvent e) {
 				try { //settings file (export)
