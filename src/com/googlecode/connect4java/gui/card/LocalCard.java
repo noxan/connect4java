@@ -7,6 +7,8 @@ import java.awt.Color;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JPanel;
+import javax.swing.border.TitledBorder;
 
 import jkit.pref.PreferenceChangeEvent;
 import jkit.pref.PreferenceChangeListener;
@@ -18,25 +20,28 @@ import com.googlecode.connect4java.gui.listener.LocalListener;
 /**
  * 
  * @author richard.stromer
- * @version 0.8.20
+ * @version 1.0.23
  * @since 0.1
  */
 public class LocalCard extends AbstractCard {
 	private static final long serialVersionUID = 1L;
 	
-	private DefaultComboBoxModel slotBoxModel1;
-	private JComboBox slotBox1;
-	private JButton colorButton1;
-	private DefaultComboBoxModel slotBoxModel2;
-	private JComboBox slotBox2;
-	private JButton colorButton2;
+	private JPanel slot1_panel;
+	private JComboBox slot1_box;
+	private DefaultComboBoxModel slot1_boxModel;
+	private JButton slot1_colorButton;
+	
+	private JPanel slot2_panel;
+	private JComboBox slot2_box;
+	private DefaultComboBoxModel slot2_boxModel;
+	private JButton slot2_colorButton;
 	
 	private JButton startButton;
 	private JButton backButton;
 	
 	public LocalCard(MainGui gui) {
 		super(gui);
-		double[][] size = {{MainGui.MARGIN, 0.5, 5, TableLayout.PREFERRED, TableLayout.FILL, 100, 5, 100,  MainGui.MARGIN}, 
+		double[][] size = {{MainGui.MARGIN, TableLayout.PREFERRED, TableLayout.FILL, 100, 5, 100,  MainGui.MARGIN}, 
 				{100, TableLayout.PREFERRED, 5, TableLayout.PREFERRED, TableLayout.FILL, TableLayout.PREFERRED, MainGui.MARGIN}};
 		setLayout(new TableLayout(size));
 		
@@ -45,38 +50,54 @@ public class LocalCard extends AbstractCard {
 	
 	protected void initComponents() {
 		LocalListener listener = new LocalListener(this);
+		TableLayout layout = new TableLayout(new double[][] {{5, TableLayout.PREFERRED, 5, TableLayout.PREFERRED}, {TableLayout.FILL, 5}});
 		
-		slotBoxModel1 = new DefaultComboBoxModel(new String[]{Main.pref.get("player.name", "Player")});
-		slotBox1 = new JComboBox(slotBoxModel1);
-		slotBox1.setEditable(true);
-		slotBox1.addItemListener(listener);
-		add(slotBox1, "1,1");
+		slot1_panel = new JPanel(layout);
+		slot1_panel.setOpaque(false);
+		slot1_panel.setBorder(new TitledBorder("Slot1"));
 		
-		slotBoxModel2 = new DefaultComboBoxModel(new String[]{"Computer (Easy)", "Computer (Normal)", "Computer (Hard)", "Local Player"});
-		slotBox2 = new JComboBox(slotBoxModel2);
-		slotBox2.addItemListener(listener);
+		slot1_boxModel = new DefaultComboBoxModel(new String[]{Main.pref.get("player.name", "Player")});
+		slot1_box = new JComboBox(slot1_boxModel);
+		slot1_box.setEditable(true);
+		slot1_box.addItemListener(listener);
+		slot1_panel.add(slot1_box, "1,0");
 		
-		add(slotBox2, "1,3");
+		slot1_colorButton = new JButton();
+		slot1_colorButton.setBackground(new Color(Main.pref.getInt("player.color", 255)));
+		slot1_colorButton.setActionCommand("$b_color1");
+		slot1_colorButton.addActionListener(listener);
+		slot1_panel.add(slot1_colorButton, "3,0");
+		
+		add(slot1_panel, "1,1 , 5,1");
 		
 		
-		colorButton1 = new JButton();
-		colorButton1.setBackground(new Color(Main.pref.getInt("player.color", 255)));
-		colorButton1.setActionCommand("$b_color1");
-		colorButton1.addActionListener(listener);
-		add(colorButton1, "3,1");
-		colorButton2 = new JButton();
-		colorButton2.setActionCommand("$b_color2");
-		colorButton2.setBackground(new Color(Main.pref.getInt("computer.color", -65536)));
-		colorButton2.addActionListener(listener);
-		add(colorButton2, "3,3");
+		
+		slot2_panel = new JPanel(layout);
+		slot2_panel.setOpaque(false);
+		slot2_panel.setBorder(new TitledBorder("Slot2"));
+		
+		slot2_boxModel = new DefaultComboBoxModel(new String[]{"Computer (Easy)", "Computer (Normal)", "Computer (Hard)", "Local Player"});
+		slot2_box = new JComboBox(slot2_boxModel);
+		slot2_box.addItemListener(listener);
+		slot2_panel.add(slot2_box, "1,0");
+		
+		slot2_colorButton = new JButton();
+		slot2_colorButton.setBackground(new Color(Main.pref.getInt("computer.color", -65536)));
+		slot2_colorButton.setActionCommand("$b_color2");
+		slot2_colorButton.addActionListener(listener);
+		slot2_panel.add(slot2_colorButton, "3,0");
+		
+		add(slot2_panel, "1,3 , 5,3");
+		
+		
 		
 		Main.pref.addPreferenceChangeListener(new PreferenceChangeListener() {
 			@Override
 			public void preferenceChange(PreferenceChangeEvent evt) {
 				if("player.color".equals(evt.getKey().toString())) {
-					colorButton1.setBackground(new Color(Main.pref.getInt("player.color", 255)));
+					slot1_colorButton.setBackground(new Color(Main.pref.getInt("player.color", 255)));
 				} else if("computer.color".equals(evt.getKey().toString())) {
-					colorButton2.setBackground(new Color(Main.pref.getInt("computer.color", -65536)));
+					slot2_colorButton.setBackground(new Color(Main.pref.getInt("computer.color", -65536)));
 				}
 			}
 		});
@@ -84,20 +105,20 @@ public class LocalCard extends AbstractCard {
 		backButton = new JButton("Back");
 		backButton.setActionCommand("$b_back");
 		backButton.addActionListener(listener);
-		add(backButton, "5,5");
+		add(backButton, "3,5");
 		
 		startButton = new JButton("Start");
 		startButton.setActionCommand("$b_start");
 		startButton.addActionListener(listener);
-		add(startButton, "7,5");
+		add(startButton, "5,5");
 	}
 	public boolean equalsSlotBox1(Object obj) {
-		return slotBox1.equals(obj);
+		return slot1_box.equals(obj);
 	}
 	public String getPlayerName() {
-		return slotBox1.getSelectedItem().toString();
+		return slot1_box.getSelectedItem().toString();
 	}
 	public String getComputerName() {
-		return slotBox2.getSelectedItem().toString();
+		return slot2_box.getSelectedItem().toString();
 	}
 }

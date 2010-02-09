@@ -14,7 +14,7 @@ import com.googlecode.connect4java.gui.card.LocalCard;
 /**
  * 
  * @author richard.stromer
- * @version 0.9.21
+ * @version 1.0.23
  * @since 0.6.12
  */
 public class LocalListener extends AbstractListener<LocalCard> implements ItemListener {

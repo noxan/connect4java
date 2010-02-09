@@ -6,7 +6,7 @@ import java.io.IOException;
 /**
  * Field Interface
  * @author richard.stromer
- * @version 0.8.20
+ * @version 1.0.23
  * @since 0.1
  * @see Field
  */
@@ -26,25 +26,17 @@ public interface FieldInterface {
 	 * @param row
 	 * @return
 	 */
-	public FieldValue[] getRow(short row);
+	public FieldValue[] getRow(int row);
 	/**
 	 * Returns a column.
 	 * @since 0.1
 	 * @param column
 	 * @return
 	 */
-	public FieldValue[] getColumn(short column);
+	public FieldValue[] getColumn(int column);
 	/**
 	 * Returns the value at the given position.
 	 * @since 0.1
-	 * @param column
-	 * @param row
-	 * @return the value of this field
-	 */
-	public FieldValue get(short column, short row);
-	/**
-	 * Returns the value at the given position.
-	 * @since 0.8.20
 	 * @param column
 	 * @param row
 	 * @return the value of this field
@@ -63,7 +55,7 @@ public interface FieldInterface {
 	 * @param column
 	 * @return the number of pieces in this column
 	 */
-	public short getHeight(short column);
+	public int getHeight(int column);
 	
 	/**
 	 * Adds a piece to the given column.
@@ -71,7 +63,7 @@ public interface FieldInterface {
 	 * @param column
 	 * @return 
 	 */
-	public boolean add(short column, FieldValue value) ;
+	public boolean add(int column, FieldValue value) ;
 	
 	/**
 	 * Resets this field.
@@ -90,14 +82,14 @@ public interface FieldInterface {
 	 * @since 0.1
 	 * @return 
 	 */
-	public boolean isDraw() ;
+	public boolean isDrawn() ;
 	/**
 	 * Returns true if the hight of the given column is as great as <code>FIELD_HEIGHT</code>, else returns false.
 	 * @since 0.1
 	 * @param column 
 	 * @return 
 	 */
-	public boolean isColumnFull(short column) ;
+	public boolean isColumnFull(int column) ;
 	/**
 	 * Exports this object to a given location.
 	 * @since 0.1

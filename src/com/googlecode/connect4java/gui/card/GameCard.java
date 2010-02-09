@@ -15,7 +15,7 @@ import com.googlecode.connect4java.swing.JRoundPanel;
 /**
  * 
  * @author richard.stromer
- * @version 1.0.22
+ * @version 1.0.23
  * @since 0.5.11
  *
  */
@@ -40,7 +40,7 @@ public class GameCard extends AbstractCard {
 	@Override
 	protected void initComponents() {
 		GameListener listener = new GameListener(this);
-		game = new LocalGame(gui);
+		game = new LocalGame(gui, this);
 		
 		//sample...
 //		Field field = new Field();
@@ -67,6 +67,9 @@ public class GameCard extends AbstractCard {
 		super.paintComponent(g);
 	}
 	
+	public void reset() {
+		game.getField().reset();
+	}
 	
 	public JGamePanel getGamePanel() {
 		return gamepanel;
