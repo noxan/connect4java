@@ -11,8 +11,8 @@ import com.googlecode.connect4java.pref.Version;
 
 /**
  * 
- * @author noxan
- * @version 0.5.11
+ * @author richard.stromer
+ * @version 1.0.25
  * @since 0.5.11
  */
 public class JStatusBar extends JPanel {

@@ -20,7 +20,7 @@ import com.googlecode.connect4java.gui.listener.LocalListener;
 /**
  * 
  * @author richard.stromer
- * @version 1.0.23
+ * @version 1.0.25
  * @since 0.1
  */
 public class LocalCard extends AbstractCard {
@@ -54,7 +54,9 @@ public class LocalCard extends AbstractCard {
 		
 		slot1_panel = new JPanel(layout);
 		slot1_panel.setOpaque(false);
-		slot1_panel.setBorder(new TitledBorder("Slot1"));
+		TitledBorder slot1_border = new TitledBorder("Slot1");
+		slot1_border.setTitleColor(Color.WHITE);
+		slot1_panel.setBorder(slot1_border);
 		
 		slot1_boxModel = new DefaultComboBoxModel(new String[]{Main.pref.get("player.name", "Player")});
 		slot1_box = new JComboBox(slot1_boxModel);
@@ -74,10 +76,13 @@ public class LocalCard extends AbstractCard {
 		
 		slot2_panel = new JPanel(layout);
 		slot2_panel.setOpaque(false);
-		slot2_panel.setBorder(new TitledBorder("Slot2"));
+		TitledBorder slot2_border = new TitledBorder("Slot2");
+		slot2_border.setTitleColor(Color.WHITE);
+		slot2_panel.setBorder(slot2_border);
 		
-		slot2_boxModel = new DefaultComboBoxModel(new String[]{"Computer (Easy)", "Computer (Normal)", "Computer (Hard)", "Local Player"});
+		slot2_boxModel = new DefaultComboBoxModel(new String[]{"Local Player", "Computer (Easy)", "Computer (Normal)", "Computer (Hard)"});
 		slot2_box = new JComboBox(slot2_boxModel);
+		slot2_box.setEnabled(false);
 		slot2_box.addItemListener(listener);
 		slot2_panel.add(slot2_box, "1,0");
 		

@@ -4,19 +4,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import jkit.pref.PreferenceChangeEvent;
-import jkit.pref.PreferenceChangeListener;
-
 import com.googlecode.connect4java.field.FieldInterface;
 import com.googlecode.connect4java.gui.card.GameCard;
 
 /**
  * 
  * @author richard.stromer
- * @version 1.0.22
+ * @version 1.0.25
  * @since 0.6.12
  */
-public class GameListener extends AbstractListener<GameCard> implements MouseListener, PreferenceChangeListener {
+public class GameListener extends AbstractListener<GameCard> implements MouseListener {
 	public GameListener(GameCard card) {
 		super(card);
 	}
@@ -27,24 +24,14 @@ public class GameListener extends AbstractListener<GameCard> implements MouseLis
 	}
 	
 	/**
-	 * @since 0.x.20
-	 */
-	@Override
-	public void preferenceChange(PreferenceChangeEvent evt) {
-		card.getRoundPanel().update();
-	}
-	
-	/**
 	 * @since 0.8.17
 	 */
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		
 		int x = (int) (e.getX()/((float)card.getGamePanel().getWidth()/FieldInterface.FIELD_WIDTH));
-		int y = (int) (e.getY()/((float)card.getGamePanel().getHeight()/FieldInterface.FIELD_HEIGHT));
+//		int y = (int) (e.getY()/((float)card.getGamePanel().getHeight()/FieldInterface.FIELD_HEIGHT)); //unused
 		
-		System.out.println("click: "+x+", "+y);
-		card.game.click((short)x);
+		card.game.setToken(x);
 	}
 
 	@Override public void mouseClicked(MouseEvent e) {}

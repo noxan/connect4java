@@ -4,8 +4,8 @@ import java.util.EventObject;
 
 /**
  * 
- * @author noxan
- * @version 1.0.23
+ * @author richard.stromer
+ * @version 1.0.25
  * @since 1.0.23
  */
 public class FieldEvent extends EventObject {
@@ -14,9 +14,4 @@ public class FieldEvent extends EventObject {
 	public FieldEvent(Field source) {
 		super(source);
 	}
-	
-	public Field getField() {
-		return (Field) getSource();
-	}
-	
 }

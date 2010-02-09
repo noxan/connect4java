@@ -14,7 +14,7 @@ import com.googlecode.connect4java.field.FieldValue;
 /**
  * 
  * @author richard.stromer
- * @version 0.8.20
+ * @version 1.0.25
  * @since 0.8.17
  */
 public class JGamePanel extends JPanel {
@@ -59,8 +59,10 @@ public class JGamePanel extends JPanel {
 		}
 	}
 	/**
-	 * 
+	 * Paints the background grid.
 	 * @param g2
+	 * @param width
+	 * @param height
 	 */
 	private void paintGrid(Graphics2D g2, int width, int height) {
 		g2.setColor(new Color(0, 0, 0, 128));

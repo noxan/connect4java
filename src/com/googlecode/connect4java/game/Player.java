@@ -6,8 +6,8 @@ import jkit.pref.Preferences;
 
 /**
  * Contains a local player profil.
- * @author noxan
- * @version 0.7.16
+ * @author richard.stromer
+ * @version 1.0.25
  * @since 0.4.11
  */
 public class Player {

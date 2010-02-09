@@ -1,25 +1,25 @@
 package com.googlecode.connect4java.game;
 
 import com.googlecode.connect4java.field.Field;
+import com.googlecode.connect4java.field.FieldListener;
 
 /**
  * Game Interface
- * @author noxan
- * @version 1.0.22
+ * @author richard.stromer
+ * @version 1.0.25
  * @since 0.1
  * @see Game
  */
-public interface GameInterface {
+public interface GameInterface extends FieldListener {
+	public boolean setToken(int column);
+	public void reset();
+	
+	public Player getActive();
 	/**
-	 * @since 1.0.22
-	 * @param column
+	 * Returns the (active) field of the game.
+	 * @return the field of the game
+	 * @since 0.0.1
+	 * @see Field
 	 */
-	public void click(short column);
-	/**
-     * Returns the (active) field of the game.
-     * @return the field of the game
-     * @since 0.0.1
-     * @see Field
-     */
-    public Field getField();
+   public Field getField();
 }

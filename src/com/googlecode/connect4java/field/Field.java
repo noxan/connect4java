@@ -8,7 +8,7 @@ import java.util.Vector;
  * Field
  * 
  * @author richard.stromer
- * @version 1.0.23
+ * @version 1.0.25
  * @since 0.1
  */
 public class Field implements FieldInterface {
@@ -37,6 +37,9 @@ public class Field implements FieldInterface {
 	
 	public void addFieldListener(FieldListener listener) {
 		listeners.add(listener);
+	}
+	public void removeFieldListener(FieldListener listener) {
+		listeners.remove(listener);
 	}
 	
 	private void fireFieldEvent(FieldEvent event) {

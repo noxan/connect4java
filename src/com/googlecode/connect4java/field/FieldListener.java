@@ -2,8 +2,8 @@ package com.googlecode.connect4java.field;
 
 /**
  * 
- * @author noxan
- * @version 1.0.23
+ * @author richard.stromer
+ * @version 1.0.25
  * @since 1.0.23
  */
 public interface FieldListener {

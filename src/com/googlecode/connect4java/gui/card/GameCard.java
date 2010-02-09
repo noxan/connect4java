@@ -4,7 +4,6 @@ import info.clearthought.layout.TableLayout;
 
 import java.awt.Graphics;
 
-import com.googlecode.connect4java.Main;
 import com.googlecode.connect4java.game.GameInterface;
 import com.googlecode.connect4java.game.LocalGame;
 import com.googlecode.connect4java.gui.MainGui;
@@ -15,7 +14,7 @@ import com.googlecode.connect4java.swing.JRoundPanel;
 /**
  * 
  * @author richard.stromer
- * @version 1.0.23
+ * @version 1.0.25
  * @since 0.5.11
  *
  */
@@ -57,7 +56,6 @@ public class GameCard extends AbstractCard {
 		gamepanel = new JGamePanel(game.getField());
 		gamepanel.addMouseListener(listener);
 		add(gamepanel, "1,3 , 2,3");
-		Main.pref.addPreferenceChangeListener(listener);
 	}
 	/**
 	 * 
@@ -68,7 +66,7 @@ public class GameCard extends AbstractCard {
 	}
 	
 	public void reset() {
-		game.getField().reset();
+		game.reset();
 	}
 	
 	public JGamePanel getGamePanel() {
