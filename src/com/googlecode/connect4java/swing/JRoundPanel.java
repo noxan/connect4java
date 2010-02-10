@@ -7,17 +7,20 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
+import jkit.pref.PreferenceChangeEvent;
+import jkit.pref.PreferenceChangeListener;
+
 import com.googlecode.connect4java.Main;
 import com.googlecode.connect4java.game.Player;
 
 /**
  * 
  * @author richard.stromer
- * @version 0.8.20
+ * @version 1.0.26
  * @since 0.8.17
  *
  */
-public class JRoundPanel extends JPanel {
+public class JRoundPanel extends JPanel implements PreferenceChangeListener {
 	private static final long serialVersionUID = -5398739716808518120L;
 	
 	private Player playertop;
@@ -27,6 +30,7 @@ public class JRoundPanel extends JPanel {
 		super();
 		setOpaque(false);
 		setPreferredSize(new Dimension(200, 51));
+		Main.pref.addPreferenceChangeListener(this);
 		
 		updatePlayers();
 	}
@@ -39,6 +43,13 @@ public class JRoundPanel extends JPanel {
 		paintRound(g2, getWidth(), getHeight());
 	}
 	
+	@Override
+	public void preferenceChange(PreferenceChangeEvent evt) {
+		updatePlayers();
+	}
+	public void reset() {
+		updatePlayers();
+	}
 	
 	private void paintRound(Graphics2D g2, int width, int height) {
 		final Color border = new Color(128, 128, 128);

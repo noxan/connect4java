@@ -15,7 +15,7 @@ import com.googlecode.connect4java.gui.card.GameCard;
 /**
  * 
  * @author richard.stromer
- * @version 1.0.25
+ * @version 1.0.26
  * @since 1.0.22
  */
 public class LocalGame implements GameInterface {
@@ -44,6 +44,7 @@ public class LocalGame implements GameInterface {
 			String message = "The winner is "+players[active].getName()+"!\nClick to return to the previous panel.";
 			JOptionPane.showMessageDialog(gui.getFrame(), message, "Win", JOptionPane.INFORMATION_MESSAGE);
 			card.reset();
+			card.getRoundPanel().reset();
 			gui.showCard(GuiCard.LOCAL);
 		}
 	}
@@ -82,6 +83,7 @@ public class LocalGame implements GameInterface {
 	
 	@Override
 	public void reset() {
+		changeActive();
 		field.reset();
 	}
 }
