@@ -14,7 +14,7 @@ import com.googlecode.connect4java.Main;
 /**
  * 
  * @author richard.stromer
- * @version 0.8.17
+ * @version 1.0.27
  * @since 0.5.11
  */
 public class JBackgroundPanel extends JPanel implements Runnable {
@@ -35,19 +35,9 @@ public class JBackgroundPanel extends JPanel implements Runnable {
 	}
 	public JBackgroundPanel(Color start) {
 		super();
-//		setOpaque(false);
 		this.start = start;
 		this.active = start;
 		this.time = 500;
-		
-//		// for testings
-//		nextColor(Color.BLUE);
-//		Timer timer = new Timer();
-//		timer.schedule(new TimerTask() {
-//			@Override public void run() {
-//				nextColor(Color.RED);
-//			}
-//		}, 5000);
 	}
 	
 	
@@ -96,7 +86,6 @@ public class JBackgroundPanel extends JPanel implements Runnable {
 		g2.setColor(active);
 		g2.drawString(Main.C4J_TITLE, width-228, 40);
 		g2.setFont(new Font("Verdana", Font.ITALIC, 16));
-		g2.drawString("Beta", width-65, 58);
 	}
 	
 	public void nextColor(Color color) {

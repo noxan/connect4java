@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="connect4java" size="1643,866" id="" metadata="uml2-1.0" initialized="true" tag="1000" key="32303037303533312D3130303020636F6E6E656374346A6176612F6E6F78616E">
+  <children xsi:type="editmodel:ClassEditModel" name="Main" location="97,10" size="170,117" id="com.googlecode.connect4java/Main" runTimeClassModel="main([Ljava.lang.String;),c4J_TITLE,pref">
+    <children xsi:type="editmodel:CompartmentEditModel" size="105,36">
+      <children xsi:type="editmodel:AttributeEditModel" name="c4J_TITLE" id="com.googlecode.connect4java/Main#c4J_TITLE"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="pref" id="com.googlecode.connect4java/Main#pref"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="52,18">
+      <children xsi:type="editmodel:MethodEditModel" name="main" id="com.googlecode.connect4java/Main#main([Ljava.lang.String;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:PackageEditModel" name="com.googlecode.connect4java.field" location="555,60" size="543,544" id="com.googlecode.connect4java.field">
+    <children xsi:type="editmodel:ClassEditModel" name="Field" location="220,40" size="150,373" id="com.googlecode.connect4java.field/Field" runTimeClassModel="isColumnFull(I),isDrawn(),checkWin(IILcom.googlecode.connect4java.field.FieldValue;),Field(),removeFieldListener(Lcom.googlecode.connect4java.field.FieldListener;),addFieldListener(Lcom.googlecode.connect4java.field.FieldListener;),doImport(Ljava.lang.String;),win,getColumn(I),toString(),add(ILcom.googlecode.connect4java.field.FieldValue;),getRow(I),clone(),getHeight(I),get(II),doExport(Ljava.lang.String;),get(Ljava.awt.Point;),reset()">
+      <children xsi:type="editmodel:CompartmentEditModel" size="81,18">
+        <children xsi:type="editmodel:AttributeEditModel" name="win" id="com.googlecode.connect4java.field/Field#win"/>
+      </children>
+      <children xsi:type="editmodel:CompartmentEditModel" size="127,306">
+        <children xsi:type="editmodel:MethodEditModel" name="Field" id="com.googlecode.connect4java.field/Field#Field()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="add" id="com.googlecode.connect4java.field/Field#add(ILcom.googlecode.connect4java.field.FieldValue;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="addFieldListener" id="com.googlecode.connect4java.field/Field#addFieldListener(Lcom.googlecode.connect4java.field.FieldListener;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="checkWin" id="com.googlecode.connect4java.field/Field#checkWin(IILcom.googlecode.connect4java.field.FieldValue;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="clone" id="com.googlecode.connect4java.field/Field#clone()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="doExport" id="com.googlecode.connect4java.field/Field#doExport(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="doImport" id="com.googlecode.connect4java.field/Field#doImport(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="get" id="com.googlecode.connect4java.field/Field#get(Ljava.awt.Point;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="get" id="com.googlecode.connect4java.field/Field#get(II)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getColumn" id="com.googlecode.connect4java.field/Field#getColumn(I)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getHeight" id="com.googlecode.connect4java.field/Field#getHeight(I)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getRow" id="com.googlecode.connect4java.field/Field#getRow(I)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="isColumnFull" id="com.googlecode.connect4java.field/Field#isColumnFull(I)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="isDrawn" id="com.googlecode.connect4java.field/Field#isDrawn()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="removeFieldListener" id="com.googlecode.connect4java.field/Field#removeFieldListener(Lcom.googlecode.connect4java.field.FieldListener;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="reset" id="com.googlecode.connect4java.field/Field#reset()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="toString" id="com.googlecode.connect4java.field/Field#toString()"/>
+      </children>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="com.googlecode.connect4java.field/FieldInterface&lt;-com.googlecode.connect4java.field/Field" source="//@children.1/@children.0" target="//@children.1/@children.2" targetEnd="//@children.1/@children.0/@sourceConnections.0/@children.1" sourceEnd="//@children.1/@children.0/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+        <children xsi:type="editmodel:AssociationEndEditModel" location="0,172" attachSource="true"/>
+        <children xsi:type="editmodel:AssociationEndEditModel" location="142,178"/>
+      </sourceConnections>
+      <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+    </children>
+    <children xsi:type="editmodel:ClassEditModel" name="FieldEvent" location="200,436" size="109,67" id="com.googlecode.connect4java.field/FieldEvent" runTimeClassModel="FieldEvent(Lcom.googlecode.connect4java.field.Field;)">
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <children xsi:type="editmodel:CompartmentEditModel" size="79,18">
+        <children xsi:type="editmodel:MethodEditModel" name="FieldEvent" id="com.googlecode.connect4java.field/FieldEvent#FieldEvent(Lcom.googlecode.connect4java.field.Field;Z)"/>
+      </children>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+    </children>
+    <children xsi:type="editmodel:InterfaceEditModel" targetConnections="//@children.1/@children.0/@sourceConnections.0" name="FieldInterface" location="9,34" size="142,351" id="com.googlecode.connect4java.field/FieldInterface" runTimeClassModel="isColumnFull(I),isDrawn(),isWin(),fIELD_HEIGHT,fIELD_WIDTH,doImport(Ljava.lang.String;),getColumn(I),toString(),add(ILcom.googlecode.connect4java.field.FieldValue;),getRow(I),clone(),getHeight(I),get(II),doExport(Ljava.lang.String;),get(Ljava.awt.Point;),reset()">
+      <children xsi:type="editmodel:CompartmentEditModel" size="119,36">
+        <children xsi:type="editmodel:AttributeEditModel" name="fIELD_HEIGHT" id="com.googlecode.connect4java.field/FieldInterface#fIELD_HEIGHT"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="fIELD_WIDTH" id="com.googlecode.connect4java.field/FieldInterface#fIELD_WIDTH"/>
+      </children>
+      <children xsi:type="editmodel:CompartmentEditModel" size="89,252">
+        <children xsi:type="editmodel:MethodEditModel" name="add" id="com.googlecode.connect4java.field/FieldInterface#add(ILcom.googlecode.connect4java.field.FieldValue;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="clone" id="com.googlecode.connect4java.field/FieldInterface#clone()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="doExport" id="com.googlecode.connect4java.field/FieldInterface#doExport(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="doImport" id="com.googlecode.connect4java.field/FieldInterface#doImport(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="get" id="com.googlecode.connect4java.field/FieldInterface#get(II)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="get" id="com.googlecode.connect4java.field/FieldInterface#get(Ljava.awt.Point;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getColumn" id="com.googlecode.connect4java.field/FieldInterface#getColumn(I)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getHeight" id="com.googlecode.connect4java.field/FieldInterface#getHeight(I)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getRow" id="com.googlecode.connect4java.field/FieldInterface#getRow(I)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="isColumnFull" id="com.googlecode.connect4java.field/FieldInterface#isColumnFull(I)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="isDrawn" id="com.googlecode.connect4java.field/FieldInterface#isDrawn()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="isWin" id="com.googlecode.connect4java.field/FieldInterface#isWin()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="reset" id="com.googlecode.connect4java.field/FieldInterface#reset()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="toString" id="com.googlecode.connect4java.field/FieldInterface#toString()"/>
+      </children>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+    </children>
+    <children xsi:type="editmodel:InterfaceEditModel" targetConnections="//@children.2/@sourceConnections.0" name="FieldListener" location="13,442" size="134,81" id="com.googlecode.connect4java.field/FieldListener" runTimeClassModel="handleFieldEvent(Lcom.googlecode.connect4java.field.FieldEvent;)">
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <children xsi:type="editmodel:CompartmentEditModel" size="111,18">
+        <children xsi:type="editmodel:MethodEditModel" name="handleFieldEvent" id="com.googlecode.connect4java.field/FieldListener#handleFieldEvent(Lcom.googlecode.connect4java.field.FieldEvent;)"/>
+      </children>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+    </children>
+    <children xsi:type="editmodel:EnumerationEditModel" name="FieldValue" location="416,40" size="111,107" id="com.googlecode.connect4java.field/FieldValue" runTimeClassModel="PLAYER1%,EMPTY%,PLAYER2%">
+      <children xsi:type="editmodel:CompartmentEditModel" size="66,54">
+        <children xsi:type="editmodel:EnumerationLiteralEditModel" name="EMPTY" id="com.googlecode.connect4java.field/FieldValue#EMPTY%"/>
+        <children xsi:type="editmodel:EnumerationLiteralEditModel" name="PLAYER2" id="com.googlecode.connect4java.field/FieldValue#PLAYER2%"/>
+        <children xsi:type="editmodel:EnumerationLiteralEditModel" name="PLAYER1" id="com.googlecode.connect4java.field/FieldValue#PLAYER1%"/>
+      </children>
+      <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+    </children>
+  </children>
+  <children xsi:type="editmodel:InterfaceEditModel" targetConnections="//@children.3/@sourceConnections.0" name="GameInterface" location="296,510" size="199,149" id="com.googlecode.connect4java.game/GameInterface" runTimeClassModel="getActive(),setToken(I),getField(),reset()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="76,72">
+      <children xsi:type="editmodel:MethodEditModel" name="getActive" id="com.googlecode.connect4java.game/GameInterface#getActive()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getField" id="com.googlecode.connect4java.game/GameInterface#getField()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="reset" id="com.googlecode.connect4java.game/GameInterface#reset()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setToken" id="com.googlecode.connect4java.game/GameInterface#setToken(I)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="com.googlecode.connect4java.field/FieldListener&lt;-com.googlecode.connect4java.game/GameInterface" source="//@children.2" target="//@children.1/@children.3" targetEnd="//@children.2/@sourceConnections.0/@children.1" sourceEnd="//@children.2/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="199,36" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,44"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="LocalGame" location="26,506" size="199,153" id="com.googlecode.connect4java.game/LocalGame" runTimeClassModel="handleFieldEvent(Lcom.googlecode.connect4java.field.FieldEvent;),LocalGame(Lcom.googlecode.connect4java.gui.MainGui;Lcom.googlecode.connect4java.gui.card.GameCard;),active,setToken(I),reset()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="65,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="active" id="com.googlecode.connect4java.game/LocalGame#active"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="111,72">
+      <children xsi:type="editmodel:MethodEditModel" name="LocalGame" id="com.googlecode.connect4java.game/LocalGame#LocalGame(Lcom.googlecode.connect4java.gui.MainGui;Lcom.googlecode.connect4java.gui.card.GameCard;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="handleFieldEvent" id="com.googlecode.connect4java.game/LocalGame#handleFieldEvent(Lcom.googlecode.connect4java.field.FieldEvent;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="reset" id="com.googlecode.connect4java.game/LocalGame#reset()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setToken" id="com.googlecode.connect4java.game/LocalGame#setToken(I)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="com.googlecode.connect4java.game/GameInterface&lt;-com.googlecode.connect4java.game/LocalGame" source="//@children.3" target="//@children.2" targetEnd="//@children.3/@sourceConnections.0/@children.1" sourceEnd="//@children.3/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="199,78" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,74"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Player" location="224,315" size="199,153" id="com.googlecode.connect4java.game/Player" runTimeClassModel="color,toPreferences(Ljkit.pref.Preferences;),name,Player(Ljava.lang.String;),Player(Ljava.lang.String;Ljava.awt.Color;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="79,36">
+      <children xsi:type="editmodel:AttributeEditModel" name="color" location="6,43" id="com.googlecode.connect4java.game/Player#color"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="name" id="com.googlecode.connect4java.game/Player#name"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="99,54">
+      <children xsi:type="editmodel:MethodEditModel" name="Player" id="com.googlecode.connect4java.game/Player#Player(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="Player" id="com.googlecode.connect4java.game/Player#Player(Ljava.lang.String;Ljava.awt.Color;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="toPreferences" id="com.googlecode.connect4java.game/Player#toPreferences(Ljkit.pref.Preferences;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <diagramOptions xsi:type="options:ClassDiagramOptions" properties="wireOptions=1;Product=eUML2" autoName="false"/>
+  <boardSetting snapToGeometry="true" gridEnabled="true" gridSpacing="15,15" gridOrigin="0,0" rulerUnit="pixel" gridVisibility="false">
+    <leftRuler/>
+    <topRuler/>
+  </boardSetting>
+  <classDiagramPreferences xsi:type="editmodel:UMLClassDiagramPreference" showPopupBars="true" showConnectionHandles="true" attributeSorter="Natural" methodSorter="Natural" showClassStereotype="true" showPackageStereotype="true" showDependencyStereotype="true" showInterfaceStereotype="true" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+</editmodel:ClassDiagramEditModel>

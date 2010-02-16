@@ -14,10 +14,11 @@ import com.googlecode.connect4java.gui.card.LocalCard;
 /**
  * 
  * @author richard.stromer
- * @version 1.0.23
+ * @version 1.0.27
  * @since 0.6.12
  */
-public class LocalListener extends AbstractListener<LocalCard> implements ItemListener {
+public class LocalListener extends AbstractListener<LocalCard> implements
+		ItemListener {
 	public LocalListener(LocalCard card) {
 		super(card);
 	}
@@ -29,13 +30,13 @@ public class LocalListener extends AbstractListener<LocalCard> implements ItemLi
 		if("$b_color1".equals(action)) {
 			final int color1 = Main.pref.getInt("player.color", 255);
 			Color res = JColorChooser.showDialog(card.gui.getFrame(), "Local Player: Color", new Color(color1));
-			if(res!=null) {
+			if(res != null) {
 				Main.pref.put("player.color", Integer.toString(res.getRGB()));
 			}
-		} if("$b_color2".equals(action)) {
+		} else if("$b_color2".equals(action)) {
 			final int color2 = Main.pref.getInt("computer.color", -65536);
 			Color res = JColorChooser.showDialog(card.gui.getFrame(), "Computer Player: Color", new Color(color2));
-			if(res!=null) {
+			if(res != null) {
 				Main.pref.put("computer.color", Integer.toString(res.getRGB()));
 			}
 		} else if("$b_back".equals(action)) {
@@ -49,7 +50,7 @@ public class LocalListener extends AbstractListener<LocalCard> implements ItemLi
 	
 	@Override
 	public void itemStateChanged(ItemEvent e) {
-		if(e.getStateChange()==ItemEvent.DESELECTED) {
+		if(e.getStateChange() == ItemEvent.DESELECTED) {
 			if(!e.getItem().toString().isEmpty()) {
 				if(card.equalsSlotBox1(e.getSource())) {
 					Main.pref.put("player.name", card.getPlayerName());

@@ -1,38 +1,30 @@
 package com.googlecode.connect4java.swing;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
-import jkit.pref.PreferenceChangeEvent;
-import jkit.pref.PreferenceChangeListener;
-
-import com.googlecode.connect4java.Main;
-import com.googlecode.connect4java.game.Player;
+import com.googlecode.connect4java.field.FieldEvent;
+import com.googlecode.connect4java.field.FieldListener;
+import com.googlecode.connect4java.game.GameInterface;
 
 /**
- * 
  * @author richard.stromer
- * @version 1.0.26
+ * @version 1.0.27
  * @since 0.8.17
- *
  */
-public class JRoundPanel extends JPanel implements PreferenceChangeListener {
+public class JRoundPanel extends JPanel implements FieldListener {
 	private static final long serialVersionUID = -5398739716808518120L;
+	private final Color border = new Color(128, 128, 128);
+	private GameInterface game;
 	
-	private Player playertop;
-	private Player playerbottom;
-	
-	public JRoundPanel() {
+	public JRoundPanel(GameInterface game) {
 		super();
+		this.game = game;
 		setOpaque(false);
-		setPreferredSize(new Dimension(200, 51));
-		Main.pref.addPreferenceChangeListener(this);
-		
-		updatePlayers();
+		game.addFieldListener(this);
 	}
 	
 	@Override
@@ -40,58 +32,50 @@ public class JRoundPanel extends JPanel implements PreferenceChangeListener {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
 		
-		paintRound(g2, getWidth(), getHeight());
+		if(game.isWin()) {
+			paintWin(g2, getWidth(), getHeight());
+		} else {
+			paintRound(g2, getWidth(), getHeight());
+		}
 	}
 	
-	@Override
-	public void preferenceChange(PreferenceChangeEvent evt) {
-		updatePlayers();
-	}
-	public void reset() {
-		updatePlayers();
-	}
-	
-	private void paintRound(Graphics2D g2, int width, int height) {
-		final Color border = new Color(128, 128, 128);
+	private void paintBackground(Graphics2D g2, int width, int height) {
 		g2.setColor(border);
 		g2.fillRect(0, 0, width, height);
 		g2.setColor(new Color(0, 0, 0, 128));
-		g2.fillRect(1, 1, width-2, height-2);
+		g2.fillRect(1, 1, width - 2, height - 2);
+	}
+	
+	private void paintWin(Graphics2D g2, int width, int height) {
+		paintBackground(g2, width, height);
+		
+		g2.setColor(Color.WHITE);
+		g2.drawString("Win!", 10, 15);
+	}
+	
+	private void paintRound(Graphics2D g2, int width, int height) {
+		paintBackground(g2, width, height);
 		
 		g2.setColor(border);
-		g2.drawRect(2, 2, width-5, 22);
-		g2.setColor(playertop.getColor());
-		g2.fillRect(3, 3, width-6, 21);
+		g2.drawRect(2, 2, width - 5, 22);
+		g2.setColor(game.getActive().getColor());
+		g2.fillRect(3, 3, width - 6, 21);
 		
 		g2.setColor(border);
-		g2.drawRect(2, 26, width-5, 22);
-		g2.setColor(playerbottom.getColor());
-		g2.fillRect(3, 27, width-6, 21);
+		g2.drawRect(2, 26, width - 5, 22);
+		g2.setColor(game.getInactive().getColor());
+		g2.fillRect(3, 27, width - 6, 21);
 		
 		g2.setColor(Color.BLACK);
-		g2.drawString(playertop.getName(), 8, 17);
-		g2.drawString(playerbottom.getName(), 8, 42);
+		g2.drawString(game.getActive().getName(), 8, 17);
+		g2.drawString(game.getInactive().getName(), 8, 42);
 	}
-	private void updatePlayers() {
-		playertop = new Player(Main.pref.get("player.name", "Player"), new Color(Main.pref.getInt("player.color", 255)));
-		playerbottom = new Player(Main.pref.get("computer.name", "Computer"), new Color(Main.pref.getInt("computer.color", -65536)));
-	}
-	public void update() {
-		updatePlayers();
-		repaint();
-	}
-	public void switchPlayer() {
-		Player tmp = playerbottom;
-		playerbottom = playertop;
-		playertop = tmp;
-		repaint();
-	}
-	public void setPlayerTop(String name, Color color) {
-		playertop = new Player(name, color);
-		repaint();
-	}
-	public void setPlayerBottom(String name, Color color) {
-		playerbottom = new Player(name, color);
-		repaint();
+
+	@Override
+	public void handleFieldEvent(FieldEvent event) {
+//		repaint();
+		if(event.isWin()) {
+			System.out.println("win...");
+		}
 	}
 }

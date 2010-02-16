@@ -8,11 +8,12 @@ import java.util.Vector;
  * Field
  * 
  * @author richard.stromer
- * @version 1.0.25
+ * @version 1.0.27
  * @since 0.1
  */
 public class Field implements FieldInterface {
 	private Vector<FieldListener> listeners;
+	
 	private boolean win;
 	/**
 	 * Saves the field.
@@ -38,12 +39,13 @@ public class Field implements FieldInterface {
 	public void addFieldListener(FieldListener listener) {
 		listeners.add(listener);
 	}
+	
 	public void removeFieldListener(FieldListener listener) {
 		listeners.remove(listener);
 	}
 	
 	private void fireFieldEvent(FieldEvent event) {
-		for(FieldListener listener:listeners) {
+		for (FieldListener listener : listeners) {
 			listener.handleFieldEvent(event);
 		}
 	}
@@ -61,7 +63,8 @@ public class Field implements FieldInterface {
 	}
 	
 	/**
-	 * Sets the value at the given positon and checks if one player has won in this field.
+	 * Sets the value at the given positon and checks if one player has won in
+	 * this field.
 	 * 
 	 * @since 0.1
 	 * @param column
@@ -70,9 +73,9 @@ public class Field implements FieldInterface {
 	 */
 	private void set(int column, int row, FieldValue value) {
 		field[column][row] = value;
-		if(!isWin()) {
+		if (!isWin()) {
 			win = checkWin(column, row, value);
-			fireFieldEvent(new FieldEvent(this));
+			fireFieldEvent(new FieldEvent(this, win));
 		}
 	}
 	
@@ -141,7 +144,7 @@ public class Field implements FieldInterface {
 	 */
 	@Override
 	public boolean isDrawn() {
-		if(isWin()) {
+		if (isWin()) {
 			return false;
 		}
 		for (int x = 0; x < FIELD_WIDTH; x++) {
@@ -164,16 +167,19 @@ public class Field implements FieldInterface {
 			// System.out.print("checkWin: "+player+"@("+column+", "+row+") -> "+way.size()+"\t");
 			// System.out.println();
 			
-			for (int x = column - 1; x < column + 2	&& x < FIELD_WIDTH; x++) {
+			for (int x = column - 1; x < column + 2 && x < FIELD_WIDTH; x++) {
 				if (x >= 0) {
 					for (int y = row - 1; (y < row + 2) && (y < FIELD_HEIGHT); y++) {
 						if (y >= 0) {
-							if (!(column == x && row == y)) { // nicht die aktuelle position -> endlos!
+							if (!(column == x && row == y)) { // nicht die
+																// aktuelle
+																// position ->
+																// endlos!
 								if (get(x, y) == player) {
 									Vector<Point> way = new Vector<Point>();
 									way.add(new Point(column, row));
 									way.add(new Point(x, y));
-									if(checkWin2(way, player)) {
+									if (checkWin2(way, player)) {
 										return true;
 									}
 								}
@@ -186,6 +192,7 @@ public class Field implements FieldInterface {
 		}
 		return false;
 	}
+	
 	/**
 	 * 
 	 * @param way
@@ -237,6 +244,8 @@ public class Field implements FieldInterface {
 	
 	/**
 	 * {@inheritDoc}
+	 * 
+	 * @uml.property name="win"
 	 */
 	@Override
 	public boolean isWin() {

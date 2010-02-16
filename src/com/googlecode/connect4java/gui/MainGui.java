@@ -17,18 +17,28 @@ import com.googlecode.connect4java.swing.JBackgroundPanel;
 import com.googlecode.connect4java.swing.JStatusBar;
 
 /**
- * 
- * @author richard.stromer
- * @version 0.9.21
- * @since 0.1
+ * @author  richard.stromer
+ * @version  0.9.21
+ * @since  0.1
  */
 public class MainGui {
 	public static final int MARGIN = 25;
     public static final int PADDING = 10;
 	
+	/**
+	 * @uml.property  name="frame"
+	 */
 	private JFrame frame;
+	/**
+	 * @uml.property  name="cards"
+	 * @uml.associationEnd  
+	 */
 	private JBackgroundPanel cards;
 	private CardLayout layout;
+	/**
+	 * @uml.property  name="statusbar"
+	 * @uml.associationEnd  
+	 */
 	private JStatusBar statusbar;
 	
 	public MainGui() {
@@ -79,6 +89,10 @@ public class MainGui {
 	public JStatusBar getStatusBar() {
 		return statusbar;
 	}
+	/**
+	 * @return
+	 * @uml.property  name="frame"
+	 */
 	public JFrame getFrame() {
 		return frame;
 	}

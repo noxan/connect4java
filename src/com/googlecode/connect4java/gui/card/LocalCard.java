@@ -20,7 +20,7 @@ import com.googlecode.connect4java.gui.listener.LocalListener;
 /**
  * 
  * @author richard.stromer
- * @version 1.0.25
+ * @version 1.0.27
  * @since 0.1
  */
 public class LocalCard extends AbstractCard {
@@ -36,13 +36,15 @@ public class LocalCard extends AbstractCard {
 	private DefaultComboBoxModel slot2_boxModel;
 	private JButton slot2_colorButton;
 	
+	private JPanel game_panel;
+	
 	private JButton startButton;
 	private JButton backButton;
 	
 	public LocalCard(MainGui gui) {
 		super(gui);
 		double[][] size = {{MainGui.MARGIN, TableLayout.PREFERRED, TableLayout.FILL, 100, 5, 100,  MainGui.MARGIN}, 
-				{100, TableLayout.PREFERRED, 5, TableLayout.PREFERRED, TableLayout.FILL, TableLayout.PREFERRED, MainGui.MARGIN}};
+				{100, TableLayout.PREFERRED, 5, TableLayout.PREFERRED, 5, TableLayout.PREFERRED, TableLayout.FILL, TableLayout.PREFERRED, MainGui.MARGIN}};
 		setLayout(new TableLayout(size));
 		
 		initComponents();
@@ -94,7 +96,13 @@ public class LocalCard extends AbstractCard {
 		
 		add(slot2_panel, "1,3 , 5,3");
 		
+		game_panel = new JPanel();
+		game_panel.setOpaque(false);
+		TitledBorder game_border = new TitledBorder("Game");
+		game_border.setTitleColor(Color.WHITE);
+		game_panel.setBorder(game_border);
 		
+		add(game_panel, "1,5 , 5,5");
 		
 		Main.pref.addPreferenceChangeListener(new PreferenceChangeListener() {
 			@Override
@@ -110,12 +118,12 @@ public class LocalCard extends AbstractCard {
 		backButton = new JButton("Back");
 		backButton.setActionCommand("$b_back");
 		backButton.addActionListener(listener);
-		add(backButton, "3,5");
+		add(backButton, "3,7");
 		
 		startButton = new JButton("Start");
 		startButton.setActionCommand("$b_start");
 		startButton.addActionListener(listener);
-		add(startButton, "5,5");
+		add(startButton, "5,7");
 	}
 	public boolean equalsSlotBox1(Object obj) {
 		return slot1_box.equals(obj);

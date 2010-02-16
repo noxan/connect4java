@@ -6,12 +6,18 @@ import jkit.pref.Preferences;
 
 /**
  * Contains a local player profil.
- * @author richard.stromer
- * @version 1.0.25
- * @since 0.4.11
+ * @author  richard.stromer
+ * @version  1.0.25
+ * @since  0.4.11
  */
 public class Player {
+	/**
+	 * @uml.property  name="name"
+	 */
 	private String name;
+	/**
+	 * @uml.property  name="color"
+	 */
 	private Color color;
 	
 	/**
@@ -33,29 +39,33 @@ public class Player {
 		this.setColor(color);
 	}
 	/**
-	 * @since 0.4.11
-	 * @param name sets the players name
+	 * @since  0.4.11
+	 * @param name  sets the players name
+	 * @uml.property  name="name"
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 	/**
-	 * @since 0.4.11
-	 * @return returns the players name
+	 * @since  0.4.11
+	 * @return  returns the players name
+	 * @uml.property  name="name"
 	 */
 	public String getName() {
 		return name;
 	}
 	/**
-	 * @since 0.4.11
-	 * @param color sets the players color
+	 * @since  0.4.11
+	 * @param color  sets the players color
+	 * @uml.property  name="color"
 	 */
 	public void setColor(Color color) {
 		this.color = color;
 	}
 	/**
-	 * @since 0.4.11
-	 * @return returns the players color
+	 * @since  0.4.11
+	 * @return  returns the players color
+	 * @uml.property  name="color"
 	 */
 	public Color getColor() {
 		return color;

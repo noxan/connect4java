@@ -12,25 +12,22 @@ import com.googlecode.connect4java.swing.JGamePanel;
 import com.googlecode.connect4java.swing.JRoundPanel;
 
 /**
- * 
  * @author richard.stromer
- * @version 1.0.25
+ * @version 1.0.27
  * @since 0.5.11
- *
  */
 public class GameCard extends AbstractCard {
 	private static final long serialVersionUID = -1775250517657176595L;
-	
-	public GameInterface game;
-	
-	protected JGamePanel gamepanel;
-	protected JRoundPanel roundpanel;
+	private GameInterface game;
+	private JGamePanel gamepanel;
+	private JRoundPanel roundpanel;
 	
 	public GameCard(MainGui gui) {
 		super(gui);
 		
-		double[][] size = {{MainGui.MARGIN, 200, TableLayout.FILL, MainGui.MARGIN}, 
-				{MainGui.MARGIN/2, 51, MainGui.MARGIN/2, TableLayout.FILL, MainGui.MARGIN}};
+		double[][] size = {
+				{ MainGui.MARGIN, 200, TableLayout.FILL, MainGui.MARGIN },
+				{ MainGui.MARGIN / 2, 51, MainGui.MARGIN / 2, TableLayout.FILL, MainGui.MARGIN } };
 		setLayout(new TableLayout(size));
 		
 		initComponents();
@@ -40,26 +37,13 @@ public class GameCard extends AbstractCard {
 	protected void initComponents() {
 		GameListener listener = new GameListener(this);
 		game = new LocalGame(gui, this);
-		
-		//sample...
-//		Field field = new Field();
-//		field.add((short) 0, FieldValue.PLAYER1);
-//		field.add((short) 0, FieldValue.PLAYER2);
-//		field.add((short) 0, FieldValue.PLAYER1);
-//		field.add((short) 0, FieldValue.PLAYER2);
-//		field.add((short) 1, FieldValue.PLAYER2);
-//		field.add((short) 1, FieldValue.PLAYER1);
-//		field.add((short) 2, FieldValue.PLAYER2);
-		
-		roundpanel = new JRoundPanel();
+		roundpanel = new JRoundPanel(game);
 		add(roundpanel, "1,1");
-		gamepanel = new JGamePanel(game.getField());
+		gamepanel = new JGamePanel(game);
 		gamepanel.addMouseListener(listener);
 		add(gamepanel, "1,3 , 2,3");
 	}
-	/**
-	 * 
-	 */
+	
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -69,11 +53,15 @@ public class GameCard extends AbstractCard {
 		game.reset();
 	}
 	
+	public GameInterface getGame() {
+		return game;
+	}
+	
 	public JGamePanel getGamePanel() {
 		return gamepanel;
 	}
+	
 	public JRoundPanel getRoundPanel() {
 		return roundpanel;
 	}
 }
-
