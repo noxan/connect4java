@@ -8,7 +8,7 @@ import com.googlecode.connect4java.gui.card.NetworkCard;
 /**
  * 
  * @author richard.stromer
- * @version 0.8.17
+ * @version 1.0.28
  * @since 0.6.12
  */
 public class NetworkListener extends AbstractListener<NetworkCard> {
@@ -18,6 +18,6 @@ public class NetworkListener extends AbstractListener<NetworkCard> {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		card.gui.showCard(GuiCard.MENU);
+		card.getGui().showCard(GuiCard.MENU);
 	}
 }

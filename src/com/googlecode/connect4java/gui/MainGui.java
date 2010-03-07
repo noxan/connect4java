@@ -5,6 +5,9 @@ import java.awt.CardLayout;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
+import javax.swing.border.EmptyBorder;
+
+import jkit.swing.JStatusBar;
 
 import com.googlecode.connect4java.Main;
 import com.googlecode.connect4java.gui.card.CloseCard;
@@ -13,32 +16,21 @@ import com.googlecode.connect4java.gui.card.LocalCard;
 import com.googlecode.connect4java.gui.card.MenuCard;
 import com.googlecode.connect4java.gui.card.NetworkCard;
 import com.googlecode.connect4java.gui.card.SettingsCard;
+import com.googlecode.connect4java.pref.Version;
 import com.googlecode.connect4java.swing.JBackgroundPanel;
-import com.googlecode.connect4java.swing.JStatusBar;
 
 /**
- * @author  richard.stromer
- * @version  0.9.21
- * @since  0.1
+ * @author richard.stromer
+ * @version 1.0.28
+ * @since 0.1
  */
 public class MainGui {
 	public static final int MARGIN = 25;
     public static final int PADDING = 10;
 	
-	/**
-	 * @uml.property  name="frame"
-	 */
 	private JFrame frame;
-	/**
-	 * @uml.property  name="cards"
-	 * @uml.associationEnd  
-	 */
 	private JBackgroundPanel cards;
 	private CardLayout layout;
-	/**
-	 * @uml.property  name="statusbar"
-	 * @uml.associationEnd  
-	 */
 	private JStatusBar statusbar;
 	
 	public MainGui() {
@@ -67,6 +59,9 @@ public class MainGui {
 	private void initComponents() {
 		//statusbar
 		statusbar = new JStatusBar();
+		statusbar.setVisibleIcon(false);
+		statusbar.setComponentsBorder(new EmptyBorder(2, 2, 1, 2));
+		statusbar.setVersion(Version.string());
 		frame.add(statusbar, BorderLayout.SOUTH);
 		//cards
 		cards.add(new MenuCard(this), GuiCard.MENU.getString());
@@ -88,6 +83,10 @@ public class MainGui {
 	}
 	public JStatusBar getStatusBar() {
 		return statusbar;
+	}
+	public void setStatus(String text, boolean load) {
+		statusbar.setText(text);
+		statusbar.setLoad(load);
 	}
 	/**
 	 * @return

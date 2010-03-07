@@ -15,7 +15,7 @@ import com.googlecode.connect4java.pref.Version;
 /**
  * The main class.
  * @author richard.stromer
- * @version 0.9.21
+ * @version 1.0.28
  * @since 0.1
  */
 public class Main {
@@ -48,7 +48,7 @@ public class Main {
 			}
 		} else {
 			try { //settings file (import)
-				pref.doImport(System.getProperty("user.home")+"/.connect4java/settings.xml");
+				pref.importXML(System.getProperty("user.home")+"/.connect4java/settings.xml");
 			} catch (IOException e) {
 				System.err.println("could not import settings");
 			}
@@ -58,7 +58,7 @@ public class Main {
 			@Override
 			public void windowClosed(WindowEvent e) {
 				try { //settings file (export)
-					pref.doExport(System.getProperty("user.home")+"/.connect4java/settings.xml");
+					pref.exportXML(System.getProperty("user.home")+"/.connect4java/settings.xml");
 				} catch (IOException ex) {
 					System.err.println("could not export settings");
 				}

@@ -13,7 +13,7 @@ import com.googlecode.connect4java.swing.JRoundPanel;
 
 /**
  * @author richard.stromer
- * @version 1.0.27
+ * @version 1.0.28
  * @since 0.5.11
  */
 public class GameCard extends AbstractCard {
@@ -36,7 +36,7 @@ public class GameCard extends AbstractCard {
 	@Override
 	protected void initComponents() {
 		GameListener listener = new GameListener(this);
-		game = new LocalGame(gui, this);
+		game = new LocalGame(getGui(), this);
 		roundpanel = new JRoundPanel(game);
 		add(roundpanel, "1,1");
 		gamepanel = new JGamePanel(game);

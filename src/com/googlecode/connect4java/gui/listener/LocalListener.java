@@ -14,7 +14,7 @@ import com.googlecode.connect4java.gui.card.LocalCard;
 /**
  * 
  * @author richard.stromer
- * @version 1.0.27
+ * @version 1.0.28
  * @since 0.6.12
  */
 public class LocalListener extends AbstractListener<LocalCard> implements
@@ -29,22 +29,22 @@ public class LocalListener extends AbstractListener<LocalCard> implements
 		
 		if("$b_color1".equals(action)) {
 			final int color1 = Main.pref.getInt("player.color", 255);
-			Color res = JColorChooser.showDialog(card.gui.getFrame(), "Local Player: Color", new Color(color1));
+			Color res = JColorChooser.showDialog(card.getGui().getFrame(), "Local Player: Color", new Color(color1));
 			if(res != null) {
 				Main.pref.put("player.color", Integer.toString(res.getRGB()));
 			}
 		} else if("$b_color2".equals(action)) {
 			final int color2 = Main.pref.getInt("computer.color", -65536);
-			Color res = JColorChooser.showDialog(card.gui.getFrame(), "Computer Player: Color", new Color(color2));
+			Color res = JColorChooser.showDialog(card.getGui().getFrame(), "Computer Player: Color", new Color(color2));
 			if(res != null) {
 				Main.pref.put("computer.color", Integer.toString(res.getRGB()));
 			}
 		} else if("$b_back".equals(action)) {
-			card.gui.showCard(GuiCard.MENU);
+			card.getGui().showCard(GuiCard.MENU);
 		} else if("$b_start".equals(action)) {
 			Main.pref.put("player.name", card.getPlayerName());
 			Main.pref.put("computer.name", card.getComputerName());
-			card.gui.showCard(GuiCard.GAME);
+			card.getGui().showCard(GuiCard.GAME);
 		}
 	}
 	
