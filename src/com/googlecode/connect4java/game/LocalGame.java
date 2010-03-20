@@ -1,21 +1,20 @@
 package com.googlecode.connect4java.game;
 
 import java.awt.Color;
-
-import javax.swing.JOptionPane;
+import java.util.prefs.PreferenceChangeEvent;
+import java.util.prefs.PreferenceChangeListener;
 
 import com.googlecode.connect4java.Main;
 import com.googlecode.connect4java.field.Field;
 import com.googlecode.connect4java.field.FieldEvent;
 import com.googlecode.connect4java.field.FieldListener;
 import com.googlecode.connect4java.field.FieldValue;
-import com.googlecode.connect4java.gui.GuiCard;
 import com.googlecode.connect4java.gui.MainGui;
 import com.googlecode.connect4java.gui.card.GameCard;
 
 /**
  * @author richard.stromer
- * @version 1.0.27
+ * @version 0.1.29b1
  * @since 1.0.22
  */
 public class LocalGame implements GameInterface {
@@ -31,25 +30,32 @@ public class LocalGame implements GameInterface {
 		field = new Field();
 		field.addFieldListener(this);
 		players = new Player[2];
-		players[0] = new Player(Main.pref.get("player.name", "Player"),
-				new Color(Main.pref.getInt("player.color", 255)));
-		players[1] = new Player(Main.pref.get("computer.name", "Player"),
-				new Color(Main.pref.getInt("computer.color", -65536)));
+		players[0] = new Player(Main.pref.get("player.name", "Player"), new Color(Main.pref.getInt("player.color", 255)));
+		players[1] = new Player(Main.pref.get("computer.name", "Player"), new Color(Main.pref.getInt("computer.color", -65536)));
 		active = 0;
+		
+		Main.pref.addPreferenceChangeListener(new PreferenceChangeListener() {
+			@Override
+			public void preferenceChange(PreferenceChangeEvent evt) {
+				String key = evt.getKey();
+				if("player.name".equals(key)) {
+					players[0].setName(Main.pref.get("player.name", "Player"));
+				} else if("computer.name".equals(key)) {
+					players[1].setName(Main.pref.get("computer.name", "Player"));
+				} else if("player.color".equals(key)) {
+					players[0].setColor(new Color(Main.pref.getInt("player.color", 255)));
+				} else  if("computer.color".equals(key)) {
+					players[1].setColor(new Color(Main.pref.getInt("computer.color", -65536)));
+				}
+			}
+		});
 	}
 	
 	@Override
 	public void handleFieldEvent(FieldEvent event) {
-		gui.update(); // fix: update gui before opening dialog
 		Field field = (Field) event.getSource();
-		if (field.isWin()) {
+		if (field.isWin() || field.isDrawn()) {
 			card.getRoundPanel().repaint();
-			String message = "The winner is " + players[active].getName()
-					+ "!\nClick to return to the previous panel.";
-			JOptionPane.showMessageDialog(gui.getFrame(), message, "Win",
-					JOptionPane.INFORMATION_MESSAGE);
-			card.reset();
-			gui.showCard(GuiCard.LOCAL);
 		}
 	}
 	
@@ -73,8 +79,7 @@ public class LocalGame implements GameInterface {
 	
 	@Override
 	public boolean setToken(int column) {
-		FieldValue value = active == 0 ? FieldValue.PLAYER1
-				: FieldValue.PLAYER2;
+		FieldValue value = active == 0 ? FieldValue.PLAYER1 : FieldValue.PLAYER2;
 		if (field.add(column, value)) {
 			// change active
 			changeActive();
@@ -101,6 +106,10 @@ public class LocalGame implements GameInterface {
 	@Override
 	public boolean isWin() {
 		return field.isWin();
+	}
+	@Override
+	public boolean isDrawn() {
+		return field.isDrawn();
 	}
 	@Override
 	public FieldValue get(int column, int row) {

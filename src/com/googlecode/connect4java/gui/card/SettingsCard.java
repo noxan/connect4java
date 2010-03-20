@@ -1,14 +1,15 @@
 package com.googlecode.connect4java.gui.card;
 
+import java.util.prefs.BackingStoreException;
+import java.util.prefs.PreferenceChangeEvent;
+import java.util.prefs.PreferenceChangeListener;
+
 import info.clearthought.layout.TableLayout;
 
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-
-import jkit.pref.PreferenceChangeEvent;
-import jkit.pref.PreferenceChangeListener;
 
 import com.googlecode.connect4java.Main;
 import com.googlecode.connect4java.gui.MainGui;
@@ -17,7 +18,7 @@ import com.googlecode.connect4java.gui.listener.SettingsListener;
 /**
  * 
  * @author richard.stromer
- * @version 0.8.17
+ * @version 0.1.29b1
  * @since 0.1
  */
 public class SettingsCard extends AbstractCard {
@@ -44,7 +45,8 @@ public class SettingsCard extends AbstractCard {
 	protected void initComponents() {
 		SettingsListener listener = new SettingsListener(this);
 		Main.pref.addPreferenceChangeListener(new PreferenceChangeListener() {
-			@Override public void preferenceChange(PreferenceChangeEvent evt) {
+			@Override
+			public void preferenceChange(PreferenceChangeEvent evt) {
 				updateTable();
 			}
 		});
@@ -67,9 +69,14 @@ public class SettingsCard extends AbstractCard {
 				return false;
 			}
 		};
-		for(String key:Main.pref.keySet()) {
-			model.addRow(new String[]{key, Main.pref.get(key, "default")});
+		
+		try {
+			for(String key:Main.pref.keys()) {
+				model.addRow(new String[]{key, Main.pref.get(key, "default")});
+			}
+			model.fireTableDataChanged();
+		} catch(BackingStoreException e) {
+			e.printStackTrace();
 		}
-		model.fireTableDataChanged();
 	}
 }

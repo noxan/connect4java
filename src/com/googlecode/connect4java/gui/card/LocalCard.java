@@ -3,15 +3,14 @@ package com.googlecode.connect4java.gui.card;
 import info.clearthought.layout.TableLayout;
 
 import java.awt.Color;
+import java.util.prefs.PreferenceChangeEvent;
+import java.util.prefs.PreferenceChangeListener;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
-
-import jkit.pref.PreferenceChangeEvent;
-import jkit.pref.PreferenceChangeListener;
 
 import com.googlecode.connect4java.Main;
 import com.googlecode.connect4java.gui.MainGui;
@@ -20,7 +19,7 @@ import com.googlecode.connect4java.gui.listener.LocalListener;
 /**
  * 
  * @author richard.stromer
- * @version 1.0.27
+ * @version 0.1.29b1
  * @since 0.1
  */
 public class LocalCard extends AbstractCard {

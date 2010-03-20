@@ -11,9 +11,9 @@ import jkit.xml.XMLEntity;
 import com.googlecode.connect4java.pref.Version;
 
 /**
- * 
+ * Update-Service
  * @author richard.stromer
- * @version 0.8.19
+ * @version 0.1.29b1
  * @since 0.1
  */
 public class Update {
@@ -96,7 +96,7 @@ public class Update {
 	 * @return
 	 */
 	public static boolean isVersionUpdate() {
-		if(getVersionMainInt()>Version.VERSION_MAIN || getVersionSubInt()>Version.VERSION_SUB) {
+		if(getVersionMainInt()>Version.getMajor() || getVersionSubInt()>Version.getMinor()) {
 			return true;
 		}
 		return false;
@@ -106,7 +106,7 @@ public class Update {
 	 * @return
 	 */
 	public static boolean isRevisionUpdate() {
-		if(getRevisionInt()>Version.VERSION_REVSION) {
+		if(getRevisionInt()>Version.getRevision()) {
 			return true;
 		}
 		return false;

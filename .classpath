@@ -3,6 +3,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 	<classpathentry kind="lib" path="lib/TableLayout-bin-jdk1.5-2009-08-26.jar"/>
-	<classpathentry kind="lib" path="lib/jKit1.1.11.jar"/>
+	<classpathentry kind="lib" path="lib/jKit1.1.14.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

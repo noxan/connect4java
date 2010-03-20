@@ -21,7 +21,7 @@ import com.googlecode.connect4java.swing.JBackgroundPanel;
 
 /**
  * @author richard.stromer
- * @version 1.0.28
+ * @version 0.1.29b1
  * @since 0.1
  */
 public class MainGui {
@@ -61,7 +61,7 @@ public class MainGui {
 		statusbar = new JStatusBar();
 		statusbar.setVisibleIcon(false);
 		statusbar.setComponentsBorder(new EmptyBorder(2, 2, 1, 2));
-		statusbar.setVersion(Version.string());
+		statusbar.setVersion(Version.getVersion());
 		frame.add(statusbar, BorderLayout.SOUTH);
 		//cards
 		cards.add(new MenuCard(this), GuiCard.MENU.getString());
@@ -88,10 +88,6 @@ public class MainGui {
 		statusbar.setText(text);
 		statusbar.setLoad(load);
 	}
-	/**
-	 * @return
-	 * @uml.property  name="frame"
-	 */
 	public JFrame getFrame() {
 		return frame;
 	}

@@ -7,7 +7,7 @@ import com.googlecode.connect4java.field.FieldValue;
  * Game Interface
  * 
  * @author richard.stromer
- * @version 1.0.27
+ * @version 0.1.29b1
  * @since 0.1
  * @see Game
  */
@@ -18,6 +18,7 @@ public interface GameInterface extends FieldListener {
 	
 	public FieldValue get(int column, int row);
 	public boolean isWin();
+	public boolean isDrawn();
 	public void reset();
 	
 	public Player getActive();

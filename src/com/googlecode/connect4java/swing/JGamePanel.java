@@ -6,7 +6,6 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
-import com.googlecode.connect4java.Main;
 import com.googlecode.connect4java.field.Field;
 import com.googlecode.connect4java.field.FieldInterface;
 import com.googlecode.connect4java.field.FieldValue;
@@ -14,7 +13,7 @@ import com.googlecode.connect4java.game.GameInterface;
 
 /**
  * @author richard.stromer
- * @version 1.0.27
+ * @version 0.1.29b1
  * @since 0.8.17
  */
 public class JGamePanel extends JPanel {
@@ -48,11 +47,9 @@ public class JGamePanel extends JPanel {
 				FieldValue value = game.get(ix, iy);
 				if (value != null && value != FieldValue.EMPTY) {
 					if (value == FieldValue.PLAYER1) {
-						g2.setColor(new Color(Main.pref.getInt("player.color",
-								255)));
+						g2.setColor(game.getPlayer(0).getColor());
 					} else {
-						g2.setColor(new Color(Main.pref.getInt(
-								"computer.color", -65536)));
+						g2.setColor(game.getPlayer(1).getColor());
 					}
 					g2.fillOval(x + FIELD_PADDING, y + FIELD_PADDING, (int) dx
 							- 2 * FIELD_PADDING, (int) dy - 2 * FIELD_PADDING);
