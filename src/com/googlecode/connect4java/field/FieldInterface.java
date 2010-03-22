@@ -2,11 +2,12 @@ package com.googlecode.connect4java.field;
 
 import java.awt.Point;
 import java.io.IOException;
+import java.util.Vector;
 
 /**
  * Field Interface
  * @author richard.stromer
- * @version 1.0.23
+ * @version 1.1b1
  * @since 0.1
  * @see Field
  */
@@ -77,6 +78,11 @@ public interface FieldInterface {
 	 * @return 
 	 */
 	public boolean isWin();
+	/**
+	 * @since 1.1b1
+	 * @return
+	 */
+	public Vector<Point> getWinTokens();
 	/**
 	 * Returns true if every column is full and no player has won in this field, else returns false.
 	 * @since 0.1

@@ -3,6 +3,7 @@ package com.googlecode.connect4java.swing;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 
 import javax.swing.JPanel;
 
@@ -13,7 +14,7 @@ import com.googlecode.connect4java.game.GameInterface;
 
 /**
  * @author richard.stromer
- * @version 0.1.29b1
+ * @version 1.1b1
  * @since 0.8.17
  */
 public class JGamePanel extends JPanel {
@@ -40,19 +41,24 @@ public class JGamePanel extends JPanel {
 		float dx = (float) width / FieldInterface.FIELD_WIDTH;
 		float dy = (float) height / FieldInterface.FIELD_HEIGHT;
 		
-		for (int ix = 0; ix < Field.FIELD_WIDTH; ix++) {
+		for(int ix = 0; ix < Field.FIELD_WIDTH; ix++) {
 			int x = (int) (ix * dx);
-			for (int iy = 0; iy < Field.FIELD_HEIGHT; iy++) {
+			for(int iy = 0; iy < Field.FIELD_HEIGHT; iy++) {
 				int y = (int) (Math.abs(iy - Field.FIELD_HEIGHT + 1) * dy);
 				FieldValue value = game.get(ix, iy);
-				if (value != null && value != FieldValue.EMPTY) {
-					if (value == FieldValue.PLAYER1) {
+				if(value != null && value != FieldValue.EMPTY) {
+					if(value == FieldValue.PLAYER1) {
 						g2.setColor(game.getPlayer(0).getColor());
 					} else {
 						g2.setColor(game.getPlayer(1).getColor());
 					}
-					g2.fillOval(x + FIELD_PADDING, y + FIELD_PADDING, (int) dx
-							- 2 * FIELD_PADDING, (int) dy - 2 * FIELD_PADDING);
+					if(game.isWin()) {
+						if(!game.getField().getWinTokens().contains(new Point(ix, iy))) {
+							g2.setColor(new Color(128, 128, 128, 128));
+						}
+					}
+					g2.fillOval(x + FIELD_PADDING, y + FIELD_PADDING, 
+							(int) dx - 2 * FIELD_PADDING, (int) dy - 2 * FIELD_PADDING);
 				}
 			}
 		}
@@ -71,12 +77,12 @@ public class JGamePanel extends JPanel {
 		
 		g2.setColor(new Color(128, 128, 128, 128));
 		float dx = (float) width / FieldInterface.FIELD_WIDTH;
-		for (int ix = 0; ix <= FieldInterface.FIELD_WIDTH; ix++) {
+		for(int ix = 0; ix <= FieldInterface.FIELD_WIDTH; ix++) {
 			int x = (int) (Math.ceil(ix * dx));
 			g2.drawLine(x, 0, x, height);
 		}
 		float dy = (float) height / FieldInterface.FIELD_HEIGHT;
-		for (int iy = 0; iy <= FieldInterface.FIELD_HEIGHT; iy++) {
+		for(int iy = 0; iy <= FieldInterface.FIELD_HEIGHT; iy++) {
 			int y = (int) Math.ceil(iy * dy);
 			g2.drawLine(0, y, width, y);
 		}

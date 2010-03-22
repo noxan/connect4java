@@ -10,7 +10,7 @@ import com.googlecode.connect4java.gui.card.GameCard;
 /**
  * 
  * @author richard.stromer
- * @version 1.0.27
+ * @version 1.1b1
  * @since 0.6.12
  */
 public class GameListener extends AbstractListener<GameCard> implements MouseListener {
@@ -28,8 +28,8 @@ public class GameListener extends AbstractListener<GameCard> implements MouseLis
 	 */
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		int x = (int) (e.getX()/((float)card.getGamePanel().getWidth()/FieldInterface.FIELD_WIDTH));
-		card.getGame().setToken(x);
+		int column = (int) (e.getX()/((float)card.getGamePanel().getWidth()/FieldInterface.FIELD_WIDTH));
+		card.getGame().click(column);
 	}
 
 	@Override public void mouseClicked(MouseEvent e) {}

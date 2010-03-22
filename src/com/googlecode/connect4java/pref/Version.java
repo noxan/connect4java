@@ -3,15 +3,15 @@ package com.googlecode.connect4java.pref;
 /**
  * 
  * @author richard.stromer
- * @version 0.1.29b1
+ * @version 1.1b1
  * @since 0.2
  */
 public class Version {
 	private static final Type TYPE = Type.BETA;
 	private static final int MAJOR = 1;
-	private static final int MINOR = 0;
+	private static final int MINOR = 1;
 	private static final int PATCH = 1;
-	private static final int REVISION = 29;
+	private static final int REVISION = 30;
 	
 	
 	public static String getType() {
@@ -48,7 +48,7 @@ public class Version {
 		format = format.replace("%r", Integer.toString(getRevision()));
 		return format;
 	}
-	
+		
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();

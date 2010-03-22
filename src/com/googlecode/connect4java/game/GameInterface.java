@@ -1,5 +1,6 @@
 package com.googlecode.connect4java.game;
 
+import com.googlecode.connect4java.field.Field;
 import com.googlecode.connect4java.field.FieldListener;
 import com.googlecode.connect4java.field.FieldValue;
 
@@ -7,11 +8,12 @@ import com.googlecode.connect4java.field.FieldValue;
  * Game Interface
  * 
  * @author richard.stromer
- * @version 0.1.29b1
+ * @version 1.1b1
  * @since 0.1
  * @see Game
  */
 public interface GameInterface extends FieldListener {
+	public void click(int column);
 	public boolean setToken(int column);
 	
 	public void addFieldListener(FieldListener listener);
@@ -25,4 +27,6 @@ public interface GameInterface extends FieldListener {
 	public Player getInactive();
 	public Player getPlayer(int index);
 	public Player[] getPlayers();
+	
+	public Field getField();
 }

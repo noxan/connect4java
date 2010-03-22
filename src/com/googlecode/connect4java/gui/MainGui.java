@@ -21,7 +21,7 @@ import com.googlecode.connect4java.swing.JBackgroundPanel;
 
 /**
  * @author richard.stromer
- * @version 0.1.29b1
+ * @version 1.1b1
  * @since 0.1
  */
 public class MainGui {
@@ -61,15 +61,15 @@ public class MainGui {
 		statusbar = new JStatusBar();
 		statusbar.setVisibleIcon(false);
 		statusbar.setComponentsBorder(new EmptyBorder(2, 2, 1, 2));
-		statusbar.setVersion(Version.getVersion());
+		statusbar.setVersion(Version.getVersionPatch());
 		frame.add(statusbar, BorderLayout.SOUTH);
 		//cards
-		cards.add(new MenuCard(this), GuiCard.MENU.getString());
-		cards.add(new SettingsCard(this), GuiCard.SETTINGS.getString());
-		cards.add(new LocalCard(this), GuiCard.LOCAL.getString());
-		cards.add(new NetworkCard(this), GuiCard.NETWORK.getString());
-		cards.add(new GameCard(this), GuiCard.GAME.getString());
-		cards.add(new CloseCard(this), GuiCard.CLOSE.getString());
+		cards.add(new MenuCard(this), GuiCard.MENU.toString());
+		cards.add(new SettingsCard(this), GuiCard.SETTINGS.toString());
+		cards.add(new LocalCard(this), GuiCard.LOCAL.toString());
+		cards.add(new NetworkCard(this), GuiCard.NETWORK.toString());
+		cards.add(new GameCard(this), GuiCard.GAME.toString());
+		cards.add(new CloseCard(this), GuiCard.CLOSE.toString());
 	}
 	
 	public void update() {

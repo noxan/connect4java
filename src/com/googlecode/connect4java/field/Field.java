@@ -10,16 +10,17 @@ import com.googlecode.connect4java.Main;
  * Field
  * 
  * @author richard.stromer
- * @version 0.1.29b1
+ * @version 1.1b1
  * @since 0.1
  */
 public class Field implements FieldInterface {
 	private Vector<FieldListener> listeners;
 	private FieldValue[][] field;
 	private FieldStatus status;
+	private Vector<Point> way;
 	
 	/**
-	 * Constructs a new empty field.
+	 * Creates a new empty field.
 	 * 
 	 * @since 0.1
 	 */
@@ -27,6 +28,7 @@ public class Field implements FieldInterface {
 		listeners = new Vector<FieldListener>();
 		status = FieldStatus.NORMAL;
 		field = new FieldValue[FIELD_WIDTH][FIELD_HEIGHT];
+		way = new Vector<Point>();
 		resetField();
 	}
 	
@@ -92,7 +94,6 @@ public class Field implements FieldInterface {
 		if(isWin()) {
 			return false;
 		}
-		
 		for(int x = 0; x < FIELD_WIDTH; x++) {
 			if(!isColumnFull(x)) {
 				return false;
@@ -108,6 +109,13 @@ public class Field implements FieldInterface {
 	public boolean isWin() {
 		return FieldStatus.WIN.equals(status);
 	}
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Vector<Point> getWinTokens() {
+		return way;
+	}
 	
 	/**
 	 * 
@@ -118,7 +126,7 @@ public class Field implements FieldInterface {
 	 */
 	public boolean checkWin(int column, int row, FieldValue player) {
 		if(!player.equals(FieldValue.EMPTY)) {
-			Vector<Point> way = new Vector<Point>();
+			way.clear();
 			System.out.print("checkWin: " + player + "@(" + column + ", " + row + ") -> ");
 			
 			for(int x = column - 1; x < column + 2 && x < FIELD_WIDTH; x++) {
