@@ -2,22 +2,26 @@ package com.googlecode.connect4java.field;
 
 import java.awt.Point;
 import java.io.IOException;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
-import com.googlecode.connect4java.Main;
+import jkit.gui.KitConsole;
+
+import com.googlecode.connect4java.core.Core;
 
 /**
  * Field
  * 
  * @author richard.stromer
- * @version 1.1b1
+ * @version 1.1b2(r31)
  * @since 0.1
  */
 public class Field implements FieldInterface {
-	private Vector<FieldListener> listeners;
+	private Queue<FieldListener> listeners;
 	private FieldValue[][] field;
 	private FieldStatus status;
-	private Vector<Point> way;
+	private ArrayList<Point> winTokens;
 	
 	/**
 	 * Creates a new empty field.
@@ -25,10 +29,9 @@ public class Field implements FieldInterface {
 	 * @since 0.1
 	 */
 	public Field() {
-		listeners = new Vector<FieldListener>();
+		listeners = new LinkedList<FieldListener>();
 		status = FieldStatus.NORMAL;
 		field = new FieldValue[FIELD_WIDTH][FIELD_HEIGHT];
-		way = new Vector<Point>();
 		resetField();
 	}
 	
@@ -41,10 +44,7 @@ public class Field implements FieldInterface {
 	}
 	
 	private void fireFieldEvent(FieldEvent event) {
-		if(Main.DEBUG) {
-			System.out.println(event);
-		}
-		for(FieldListener listener : listeners) {
+		for(FieldListener listener:listeners) {
 			listener.handleFieldEvent(event);
 		}
 	}
@@ -94,7 +94,7 @@ public class Field implements FieldInterface {
 		if(isWin()) {
 			return false;
 		}
-		for(int x = 0; x < FIELD_WIDTH; x++) {
+		for(int x = 0; x<FIELD_WIDTH; x++) {
 			if(!isColumnFull(x)) {
 				return false;
 			}
@@ -109,12 +109,13 @@ public class Field implements FieldInterface {
 	public boolean isWin() {
 		return FieldStatus.WIN.equals(status);
 	}
+	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Vector<Point> getWinTokens() {
-		return way;
+	public ArrayList<Point> getWinTokens() {
+		return winTokens;
 	}
 	
 	/**
@@ -125,81 +126,68 @@ public class Field implements FieldInterface {
 	 * @return
 	 */
 	public boolean checkWin(int column, int row, FieldValue player) {
-		if(!player.equals(FieldValue.EMPTY)) {
-			way.clear();
-			System.out.print("checkWin: " + player + "@(" + column + ", " + row + ") -> ");
-			
-			for(int x = column - 1; x < column + 2 && x < FIELD_WIDTH; x++) {
-				if(x >= 0) {
-					for(int y = row - 1; (y < row + 2) && (y < FIELD_HEIGHT); y++) {
-						if(y >= 0) {
-							if(!(column == x && row == y)) { // nicht die aktuelle position -> endlos!
-								if(get(x, y) == player) {
-									way.clear();
-									way.add(new Point(column, row));
-									way.add(new Point(x, y));
-									if(checkWin2(way, player)) {
-										return true;
-									}
-								}
-							}
-						}
+		if(Core.DEBUG) {
+			KitConsole.out.print("checkWin: "+player+"@("+column+"|"+row+"): ");
+		}
+		if(FieldValue.EMPTY.equals(player)) { //empty point to check
+			return false;
+		}
+		
+		for(int x = (column<=0?column:column-1); x<=(column+1<FIELD_WIDTH?column+1:FIELD_WIDTH-1); x++) { //x -> [0;6], width=7
+			for(int y = (row>0?row-1:row); y<=(row+1<FIELD_HEIGHT?row+1:FIELD_HEIGHT-1); y++) { //y -> [0;5], height=6
+				if(get(x, y)==player) {
+					if(Core.DEBUG) {
+						System.out.print("("+x+"|"+y+")");
+					}
+					ArrayList<Point> points = new ArrayList<Point>();
+					points.add(new Point(column, row));
+					points.add(new Point(x, y));
+					if(checkWin(points, player)) {
+						winTokens = points;
+						return true;
 					}
 				}
 			}
-			System.out.println(way.size());
-			System.out.println("-------------");
+		}
+		if(Core.DEBUG) {
+			System.out.println();
 		}
 		return false;
 	}
 	
-	/**
-	 * 
-	 * @param way
-	 * @param player
-	 * @return
-	 */
-	private boolean checkWin2(Vector<Point> way, FieldValue player) {
-		Point pre = way.get(way.size() - 2);
-		Point cur = way.get(way.size() - 1);
-		// System.out.println("cur: ("+cur.x+", "+cur.y+") ... "+"pre: ("+pre.x+", "+pre.y+")");
+	private boolean checkWin(ArrayList<Point> points, FieldValue player) {
+		int dx = points.get(points.size()-1).x-points.get(points.size()-2).x;
+		int dy = points.get(points.size()-1).y-points.get(points.size()-2).y;
 		
-		int dx = cur.x - pre.x;
-		int dy = cur.y - pre.y;
+		int x1 = points.get(points.size()-1).x+dx;
+		int y1 = points.get(points.size()-1).y+dy;
 		
-		int x1 = cur.x + dx;
-		int y1 = cur.y + dy;
-		
-		if(x1 >= 0 && x1 < FIELD_WIDTH && y1 >= 0 && y1 < FIELD_HEIGHT) {
-			if(get(x1, y1) == player) {
+		if(x1>=0&&x1<FIELD_WIDTH&&y1>=0&&y1<FIELD_HEIGHT) {
+			if(get(x1, y1)==player) {
 				Point p1 = new Point(x1, y1);
-				if(!way.contains(p1)) {
-					way.add(p1);
-					checkWin2(way, player);
+				if(!points.contains(p1)) {
+					points.add(p1);
+					checkWin(points, player);
 				}
 			}
 		}
 		
-		int x2 = cur.x - dx;
-		int y2 = cur.y - dy;
+		int x2 = points.get(points.size()-1).x-dx;
+		int y2 = points.get(points.size()-1).y-dy;
 		
-		if(x2 >= 0 && x2 < FIELD_WIDTH && y2 >= 0 && y2 < FIELD_HEIGHT) {
-			if(get(x2, y2) == player) {
+		if(x2>=0&&x2<FIELD_WIDTH&&y2>=0&&y2<FIELD_HEIGHT) {
+			if(get(x2, y2)==player) {
 				Point p2 = new Point(x2, y2);
-				if(!way.contains(p2)) {
-					way.add(p2);
-					checkWin2(way, player);
+				if(!points.contains(p2)) {
+					points.add(p2);
+					checkWin(points, player);
 				}
 			}
 		}
-		// for(Point w:way) {
-		// System.out.print("("+w.x+", "+w.y+") ");
-		// }System.out.println("\n-------- "+way.size()+" ----------");
-		
-		if(way.size() >= 4) {
-			return true;
+		if(Core.DEBUG) {
+			System.out.print(" size="+points.size());
 		}
-		return false;
+		return points.size()>=4;
 	}
 	
 	/**
@@ -208,12 +196,13 @@ public class Field implements FieldInterface {
 	@Override
 	public void reset() {
 		status = FieldStatus.NORMAL;
+		winTokens.clear();
 		resetField();
 	}
 	
 	private void resetField() {
-		for(int x = 0; x < FIELD_WIDTH; x++) {
-			for(int y = 0; y < FIELD_HEIGHT; y++) {
+		for(int x = 0; x<FIELD_WIDTH; x++) {
+			for(int y = 0; y<FIELD_HEIGHT; y++) {
 				field[x][y] = FieldValue.EMPTY;
 			}
 		}
@@ -267,7 +256,7 @@ public class Field implements FieldInterface {
 	@Override
 	public FieldValue[] getRow(int row) {
 		FieldValue[] res = new FieldValue[FIELD_WIDTH];
-		for(int i = 0; i < FIELD_WIDTH; i++) {
+		for(int i = 0; i<FIELD_WIDTH; i++) {
 			res[i] = get(i, row);
 		}
 		return res;
@@ -279,7 +268,7 @@ public class Field implements FieldInterface {
 	@Override
 	public int getHeight(int column) {
 		int height = 0;
-		for(int row = 0; row < FIELD_HEIGHT && get(column, row) != FieldValue.EMPTY; row++) {
+		for(int row = 0; row<FIELD_HEIGHT&&get(column, row)!=FieldValue.EMPTY; row++) {
 			height++;
 		}
 		return height;
@@ -290,7 +279,7 @@ public class Field implements FieldInterface {
 	 */
 	@Override
 	public boolean isColumnFull(int column) {
-		if(getHeight(column) >= FIELD_HEIGHT) {
+		if(getHeight(column)>=FIELD_HEIGHT) {
 			return true;
 		}
 		return false;
@@ -302,8 +291,9 @@ public class Field implements FieldInterface {
 	@Override
 	public Field clone() {
 		Field f = new Field();
-		for(int row = 0; row < FIELD_HEIGHT; row++) {
-			for(int column = 0; column < FIELD_WIDTH; column++) {
+		f.status = status;
+		for(int row = 0; row<FIELD_HEIGHT; row++) {
+			for(int column = 0; column<FIELD_WIDTH; column++) {
 				f.set(column, row, get(column, row));
 			}
 		}
@@ -316,8 +306,8 @@ public class Field implements FieldInterface {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		for(int row = FIELD_HEIGHT - 1; row >= 0; row--) {
-			for(int column = 0; column < FIELD_WIDTH; column++) {
+		for(int row = FIELD_HEIGHT-1; row>=0; row--) {
+			for(int column = 0; column<FIELD_WIDTH; column++) {
 				sb.append("(");
 				sb.append(column);
 				sb.append("|");

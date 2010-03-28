@@ -34,4 +34,8 @@ public class NetworkCard extends AbstractCard {
 		backButton.addActionListener(listener);
 		add(backButton, "1,1");
 	}
+	
+	@Override
+	public void update() {
+	}
 }

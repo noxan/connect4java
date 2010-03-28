@@ -8,13 +8,12 @@ import com.googlecode.connect4java.field.FieldValue;
  * Game Interface
  * 
  * @author richard.stromer
- * @version 1.1b1
+ * @version 1.1b2(r31)
  * @since 0.1
  * @see Game
  */
 public interface GameInterface extends FieldListener {
 	public void click(int column);
-	public boolean setToken(int column);
 	
 	public void addFieldListener(FieldListener listener);
 	

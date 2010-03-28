@@ -3,15 +3,15 @@ package com.googlecode.connect4java.pref;
 /**
  * 
  * @author richard.stromer
- * @version 1.1b1
+ * @version 1.1b2(r31)
  * @since 0.2
  */
 public class Version {
 	private static final Type TYPE = Type.BETA;
 	private static final int MAJOR = 1;
 	private static final int MINOR = 1;
-	private static final int PATCH = 1;
-	private static final int REVISION = 30;
+	private static final int PATCH = 2;
+	private static final int REVISION = 31;
 	
 	
 	public static String getType() {

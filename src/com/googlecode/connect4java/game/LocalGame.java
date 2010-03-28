@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.util.prefs.PreferenceChangeEvent;
 import java.util.prefs.PreferenceChangeListener;
 
-import com.googlecode.connect4java.Main;
+import com.googlecode.connect4java.core.Core;
 import com.googlecode.connect4java.field.Field;
 import com.googlecode.connect4java.field.FieldEvent;
 import com.googlecode.connect4java.field.FieldListener;
@@ -15,7 +15,7 @@ import com.googlecode.connect4java.gui.card.GameCard;
 
 /**
  * @author richard.stromer
- * @version 1.1b1
+ * @version 1.1b2(r31)
  * @since 1.0.22
  */
 public class LocalGame implements GameInterface {
@@ -31,11 +31,11 @@ public class LocalGame implements GameInterface {
 		field = new Field();
 		field.addFieldListener(this);
 		players = new Player[2];
-		players[0] = new Player(Main.pref.get("player.name", "Player"), new Color(Main.pref.getInt("player.color", 255)));
-		players[1] = new Player(Main.pref.get("computer.name", "Player"), new Color(Main.pref.getInt("computer.color", -65536)));
+		players[0] = new Player(Core.pref.get("player.name", "Player"), new Color(Core.pref.getInt("player.color", 255)));
+		players[1] = new Player(Core.pref.get("computer.name", "Player"), new Color(Core.pref.getInt("computer.color", -65536)));
 		active = 0;
 		
-		Main.pref.addPreferenceChangeListener(new PreferenceChangeListener() {
+		Core.pref.addPreferenceChangeListener(new PreferenceChangeListener() {
 			@Override
 			public void preferenceChange(PreferenceChangeEvent evt) {
 				String key = evt.getKey();
@@ -87,22 +87,14 @@ public class LocalGame implements GameInterface {
 			card.getGui().showCard(GuiCard.LOCAL);
 			reset();
 		} else {
-			setToken(column);
+			FieldValue value = (active==0?FieldValue.PLAYER1:FieldValue.PLAYER2);
+			if (field.add(column, value)) {
+				// change active
+				changeActive();
+				// update gui
+				gui.update();
+			}
 		}
-	}
-	
-	@Override
-	public boolean setToken(int column) {
-		FieldValue value = (active==0?FieldValue.PLAYER1:FieldValue.PLAYER2);
-		if (field.add(column, value)) {
-			// change active
-			changeActive();
-			// update gui
-			card.getRoundPanel().repaint();
-			gui.update();
-			return true;
-		}
-		return false;
 	}
 	
 	private void changeActive() {
@@ -135,7 +127,6 @@ public class LocalGame implements GameInterface {
 	
 	@Override
 	public void reset() {
-		changeActive();
 		field.reset();
 	}
 }

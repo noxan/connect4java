@@ -12,7 +12,7 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
-import com.googlecode.connect4java.Main;
+import com.googlecode.connect4java.core.Core;
 import com.googlecode.connect4java.gui.MainGui;
 import com.googlecode.connect4java.gui.listener.LocalListener;
 
@@ -59,14 +59,14 @@ public class LocalCard extends AbstractCard {
 		slot1_border.setTitleColor(Color.WHITE);
 		slot1_panel.setBorder(slot1_border);
 		
-		slot1_boxModel = new DefaultComboBoxModel(new String[]{Main.pref.get("player.name", "Player")});
+		slot1_boxModel = new DefaultComboBoxModel(new String[]{Core.pref.get("player.name", "Player")});
 		slot1_box = new JComboBox(slot1_boxModel);
 		slot1_box.setEditable(true);
 		slot1_box.addItemListener(listener);
 		slot1_panel.add(slot1_box, "1,0");
 		
 		slot1_colorButton = new JButton();
-		slot1_colorButton.setBackground(new Color(Main.pref.getInt("player.color", 255)));
+		slot1_colorButton.setBackground(new Color(Core.pref.getInt("player.color", 255)));
 		slot1_colorButton.setActionCommand("$b_color1");
 		slot1_colorButton.addActionListener(listener);
 		slot1_panel.add(slot1_colorButton, "3,0");
@@ -88,7 +88,7 @@ public class LocalCard extends AbstractCard {
 		slot2_panel.add(slot2_box, "1,0");
 		
 		slot2_colorButton = new JButton();
-		slot2_colorButton.setBackground(new Color(Main.pref.getInt("computer.color", -65536)));
+		slot2_colorButton.setBackground(new Color(Core.pref.getInt("computer.color", -65536)));
 		slot2_colorButton.setActionCommand("$b_color2");
 		slot2_colorButton.addActionListener(listener);
 		slot2_panel.add(slot2_colorButton, "3,0");
@@ -103,13 +103,13 @@ public class LocalCard extends AbstractCard {
 		
 		add(game_panel, "1,5 , 5,5");
 		
-		Main.pref.addPreferenceChangeListener(new PreferenceChangeListener() {
+		Core.pref.addPreferenceChangeListener(new PreferenceChangeListener() {
 			@Override
 			public void preferenceChange(PreferenceChangeEvent evt) {
 				if("player.color".equals(evt.getKey().toString())) {
-					slot1_colorButton.setBackground(new Color(Main.pref.getInt("player.color", 255)));
+					slot1_colorButton.setBackground(new Color(Core.pref.getInt("player.color", 255)));
 				} else if("computer.color".equals(evt.getKey().toString())) {
-					slot2_colorButton.setBackground(new Color(Main.pref.getInt("computer.color", -65536)));
+					slot2_colorButton.setBackground(new Color(Core.pref.getInt("computer.color", -65536)));
 				}
 			}
 		});
@@ -132,5 +132,9 @@ public class LocalCard extends AbstractCard {
 	}
 	public String getComputerName() {
 		return slot2_box.getSelectedItem().toString();
+	}
+	
+	@Override
+	public void update() {
 	}
 }

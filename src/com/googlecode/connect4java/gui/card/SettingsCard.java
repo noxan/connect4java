@@ -11,7 +11,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import com.googlecode.connect4java.Main;
+import com.googlecode.connect4java.core.Core;
 import com.googlecode.connect4java.gui.MainGui;
 import com.googlecode.connect4java.gui.listener.SettingsListener;
 
@@ -44,7 +44,7 @@ public class SettingsCard extends AbstractCard {
 	@Override
 	protected void initComponents() {
 		SettingsListener listener = new SettingsListener(this);
-		Main.pref.addPreferenceChangeListener(new PreferenceChangeListener() {
+		Core.pref.addPreferenceChangeListener(new PreferenceChangeListener() {
 			@Override
 			public void preferenceChange(PreferenceChangeEvent evt) {
 				updateTable();
@@ -61,6 +61,10 @@ public class SettingsCard extends AbstractCard {
 		add(backButton, "3,3");
 	}
 	
+	@Override
+	public void update() {
+		updateTable();
+	}
 	
 	private void updateTable() {
 		model = new DefaultTableModel(new String[]{"key", "value"}, 0) {
@@ -71,8 +75,8 @@ public class SettingsCard extends AbstractCard {
 		};
 		
 		try {
-			for(String key:Main.pref.keys()) {
-				model.addRow(new String[]{key, Main.pref.get(key, "default")});
+			for(String key:Core.pref.keys()) {
+				model.addRow(new String[]{key, Core.pref.get(key, "default")});
 			}
 			model.fireTableDataChanged();
 		} catch(BackingStoreException e) {

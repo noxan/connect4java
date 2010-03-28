@@ -2,8 +2,6 @@ package com.googlecode.connect4java.gui.card;
 
 import info.clearthought.layout.TableLayout;
 
-import java.awt.Graphics;
-
 import com.googlecode.connect4java.game.GameInterface;
 import com.googlecode.connect4java.game.LocalGame;
 import com.googlecode.connect4java.gui.MainGui;
@@ -25,9 +23,8 @@ public class GameCard extends AbstractCard {
 	public GameCard(MainGui gui) {
 		super(gui);
 		
-		double[][] size = {
-				{ MainGui.MARGIN, 200, TableLayout.FILL, MainGui.MARGIN },
-				{ MainGui.MARGIN / 2, 51, MainGui.MARGIN / 2, TableLayout.FILL, MainGui.MARGIN } };
+		double[][] size = {{MainGui.MARGIN, 200, TableLayout.FILL, MainGui.MARGIN},
+				{MainGui.MARGIN / 2, 51, MainGui.MARGIN / 2, TableLayout.FILL, MainGui.MARGIN}};
 		setLayout(new TableLayout(size));
 		
 		initComponents();
@@ -45,8 +42,9 @@ public class GameCard extends AbstractCard {
 	}
 	
 	@Override
-	protected void paintComponent(Graphics g) {
-		super.paintComponent(g);
+	public void update() {
+		gamepanel.repaint();
+		roundpanel.repaint();
 	}
 	
 	public void reset() {

@@ -9,12 +9,12 @@ import java.awt.RenderingHints;
 
 import javax.swing.JPanel;
 
-import com.googlecode.connect4java.Main;
+import com.googlecode.connect4java.core.Core;
 
 /**
  * 
  * @author richard.stromer
- * @version 1.0.27
+ * @version 1.1b2(r31)
  * @since 0.5.11
  */
 public class JBackgroundPanel extends JPanel implements Runnable {
@@ -84,7 +84,7 @@ public class JBackgroundPanel extends JPanel implements Runnable {
 		
 		g2.setFont(new Font("Verdana", Font.PLAIN, 32));
 		g2.setColor(active);
-		g2.drawString(Main.C4J_TITLE, width-228, 40);
+		g2.drawString(Core.TITLE, width-228, 40);
 		g2.setFont(new Font("Verdana", Font.ITALIC, 16));
 	}
 	

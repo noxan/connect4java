@@ -12,7 +12,7 @@ import com.googlecode.connect4java.game.GameInterface;
 
 /**
  * @author richard.stromer
- * @version 0.1.29b1
+ * @version 1.1b2(r31)
  * @since 0.8.17
  */
 public class JRoundPanel extends JPanel implements FieldListener {
@@ -51,8 +51,10 @@ public class JRoundPanel extends JPanel implements FieldListener {
 	private void paintWin(Graphics2D g2, int width, int height) {
 		paintBackground(g2, width, height);
 		
+		g2.setColor(game.getInactive().getColor());
+		g2.drawString("Win: "+game.getInactive().getName(), 10, 15);
 		g2.setColor(Color.WHITE);
-		g2.drawString("Win!", 10, 15);
+		g2.drawString("Click to continue.", 10, 30);
 	}
 	
 	private void paintDrawn(Graphics2D g2, int width, int height) {
@@ -60,6 +62,7 @@ public class JRoundPanel extends JPanel implements FieldListener {
 		
 		g2.setColor(Color.WHITE);
 		g2.drawString("Drawn...", 10, 15);
+		g2.drawString("Click to continue.", 10, 30);
 	}
 	
 	private void paintRound(Graphics2D g2, int width, int height) {
@@ -82,9 +85,7 @@ public class JRoundPanel extends JPanel implements FieldListener {
 
 	@Override
 	public void handleFieldEvent(FieldEvent event) {
-//		repaint();
 		if(event.isWin()) {
-			System.out.println("win...");
 		}
 	}
 }

@@ -7,6 +7,7 @@ import java.awt.Point;
 
 import javax.swing.JPanel;
 
+import com.googlecode.connect4java.core.Core;
 import com.googlecode.connect4java.field.Field;
 import com.googlecode.connect4java.field.FieldInterface;
 import com.googlecode.connect4java.field.FieldValue;
@@ -14,7 +15,7 @@ import com.googlecode.connect4java.game.GameInterface;
 
 /**
  * @author richard.stromer
- * @version 1.1b1
+ * @version 1.1b2(r31)
  * @since 0.8.17
  */
 public class JGamePanel extends JPanel {
@@ -54,7 +55,7 @@ public class JGamePanel extends JPanel {
 					}
 					if(game.isWin()) {
 						if(!game.getField().getWinTokens().contains(new Point(ix, iy))) {
-							g2.setColor(new Color(128, 128, 128, 128));
+							g2.setColor(new Color(Core.pref.getInt("drawn.color", -2139062144)));
 						}
 					}
 					g2.fillOval(x + FIELD_PADDING, y + FIELD_PADDING, 

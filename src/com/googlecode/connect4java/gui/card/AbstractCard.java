@@ -8,7 +8,7 @@ import com.googlecode.connect4java.gui.MainGui;
  * (replaces AbstractPanel.java)
  * 
  * @author richard.stromer
- * @version 1.0.28
+ * @version 1.1b2
  * @since 0.2
  */
 public abstract class AbstractCard extends JPanel {
@@ -26,4 +26,9 @@ public abstract class AbstractCard extends JPanel {
 	}
 	
 	protected abstract void initComponents();
+	
+	/**
+	 * @since 1.1b2
+	 */
+	public abstract void update();
 }

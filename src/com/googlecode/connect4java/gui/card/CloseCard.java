@@ -45,4 +45,8 @@ public class CloseCard extends AbstractCard {
 		noButton.addActionListener(listener);
 		add(noButton, "3,3");
 	}
+	
+	@Override
+	public void update() {
+	}
 }

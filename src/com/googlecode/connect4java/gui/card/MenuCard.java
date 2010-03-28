@@ -61,4 +61,8 @@ public class MenuCard extends AbstractCard {
 		exitButton.addActionListener(listener);
 		add(exitButton, "1,9");
 	}
+	
+	@Override
+	public void update() {
+	}
 }

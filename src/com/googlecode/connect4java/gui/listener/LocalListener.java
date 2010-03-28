@@ -7,7 +7,7 @@ import java.awt.event.ItemListener;
 
 import javax.swing.JColorChooser;
 
-import com.googlecode.connect4java.Main;
+import com.googlecode.connect4java.core.Core;
 import com.googlecode.connect4java.gui.GuiCard;
 import com.googlecode.connect4java.gui.card.LocalCard;
 
@@ -28,22 +28,22 @@ public class LocalListener extends AbstractListener<LocalCard> implements
 		String action = e.getActionCommand();
 		
 		if("$b_color1".equals(action)) {
-			final int color1 = Main.pref.getInt("player.color", 255);
+			final int color1 = Core.pref.getInt("player.color", 255);
 			Color res = JColorChooser.showDialog(card.getGui().getFrame(), "Local Player: Color", new Color(color1));
 			if(res != null) {
-				Main.pref.putInt("player.color", res.getRGB());
+				Core.pref.putInt("player.color", res.getRGB());
 			}
 		} else if("$b_color2".equals(action)) {
-			final int color2 = Main.pref.getInt("computer.color", -65536);
-			Color res = JColorChooser.showDialog(card.getGui().getFrame(), "Computer Player: Color", new Color(color2));
+			final int color2 = Core.pref.getInt("computer.color", -65536);
+			Color res = JColorChooser.showDialog(card.getParent(), "Computer Player: Color", new Color(color2));
 			if(res != null) {
-				Main.pref.putInt("computer.color", res.getRGB());
+				Core.pref.putInt("computer.color", res.getRGB());
 			}
 		} else if("$b_back".equals(action)) {
 			card.getGui().showCard(GuiCard.MENU);
 		} else if("$b_start".equals(action)) {
-			Main.pref.put("player.name", card.getPlayerName());
-			Main.pref.put("computer.name", card.getComputerName());
+			Core.pref.put("player.name", card.getPlayerName());
+			Core.pref.put("computer.name", card.getComputerName());
 			card.getGui().showCard(GuiCard.GAME);
 		}
 	}
@@ -53,9 +53,9 @@ public class LocalListener extends AbstractListener<LocalCard> implements
 		if(e.getStateChange() == ItemEvent.DESELECTED) {
 			if(!e.getItem().toString().isEmpty()) {
 				if(card.equalsSlotBox1(e.getSource())) {
-					Main.pref.put("player.name", card.getPlayerName());
+					Core.pref.put("player.name", card.getPlayerName());
 				} else {
-					Main.pref.put("computer.name", card.getComputerName());
+					Core.pref.put("computer.name", card.getComputerName());
 				}
 			}
 		}

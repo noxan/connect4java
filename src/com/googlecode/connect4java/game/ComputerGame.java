@@ -8,7 +8,7 @@ import com.googlecode.connect4java.field.FieldValue;
 /**
  * 
  * @author richard
- * @version 1.1b1
+ * @version 1.1b2(r31)
  * @since 1.1b1
  */
 public class ComputerGame implements GameInterface {
@@ -26,11 +26,6 @@ public class ComputerGame implements GameInterface {
 		
 	}
 	
-	@Override
-	public boolean setToken(int column) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 	@Override
 	public void handleFieldEvent(FieldEvent event) {
 		// TODO Auto-generated method stub
