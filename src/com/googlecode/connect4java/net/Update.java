@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 
+import jkit.gui.KitConsole;
 import jkit.xml.XML;
 import jkit.xml.XMLEntity;
 
@@ -13,127 +14,139 @@ import com.googlecode.connect4java.pref.Version;
 /**
  * Update-Service
  * @author richard.stromer
- * @version 0.1.29b1
+ * @version 1.1b3(r32)
  * @since 0.1
  */
 public class Update {
-	private static String version;
-	private static String revision;
+	public static final String UPDATE_LINK = "http://connect4java.isgreat.org/update.php";
+	public static final String UPDATE_HASH = "WAm96myeYxnr9JEY";
+	private static int major;
+	private static int minor;
+	private static int patch;
+	private static String type;
+	private static int revision;
+	private static String date;
 	
-
+	private Update() {
+	}
+	
 	/**
 	 * @since 0.1.4
 	 * @throws IOException
 	 */
 	public static void update() throws IOException {
-		URL url = new URL("http://games4fun.rshost.de/projects/index.php?project=connect4java&action=update");
+		URL url = new URL(UPDATE_LINK+"?hash="+UPDATE_HASH);
 		URLConnection con = url.openConnection();
 		con.setReadTimeout(2500);
 		InputStream in = con.getInputStream();
 		XMLEntity xml = new XML().read(in);
 		
-		version = xml.getChild("version").getValue();
-		revision = xml.getChild("revision").getValue();
-		System.out.println("update: "+getString());
+		String versionString = xml.getChild("version").getValue();
+		String[] versionStrings = versionString.split("\\.");
+		major = Integer.valueOf(versionStrings[0]);
+		minor = Integer.valueOf(versionStrings[1]);
+		patch = Integer.valueOf(versionStrings[2]);
+		type = xml.getChild("type").getValue();
+		revision = Integer.valueOf(xml.getChild("revision").getValue());
+		date = xml.getChild("date").getValue();
+		KitConsole.out.println("update: "+getVersion());
 	}
 	/**
-	 * @since 0.2.5
+	 * @since 1.1b3(r32)
 	 * @return
 	 */
-	public static int getVersionMainInt() {
-		return Integer.valueOf(getVersionMain());
+	public static String getType() {
+		return type;
 	}
 	/**
-	 * @since 0.2.5
+	 * @since 1.1b3(r32)
 	 * @return
 	 */
-	public static int getVersionSubInt() {
-		return Integer.valueOf(getVersionSub().replaceAll("[^0-9]", ""));
+	public static int getMajor() {
+		return major;
 	}
 	/**
-	 * @since 0.2.5
+	 * @since 1.1b3(r32)
 	 * @return
 	 */
-	public static int getRevisionInt() {
-		return Integer.valueOf(revision);
+	public static int getMinor() {
+		return minor;
 	}
 	/**
-	 * @since 0.2.5
+	 * @since 1.1b3(r32)
 	 * @return
 	 */
-	public static String getVersionMain() {
-		return version.split("[^0-9]")[0];
+	public static int getPatch() {
+		return patch;
 	}
 	/**
-	 * @since 0.2.5
+	 * @since 1.1b3(r32)
 	 * @return
 	 */
-	public static String getVersionSub() {
-		String res = "";
-		String[] temp = version.split("[^0-9]");
-		for(int i=1;i<temp.length;i++) {
-			res += temp[i]+(i+1<temp.length?".":"");
-		}
-		return res;
-	}
-	/**
-	 * @since 0.2.5
-	 * @return
-	 */
-	public static String getVersionString() {
-		return version;
-	}
-	/**
-	 * @since 0.2.5
-	 * @return
-	 */
-	public static String getRevisionString() {
+	public static int getRevision() {
 		return revision;
 	}
-	
+	/**
+	 * @since 1.1b3(r32)
+	 * @return
+	 */
+	public static String getDate() {
+		return date;
+	}
 	/**
 	 * @since 0.2.7
 	 * @return
 	 */
 	public static boolean isVersionUpdate() {
-		if(getVersionMainInt()>Version.getMajor() || getVersionSubInt()>Version.getMinor()) {
-			return true;
-		}
-		return false;
+		return (getMajor()>Version.getMajor() || getMinor()>Version.getMinor() || getPatch()>Version.getPatch());
 	}
 	/**
 	 * @since 0.2.7
 	 * @return
 	 */
 	public static boolean isRevisionUpdate() {
-		if(getRevisionInt()>Version.getRevision()) {
-			return true;
-		}
-		return false;
+		return (getRevision()>Version.getRevision());
 	}
 	/**
 	 * @since 0.2.5
 	 * @return
 	 */
 	public static boolean isUpdate() {
-		if(isRevisionUpdate() || isVersionUpdate()) {
-			return true;
-		}
-		return false;
+		return (isRevisionUpdate() || isVersionUpdate());
 	}
 	/**
-	 * @since 0.1
+	 * @since 1.1b3(r32)
 	 * @return
 	 */
-	public static String getString() {
-		return version+"."+revision;
+	public static String getVersion() {
+		return getVersion("%m.%n.%r");
 	}
 	/**
-	 * {@inheritDoc}
-	 * @since 0.1
+	 * @since 1.1b3(r32)
+	 * @return
 	 */
-	@Override
-	public String toString() {
-		return "Update["+version+"."+revision+"]";
+	public static String getVersionPatch() {
+		return getVersion("%m.%n%t%p");
+	}
+	/**
+	 * @since 1.1b3(r32)
+	 * @return
+	 */
+	private static String formatType() {
+		return getType().substring(0, 1).toLowerCase();
+	}
+	/**
+	 * @since 1.1b3(r32)
+	 * @param format
+	 * @return
+	 */
+	public static String getVersion(String format) {
+		format = format.replace("%t", formatType());
+		format = format.replace("%m", Integer.toString(getMajor()));
+		format = format.replace("%n", Integer.toString(getMinor()));
+		format = format.replace("%p", Integer.toString(getPatch()));
+		format = format.replace("%r", Integer.toString(getRevision()));
+		format = format.replace("%d", getDate());
+		return format;
 	}
 }

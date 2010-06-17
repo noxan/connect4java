@@ -33,7 +33,7 @@ public class MenuListener extends AbstractListener<MenuCard> {
 						Update.update();
 						if(Update.isUpdate()) {
 							card.getGui().setStatus("Update available", false);
-							JOptionPane.showMessageDialog(card.getGui().getFrame(), "<html>A new version, "+Update.getString()+" is available!<br>http://connect4java.googlecode.com</html>", "Update available", JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(card.getGui().getFrame(), "<html>A new version, "+Update.getVersion()+" is available!<br>http://connect4java.googlecode.com</html>", "Update available", JOptionPane.INFORMATION_MESSAGE);
 						} else {
 							card.getGui().setStatus("No update available", false);
 							JOptionPane.showMessageDialog(card.getGui().getFrame(), "Congratulations, this is the very latest version!", "No update available", JOptionPane.INFORMATION_MESSAGE);

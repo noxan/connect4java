@@ -45,12 +45,18 @@ public class JBackgroundPanel extends JPanel implements Runnable {
 		thread = new Thread(this);
 		thread.start();
 	}
+	private void stop() throws InterruptedException {
+		if(thread!=null && thread.isAlive()) {
+			thread.interrupt();
+			thread.join();
+		}
+	}
 	private Color calcActiveColor(int step) {
-		float a = step/limit;
+		float f = (float)step/limit;
 		return new Color(
-			(int) (start.getRed()+(a*(end.getRed()-start.getRed()))),
-			(int) (start.getGreen()+(a*(end.getGreen()-start.getGreen()))), 
-			(int) (start.getBlue()+(a*(end.getBlue()-start.getBlue())))
+			(int) (start.getRed()+(f*(end.getRed()-start.getRed()))),
+			(int) (start.getGreen()+(f*(end.getGreen()-start.getGreen()))), 
+			(int) (start.getBlue()+(f*(end.getBlue()-start.getBlue())))
 		);
 	}
 	
@@ -58,10 +64,10 @@ public class JBackgroundPanel extends JPanel implements Runnable {
 	public void run() {
 		int step = 0;
 		while(!thread.isInterrupted() && step<limit) {
-			active = calcActiveColor(step);
-			this.repaint();
-			step++;
 			try {
+				active = calcActiveColor(step);
+				this.repaint();
+				step++;
 				Thread.sleep(time);
 			} catch (InterruptedException e) {
 				thread.interrupt();
@@ -85,25 +91,21 @@ public class JBackgroundPanel extends JPanel implements Runnable {
 		g2.setFont(new Font("Verdana", Font.PLAIN, 32));
 		g2.setColor(active);
 		g2.drawString(Core.TITLE, width-228, 40);
-		g2.setFont(new Font("Verdana", Font.ITALIC, 16));
 	}
 	
 	public void nextColor(Color color) {
 		nextColor(color, 50);
 	}
 	public void nextColor(Color color, int time) {
-		if(thread!=null && thread.isAlive()) {
-			thread.interrupt();
-			try {
-				thread.join();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+		try {
+			stop();
+			this.start = this.active;
+			this.end = color;
+			this.time = time;
+			start();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
-		this.start = this.active;
-		this.end = color;
-		this.time = time;
-		start();
 	}
 	/**
 	 * Sets the number of steps.
