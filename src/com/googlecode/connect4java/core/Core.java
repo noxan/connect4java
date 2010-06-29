@@ -12,8 +12,8 @@ import com.googlecode.connect4java.util.Lock;
 
 /**
  * 
- * @author richard
- * @version 1.1b2(r31)
+ * @author richard.stromer
+ * @version 1.1b4(r34)
  * @since 1.1b2(r31)
  */
 public class Core {
@@ -32,23 +32,13 @@ public class Core {
 	
 	
 	public Core() {
-		try { // look and feel
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		KitConsole.out.println(TITLE+"("+Version.getVersion()+")"); //print welcome message and version
+		try { //set laf
+			UIManager.setLookAndFeel(pref.get("gui.laf", UIManager.getSystemLookAndFeelClassName()));
 		} catch(Exception e) {
+			e.printStackTrace(KitConsole.err);
 		}
-		
-		KitConsole.setSystem(true);
-		KitConsole.out.println(TITLE+"("+Version.getVersion()+")");
-		if(!Lock.isLock() || MainGui.showStartDialog()) {
-			new MainGui();
-			Lock.lock();
-		} else {
-			KitConsole.out.println("game already running, close.");
-		}
+		new MainGui();
+		Lock.lock();
 	}
-	
-	
-	
-	
-	
 }

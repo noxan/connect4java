@@ -8,14 +8,14 @@ import com.googlecode.connect4java.field.FieldValue;
  * Game Interface
  * 
  * @author richard.stromer
- * @version 1.1b2(r31)
+ * @version 1.1b4(r34)
  * @since 0.1
  * @see Game
  */
-public interface GameInterface extends FieldListener {
+public interface GameInterface extends FieldListener<FieldValue> {
 	public void click(int column);
 	
-	public void addFieldListener(FieldListener listener);
+	public void addFieldListener(FieldListener<FieldValue> listener);
 	
 	public FieldValue get(int column, int row);
 	public boolean isWin();
@@ -27,5 +27,5 @@ public interface GameInterface extends FieldListener {
 	public Player getPlayer(int index);
 	public Player[] getPlayers();
 	
-	public Field getField();
+	public Field<FieldValue> getField();
 }

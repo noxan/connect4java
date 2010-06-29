@@ -5,17 +5,19 @@ import java.util.prefs.PreferenceChangeEvent;
 import java.util.prefs.PreferenceChangeListener;
 
 import com.googlecode.connect4java.core.Core;
+import com.googlecode.connect4java.field.DefaultField;
 import com.googlecode.connect4java.field.Field;
-import com.googlecode.connect4java.field.FieldEvent;
 import com.googlecode.connect4java.field.FieldListener;
+import com.googlecode.connect4java.field.FieldStatus;
 import com.googlecode.connect4java.field.FieldValue;
 import com.googlecode.connect4java.gui.GuiCard;
 import com.googlecode.connect4java.gui.MainGui;
 import com.googlecode.connect4java.gui.card.GameCard;
 
 /**
+ * 
  * @author richard.stromer
- * @version 1.1b2(r31)
+ * @version 1.1b4(r34)
  * @since 1.0.22
  */
 public class LocalGame implements GameInterface {
@@ -23,12 +25,12 @@ public class LocalGame implements GameInterface {
 	private GameCard card;
 	private int active;
 	private Player[] players;
-	private Field field;
+	private Field<FieldValue> field;
 	
 	public LocalGame(MainGui gui, GameCard card) {
 		this.gui = gui;
 		this.card = card;
-		field = new Field();
+		field = new DefaultField();
 		field.addFieldListener(this);
 		players = new Player[2];
 		players[0] = new Player(Core.pref.get("player.name", "Player"), new Color(Core.pref.getInt("player.color", 255)));
@@ -53,14 +55,6 @@ public class LocalGame implements GameInterface {
 				}
 			}
 		});
-	}
-	
-	@Override
-	public void handleFieldEvent(FieldEvent event) {
-//		Field field = (Field) event.getSource();
-//		if (field.isWin() || field.isDrawn()) {
-//			card.getRoundPanel().repaint();
-//		}
 	}
 	
 	@Override
@@ -106,10 +100,6 @@ public class LocalGame implements GameInterface {
 	}
 	
 	@Override
-	public void addFieldListener(FieldListener listener) {
-		field.addFieldListener(listener);
-	}
-	@Override
 	public boolean isWin() {
 		return field.isWin();
 	}
@@ -121,12 +111,30 @@ public class LocalGame implements GameInterface {
 	public FieldValue get(int column, int row) {
 		return field.get(column, row);
 	}
-	public Field getField() {
+	public Field<FieldValue> getField() {
 		return field;
 	}
 	
 	@Override
 	public void reset() {
 		field.reset();
+	}
+
+	@Override
+	public void handleTokenSet(int col, int row, FieldValue e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void handleStatusChange(FieldStatus status) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addFieldListener(FieldListener<FieldValue> listener) {
+		// TODO Auto-generated method stub
+		
 	}
 }

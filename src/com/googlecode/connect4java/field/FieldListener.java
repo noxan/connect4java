@@ -3,9 +3,10 @@ package com.googlecode.connect4java.field;
 /**
  * 
  * @author richard.stromer
- * @version 1.0.25
- * @since 1.0.23
+ * @version 1.1b4(r34)
+ * @since 1.1b4(r34)
  */
-public interface FieldListener {
-	public void handleFieldEvent(FieldEvent event);
+public interface FieldListener<E> {
+	public void handleTokenSet(int col, int row, E e);
+	public void handleStatusChange(FieldStatus status);
 }

@@ -6,16 +6,18 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
-import com.googlecode.connect4java.field.FieldEvent;
 import com.googlecode.connect4java.field.FieldListener;
+import com.googlecode.connect4java.field.FieldStatus;
+import com.googlecode.connect4java.field.FieldValue;
 import com.googlecode.connect4java.game.GameInterface;
 
 /**
+ * 
  * @author richard.stromer
- * @version 1.1b2(r31)
+ * @version 1.1b4(r34)
  * @since 0.8.17
  */
-public class JRoundPanel extends JPanel implements FieldListener {
+public class JRoundPanel extends JPanel implements FieldListener<FieldValue> {
 	private static final long serialVersionUID = -5398739716808518120L;
 	private final Color border = new Color(128, 128, 128);
 	private GameInterface game;
@@ -84,8 +86,14 @@ public class JRoundPanel extends JPanel implements FieldListener {
 	}
 
 	@Override
-	public void handleFieldEvent(FieldEvent event) {
-		if(event.isWin()) {
-		}
+	public void handleTokenSet(int col, int row, FieldValue e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void handleStatusChange(FieldStatus status) {
+		// TODO Auto-generated method stub
+		
 	}
 }

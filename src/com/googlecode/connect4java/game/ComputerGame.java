@@ -1,18 +1,18 @@
 package com.googlecode.connect4java.game;
 
 import com.googlecode.connect4java.field.Field;
-import com.googlecode.connect4java.field.FieldEvent;
 import com.googlecode.connect4java.field.FieldListener;
+import com.googlecode.connect4java.field.FieldStatus;
 import com.googlecode.connect4java.field.FieldValue;
 
 /**
  * 
- * @author richard
- * @version 1.1b2(r31)
+ * @author richard.stromer
+ * @version 1.1b4(r34)
  * @since 1.1b1
  */
 public class ComputerGame implements GameInterface {
-	private Field field;
+	private Field<FieldValue> field;
 	private Player players[];
 	
 	public ComputerGame() {
@@ -22,12 +22,6 @@ public class ComputerGame implements GameInterface {
 	
 	@Override
 	public void click(int column) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	@Override
-	public void handleFieldEvent(FieldEvent event) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -60,7 +54,7 @@ public class ComputerGame implements GameInterface {
 		return field.get(column, row);
 	}
 	@Override
-	public Field getField() {
+	public Field<FieldValue> getField() {
 		return field;
 	}
 	@Override
@@ -71,8 +65,22 @@ public class ComputerGame implements GameInterface {
 	public boolean isWin() {
 		return field.isWin();
 	}
+	
 	@Override
-	public void addFieldListener(FieldListener listener) {
-		field.addFieldListener(listener);
+	public void handleTokenSet(int col, int row, FieldValue e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void handleStatusChange(FieldStatus status) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addFieldListener(FieldListener<FieldValue> listener) {
+		// TODO Auto-generated method stub
+		
 	}
 }
