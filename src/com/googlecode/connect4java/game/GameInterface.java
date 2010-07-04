@@ -3,6 +3,7 @@ package com.googlecode.connect4java.game;
 import com.googlecode.connect4java.field.Field;
 import com.googlecode.connect4java.field.FieldListener;
 import com.googlecode.connect4java.field.FieldValue;
+import com.googlecode.connect4java.player.Player;
 
 /**
  * Game Interface

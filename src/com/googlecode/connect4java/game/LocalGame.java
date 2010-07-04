@@ -13,6 +13,9 @@ import com.googlecode.connect4java.field.FieldValue;
 import com.googlecode.connect4java.gui.GuiCard;
 import com.googlecode.connect4java.gui.MainGui;
 import com.googlecode.connect4java.gui.card.GameCard;
+import com.googlecode.connect4java.player.Player;
+import com.googlecode.connect4java.player.PlayerManager;
+import com.googlecode.connect4java.player.computer.Computer;
 
 /**
  * 
@@ -33,8 +36,9 @@ public class LocalGame implements GameInterface {
 		field = new DefaultField();
 		field.addFieldListener(this);
 		players = new Player[2];
-		players[0] = new Player(Core.pref.get("player.name", "Player"), new Color(Core.pref.getInt("player.color", 255)));
-		players[1] = new Player(Core.pref.get("computer.name", "Player"), new Color(Core.pref.getInt("computer.color", -65536)));
+		PlayerManager.get("player");
+		players[0] = PlayerManager.get("default");
+		players[1] = PlayerManager.get("computer(random)");
 		active = 0;
 		
 		Core.pref.addPreferenceChangeListener(new PreferenceChangeListener() {
@@ -82,6 +86,10 @@ public class LocalGame implements GameInterface {
 			reset();
 		} else {
 			FieldValue value = (active==0?FieldValue.PLAYER1:FieldValue.PLAYER2);
+			//computer test
+			if(getActive().isComputer()) {
+				column = ((Computer) getActive()).getTurn(field);
+			}
 			if (field.add(column, value)) {
 				// change active
 				changeActive();

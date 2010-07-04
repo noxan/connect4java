@@ -4,6 +4,7 @@ import com.googlecode.connect4java.field.Field;
 import com.googlecode.connect4java.field.FieldListener;
 import com.googlecode.connect4java.field.FieldStatus;
 import com.googlecode.connect4java.field.FieldValue;
+import com.googlecode.connect4java.player.human.DefaultPlayer;
 
 /**
  * 
@@ -13,10 +14,10 @@ import com.googlecode.connect4java.field.FieldValue;
  */
 public class ComputerGame implements GameInterface {
 	private Field<FieldValue> field;
-	private Player players[];
+	private DefaultPlayer players[];
 	
 	public ComputerGame() {
-		players = new Player[2];
+		players = new DefaultPlayer[2];
 		
 	}
 	
@@ -28,20 +29,20 @@ public class ComputerGame implements GameInterface {
 	
 	
 	@Override
-	public Player getActive() {
+	public DefaultPlayer getActive() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	public Player getInactive() {
+	public DefaultPlayer getInactive() {
 		return null;
 	}
 
 	@Override
-	public Player getPlayer(int index) {
+	public DefaultPlayer getPlayer(int index) {
 		return players[index];
 	}
 	@Override
-	public Player[] getPlayers() {
+	public DefaultPlayer[] getPlayers() {
 		return players;
 	}
 

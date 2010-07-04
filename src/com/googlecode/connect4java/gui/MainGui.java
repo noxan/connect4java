@@ -20,6 +20,7 @@ import com.googlecode.connect4java.gui.card.GameCard;
 import com.googlecode.connect4java.gui.card.LocalCard;
 import com.googlecode.connect4java.gui.card.MenuCard;
 import com.googlecode.connect4java.gui.card.NetworkCard;
+import com.googlecode.connect4java.gui.card.ProfileCard;
 import com.googlecode.connect4java.gui.card.SettingsCard;
 import com.googlecode.connect4java.pref.Version;
 import com.googlecode.connect4java.swing.JBackgroundPanel;
@@ -76,10 +77,11 @@ public class MainGui {
 		frame.add(statusbar, BorderLayout.SOUTH);
 		//cards
 		cards.add(new MenuCard(this), GuiCard.MENU.toString());
-		cards.add(new SettingsCard(this), GuiCard.SETTINGS.toString());
+		cards.add(new GameCard(this), GuiCard.GAME.toString());
 		cards.add(new LocalCard(this), GuiCard.LOCAL.toString());
 		cards.add(new NetworkCard(this), GuiCard.NETWORK.toString());
-		cards.add(new GameCard(this), GuiCard.GAME.toString());
+		cards.add(new ProfileCard(this), GuiCard.PROFILE.toString());
+		cards.add(new SettingsCard(this), GuiCard.SETTINGS.toString());
 		cards.add(new CloseCard(this), GuiCard.CLOSE.toString());
 	}
 	public void showCard(GuiCard card) {

@@ -45,6 +45,8 @@ public class MenuListener extends AbstractListener<MenuCard> {
 					card.getGui().setStatus("Ready", false);
 				};
 			}.start();
+		} else if(action.equals("$b_profile")) {
+			card.getGui().showCard(GuiCard.PROFILE);
 		} else if(action.equals("$b_settings")) {
 			card.getGui().showCard(GuiCard.SETTINGS);
 		} else if(action.equals("$b_local")) {

@@ -10,7 +10,7 @@ public class Version {
 	private static final Type TYPE = Type.BETA;
 	private static final int MAJOR = 1;
 	private static final int MINOR = 1;
-	private static final int PATCH = 4;
+	private static final int PATCH = 5;
 	private static final int REVISION = 34;
 	
 	

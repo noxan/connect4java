@@ -18,7 +18,6 @@ public interface Field<E> extends Cloneable {
 	public E[] getColumn(int col);
 	
 	public int getWidth();
-	public int getWidth(int row);
 	public int getHeight();
 	public int getHeight(int col);
 	
@@ -40,5 +39,6 @@ public interface Field<E> extends Cloneable {
 	
 	public Field<E> clone();
 	public boolean equals(Object obj);
+	public String getString();
 	public String toString();
 }
