@@ -10,7 +10,7 @@ import com.googlecode.connect4java.gui.listener.MenuListener;
 /**
  * 
  * @author richard.stromer
- * @version 0.8.17
+ * @version 1.1b5
  * @since 0.1
  */
 public class MenuCard extends AbstractCard {
@@ -32,7 +32,7 @@ public class MenuCard extends AbstractCard {
 	
 	private void initLayout() {
 		double[][] size = {{MainGui.MARGIN, 200, TableLayout.FILL}, 
-				{TableLayout.FILL, TableLayout.PREFERRED, MainGui.PADDING, TableLayout.PREFERRED, MainGui.PADDING, TableLayout.PREFERRED, MainGui.PADDING, TableLayout.PREFERRED, MainGui.PADDING, TableLayout.PREFERRED, MainGui.PADDING, TableLayout.PREFERRED, MainGui.MARGIN}};
+				{TableLayout.FILL, TableLayout.PREFERRED, MainGui.PADDING/2, TableLayout.PREFERRED, MainGui.PADDING, TableLayout.PREFERRED, MainGui.PADDING/2, TableLayout.PREFERRED, MainGui.PADDING/2, TableLayout.PREFERRED, MainGui.PADDING, TableLayout.PREFERRED, MainGui.MARGIN}};
 		setLayout(new TableLayout(size));
 	}
 	

@@ -20,8 +20,8 @@ import com.googlecode.connect4java.player.computer.Computer;
 /**
  * 
  * @author richard.stromer
- * @version 1.1b4(r34)
- * @since 1.0.22
+ * @version 1.1b5
+ * @since 1.0
  */
 public class LocalGame implements GameInterface {
 	private MainGui gui;
@@ -38,7 +38,7 @@ public class LocalGame implements GameInterface {
 		players = new Player[2];
 		PlayerManager.get("player");
 		players[0] = PlayerManager.get("default");
-		players[1] = PlayerManager.get("computer(random)");
+		players[1] = PlayerManager.get("computer(easy)");
 		active = 0;
 		
 		Core.pref.addPreferenceChangeListener(new PreferenceChangeListener() {
@@ -88,7 +88,7 @@ public class LocalGame implements GameInterface {
 			FieldValue value = (active==0?FieldValue.PLAYER1:FieldValue.PLAYER2);
 			//computer test
 			if(getActive().isComputer()) {
-				column = ((Computer) getActive()).getTurn(field);
+				column = ((Computer) getActive()).getTurn(field.clone());
 			}
 			if (field.add(column, value)) {
 				// change active

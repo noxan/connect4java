@@ -3,7 +3,7 @@ package com.googlecode.connect4java.pref;
 /**
  * 
  * @author richard.stromer
- * @version 1.1b4(r34)
+ * @version 1.1b5
  * @since 0.2
  */
 public class Version {
@@ -11,7 +11,7 @@ public class Version {
 	private static final int MAJOR = 1;
 	private static final int MINOR = 1;
 	private static final int PATCH = 5;
-	private static final int REVISION = 34;
+	private static final int REVISION = 36;
 	
 	
 	public static String getType() {

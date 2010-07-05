@@ -4,17 +4,25 @@ import java.awt.Color;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * 
+ * @author richard.stromer
+ * @version 1.1b5
+ * @since 1.1
+ */
 public abstract class AbstractPlayer implements Player {
 	private List<PlayerListener> listeners;
 	private String name;
 	private Color color;
 	private PlayerType type;
+	private String hash;
 	
 	public AbstractPlayer(String name, Color color, PlayerType type) {
 		listeners = new LinkedList<PlayerListener>();
 		setName(name);
 		setColor(color);
 		setType(type);
+		hash = Integer.toHexString(hashCode());
 	}
 	@Override
 	public void setName(String name) {
@@ -47,6 +55,11 @@ public abstract class AbstractPlayer implements Player {
 	@Override
 	public boolean isHuman() {
 		return PlayerType.HUMAN.equals(getType());
+	}
+	
+	@Override
+	public String getHashCode() {
+		return hash;
 	}
 	
 	@Override

@@ -7,6 +7,12 @@ import info.clearthought.layout.TableLayout;
 import com.googlecode.connect4java.gui.MainGui;
 import com.googlecode.connect4java.gui.listener.ProfileListener;
 
+/**
+ * 
+ * @author richard.stromer
+ * @version 1.1b5
+ * @since 1.1
+ */
 public class ProfileCard extends AbstractCard {
 	private static final long serialVersionUID = 7011751919075160426L;
 	private JButton backButton;

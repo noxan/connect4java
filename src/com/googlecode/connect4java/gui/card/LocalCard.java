@@ -16,11 +16,14 @@ import javax.swing.border.TitledBorder;
 import com.googlecode.connect4java.core.Core;
 import com.googlecode.connect4java.gui.MainGui;
 import com.googlecode.connect4java.gui.listener.LocalListener;
+import com.googlecode.connect4java.player.Player;
+import com.googlecode.connect4java.player.PlayerManager;
+import com.googlecode.connect4java.player.PlayerType;
 
 /**
  * 
  * @author richard.stromer
- * @version 0.1.29b1
+ * @version 1.1b5
  * @since 0.1
  */
 public class LocalCard extends AbstractCard {
@@ -98,9 +101,11 @@ public class LocalCard extends AbstractCard {
 		player2TypeBox.setEnabled(false);
 		player2Panel.add(player2TypeBox, "1,1");
 		
-		player2NameBoxModel = new DefaultComboBoxModel(new String[]{"Player2"});
+		player2NameBoxModel = new DefaultComboBoxModel();
+		for(Player p:PlayerManager.getPlayers(PlayerType.COMPUTER)) {
+			player2NameBoxModel.addElement(p.getName());
+		}
 		player2NameBox = new JComboBox(player2NameBoxModel);
-		player2NameBox.setEditable(true);
 		player2NameBox.addItemListener(listener);
 		player2Panel.add(player2NameBox, "3,1");
 		
